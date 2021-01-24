@@ -23,24 +23,23 @@
 }
 
 .sign-up-section{
-    top: 130px;
+    top: 120px;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 10.3pt;
 }
 
 .button {
     display: block;
-    margin: 0 auto;
-    width: 295px;
-    height: 40px;
-    background: #7AA3FC;
-    padding: 10px;
+    padding: 15px 20px;
+    margin: auto;
+    width: 300px;
+    height: 50px;
+    background: white;
     text-align: center;
+    border: 1px solid #D1D5DA;
     border-radius: 5px;
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    line-height: 25px;
 }
 
 div h1{
@@ -61,7 +60,7 @@ input{
 
 #id-field{
     margin-top:5px;
-    margin-bottom:10px;
+    margin-bottom:20px;
 }
 
 #pw-field{
@@ -81,6 +80,11 @@ input{
     font-size: 12pt;
 }
 
+label{
+    font-family: 'Roboto', sans-serif;
+    font-size: 10.5pt;
+    font-weight: 500;
+}
 
 * {
     -webkit-box-sizing: border-box;

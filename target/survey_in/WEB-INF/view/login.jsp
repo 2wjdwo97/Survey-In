@@ -29,6 +29,9 @@
             <input class=position-relative id="submit-form" type="submit" value="Submit"/>
         </form>
     </div>
-    <a href="/join" class="position-relative sign-up-section button">Sign Up</a>
+    <p class="position-relative button sign-up-section">
+        New to Survey In?
+        <a href="/join">Create an account.</a>
+    </p>
 </body>
 </html>
