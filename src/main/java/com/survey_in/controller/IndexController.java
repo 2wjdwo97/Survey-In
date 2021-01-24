@@ -10,6 +10,7 @@ public class IndexController implements Controller {
     @Override
     public ModelAndView handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         ModelAndView mv = new ModelAndView("index");
+
         //mv.addObject("data", "hi");
         return mv;
     }

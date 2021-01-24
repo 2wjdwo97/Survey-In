@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginController implements Controller {
     public ModelAndView handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         ModelAndView mv = new ModelAndView("login");
+
         return mv;
     }
 }
