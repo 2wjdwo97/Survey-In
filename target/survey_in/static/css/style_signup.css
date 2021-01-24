@@ -1,0 +1,88 @@
+@CHARSET "UTF-8";
+
+.position-relative{
+    position: relative;
+}
+
+
+.display-inline{
+    display: inline;
+}
+
+.login{
+    top: 150px;
+    text-align: center;
+}
+
+.radio{
+    vertical-align: bottom;
+    height: 16px;
+    width: 16px;
+}
+
+#signup{
+    height: 40px;
+    background: #7AA3FC;
+    color: white;
+}
+
+#first-name{
+    float: left;
+    width: 48%;
+}
+
+#last-name{
+    float: right;
+    width: 48%;
+}
+
+.join-form{
+    top: 130px;
+    margin: 0 auto;
+    width: 380px;
+    height: fit-content;
+    padding: 35px;
+    background: white;
+    color: black;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 2px 2px 10px 0px gray;
+}
+
+.form-header{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 28pt;
+}
+
+.form-input{
+    top: 10pt;
+}
+
+form div{
+    position: relative;
+    margin-top: 24px;
+    height: 34px;
+    width: 100%;
+}
+
+input:not(.radio){
+    height: 100%;
+    width: 100%;
+    font-size: 11pt;
+    background: #FAFBFC;
+
+    border: 1px solid #E1E4E8;
+    border-radius: 5px;
+}
+
+input:focus{
+    border: 1px solid #E1E4E8;
+    box-shadow: 0 0 0 3pt #487BCB;
+    outline: none;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}

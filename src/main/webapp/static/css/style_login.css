@@ -1,0 +1,91 @@
+.position-absolute{
+    position: absolute;
+}
+
+.position-relative{
+    position: relative;
+}
+
+.login-form{
+    border: 1px solid #EAECEF;
+    border-radius: 5px;
+    background: #F6F8FA;
+
+    top: 5px;
+    padding: 20px;
+    width: 300px;
+    height: 230px;
+    margin:0 auto;
+}
+
+.login-section{
+    top: 100px;
+}
+
+.sign-up-section{
+    top: 130px;
+}
+
+.button {
+    display: block;
+    margin: 0 auto;
+    width: 295px;
+    height: 40px;
+    background: #7AA3FC;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    line-height: 25px;
+}
+
+div h1{
+    text-align: center;
+    font-size: 17pt;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+input{
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+    height: 30px;
+    border-radius: 8px 8px 8px 8px;
+    border: none;
+}
+
+#id-field{
+    margin-top:5px;
+    margin-bottom:10px;
+}
+
+#pw-field{
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+#submit-form{
+    top: 20px;
+    height: 32px;
+    background: #7AA3FC;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+
+    cursor: pointer;
+    font-size: 12pt;
+}
+
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*E8F0FE*/
