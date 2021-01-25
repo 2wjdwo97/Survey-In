@@ -10,14 +10,12 @@
                 https://www.springframework.org/schema/mvc/spring-mvc.xsd
                 http://www.springframework.org/schema/context
                 https://www.springframework.org/schema/context/spring-context.xsd">
-    <context:annotation-config/>
-    <bean id="/index" class="com.survey_in.controller.IndexController"/>
-    <bean id="/login" class="com.survey_in.controller.LoginController"/>
-    <bean id="/join" class="com.survey_in.controller.SignUpController"/>
+    <context:component-scan base-package="com.survey_in.controller"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/view/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
     <mvc:resources mapping="/**" location="/static/"/>
+    <mvc:annotation-driven/>
 </beans>

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.*;
 
-@Service("Service")
+@Service
 public class SignUpService implements SignUpServ{
     public SignUpInfo getSignUpInfo() {
         return signUpInfo;
