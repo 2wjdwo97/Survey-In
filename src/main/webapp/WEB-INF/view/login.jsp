@@ -21,7 +21,7 @@
         <div>
             <h1>Sign in to Survey In</h1>
         </div>
-        <form class="position-relative login-form">
+        <form class="position-relative login-form" method="post">
             <label for="id-field">Username</label>
                 <input id="id-field" type="text" name="id"/>
             <label for="pw-field">Password</label>

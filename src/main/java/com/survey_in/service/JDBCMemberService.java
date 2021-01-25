@@ -31,20 +31,24 @@ public class JDBCMemberService implements MemberService {
     }
 
     @Override
-    public void signIn(String id, String pw) throws ClassNotFoundException, SQLException {
+    public Boolean signIn(String id, String pw) throws ClassNotFoundException, SQLException {
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection con = DriverManager.getConnection(SecretInfo.url(), SecretInfo.id(), SecretInfo.password());
         String sql = "SELECT ID FROM MEMBER WHERE ID='"+id+"' AND PWD='"+pw+"'";
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
 
-        if(rs.next())
-            System.out.println("log in succeeded");
-        else
-            System.out.println("log in failed");
-
-        rs.close();
-        st.close();
-        con.close();
+        if(rs.next()) {
+            rs.close();
+            st.close();
+            con.close();
+            return true;
+        }
+        else {
+            rs.close();
+            st.close();
+            con.close();
+            return false;
+        }
     }
 }

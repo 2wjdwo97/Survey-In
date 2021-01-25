@@ -22,7 +22,12 @@ public class MemberController {
     }
 
     @RequestMapping("/login")
-    public void login(String id, String pw) throws SQLException, ClassNotFoundException {
-        memberService.signIn(id, pw);
+    public String login(String id, String pw) throws SQLException, ClassNotFoundException {
+        Boolean verified;
+        verified = memberService.signIn(id, pw);
+        if(verified)
+            return "index";
+        else
+            return null;
     }
 }

@@ -17,7 +17,6 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
     <mvc:resources mapping="/**" location="/static/"/>
     <mvc:annotation-driven/>
 </beans>
