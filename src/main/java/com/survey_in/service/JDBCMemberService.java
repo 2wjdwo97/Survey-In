@@ -1,27 +1,12 @@
 package com.survey_in.service;
 
 import com.survey_in.controller.SecretInfo;
-import com.survey_in.entity.SignUpInfo;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
 
 @Service
-public class SignUpService implements SignUpServ{
-    public SignUpInfo getSignUpInfo() {
-        return signUpInfo;
-    }
-
-    public void setSignUpInfo(SignUpInfo signUpInfo) {
-        this.signUpInfo = signUpInfo;
-    }
-
-    public SignUpService(){
-        signUpInfo = new SignUpInfo();
-    }
-
-    private SignUpInfo signUpInfo;
-
+public class JDBCMemberService implements MemberService {
     public void signUp()  throws ClassNotFoundException, SQLException {
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection con = DriverManager.getConnection(SecretInfo.url(), SecretInfo.id(), SecretInfo.password());
@@ -43,5 +28,23 @@ public class SignUpService implements SignUpServ{
 //        private String email;
 //        private Date birthday;
 //        private Boolean male;
+    }
+
+    @Override
+    public void signIn(String id, String pw) throws ClassNotFoundException, SQLException {
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        Connection con = DriverManager.getConnection(SecretInfo.url(), SecretInfo.id(), SecretInfo.password());
+        String sql = "SELECT ID FROM MEMBER WHERE ID='"+id+"' AND PWD='"+pw+"'";
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+
+        if(rs.next())
+            System.out.println("log in succeeded");
+        else
+            System.out.println("log in failed");
+
+        rs.close();
+        st.close();
+        con.close();
     }
 }
