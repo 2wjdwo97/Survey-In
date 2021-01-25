@@ -9,7 +9,7 @@
                 https://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <bean id="/index" class="com.survey_in.controller.IndexController"/>
     <bean id="/login" class="com.survey_in.controller.LoginController"/>
-    <bean id="/join" class="com.survey_in.controller.SignUpController"/>
+<!--    <bean id="/join" class="com.survey_in.controller.SignUpController"/>-->
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/view/"/>

@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Survey In</title>
-    <link href="/css/style_home.css" rel="stylesheet" type="text/css">
+    <link href="/css/style_home.css?a" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">

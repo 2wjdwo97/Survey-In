@@ -21,6 +21,7 @@
 }
 
 #signup{
+    cursor: pointer;
     height: 40px;
     background: #7AA3FC;
     color: white;
