@@ -17,7 +17,16 @@ public class SignUpController{
     }
 
     @RequestMapping("/join")
-    public void join() throws SQLException, ClassNotFoundException {
-        signUpServ.signUp();
+    public String join(String id, String pw, String pwc, String fn, String ln, String email,
+                    String bd, String gender) throws SQLException, ClassNotFoundException {
+        if(id != null && !id.equals("")) {
+            signUpServ.signUp(id, pw, fn, ln, email, bd, gender);
+            System.out.println(id);
+            return "login";
+        }
+
+        return "join";
     }
 }
+
+//id, pw, pwc, fn, ln, email, bd, gender
