@@ -21,7 +21,7 @@
         <div>
             <h1>Sign in to Survey In</h1>
         </div>
-        <form class="position-relative login-form" method="post">
+        <form class="position-relative login-form" method="post" onsubmit="return validateMyForm(event);">
             <label for="id-field">Username</label>
                 <input id="id-field" type="text" name="id"/>
             <label for="pw-field">Password</label>
@@ -33,5 +33,8 @@
         New to Survey In?
         <a href="/join">Create an account.</a>
     </p>
+
+
+    <script type="text/javascript" src="/js/loginJs.js?a"></script>
 </body>
 </html>
