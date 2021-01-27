@@ -14,7 +14,7 @@
             <div class="form-header position-relative">
                 Sign Up
             </div>
-            <form class="position-relative form-input" method="post">
+            <form class="position-relative form-input" method="post" onsubmit="return validateForm(event);">
                 <div>
                     <input type="text" name="id" placeholder="Username" />
                 </div>
@@ -50,5 +50,8 @@
         <div class="position-relative login">
             Already have an account? <a href="/login">Login here.</a>
         </div>
+
+
+        <script type="text/javascript" src="/js/joinJs.js?a"></script>
     </body>
 </html>

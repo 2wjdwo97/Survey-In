@@ -17,8 +17,15 @@ public class MemberController {
     }
 
     @RequestMapping("/join")
-    public void join() throws SQLException, ClassNotFoundException {
-        memberService.signUp();
+    public String join(String id, String pw, String pwc, String fn, String ln, String email,
+                       String bd, String gender) throws SQLException, ClassNotFoundException {
+        if(id != null && !id.equals("")) {
+            memberService.signUp(id, pw, fn, ln, email, bd, gender);
+            System.out.println(id);
+            return "login";
+        }
+
+        return "join";
     }
 
     @RequestMapping("/login")
