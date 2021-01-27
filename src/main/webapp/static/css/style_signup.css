@@ -37,6 +37,26 @@
     width: 48%;
 }
 
+#pw-confirm{
+    width:89%;
+    height:100%;
+    font-size: 11pt;
+    float: left;
+    background: #FAFBFC;
+    border:none;
+}
+
+.confirm-icon{
+    margin: 0 auto;
+    width: 30px;
+    height: 25px;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+
 .join-form{
     top: 110px;
     margin: 0 auto;
@@ -59,24 +79,36 @@
     top: 10pt;
 }
 
-form div{
-    position: relative;
-    margin-top: 24px;
-    height: 34px;
-    width: 100%;
-}
 
-input:not(.radio){
-    height: 100%;
-    width: 100%;
+.input-area{
+    width:100%;
+    height: 34px;
     font-size: 11pt;
     background: #FAFBFC;
-
+    padding:5px;
     border: 1px solid #E1E4E8;
     border-radius: 5px;
 }
 
-input:focus{
+form div{
+    position: relative;
+    margin-top: 24px;
+    border-radius: 5px;
+    height: 34px;
+    width: 100%;
+}
+
+.focused{
+    border: 1px solid #E1E4E8;
+    box-shadow: 0 0 0 3pt #487BCB;
+    outline: none;
+}
+
+input#pw-confirm:focus{
+    outline: none;
+}
+
+input:focus:not(#pw-confirm){
     border: 1px solid #E1E4E8;
     box-shadow: 0 0 0 3pt #487BCB;
     outline: none;

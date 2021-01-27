@@ -14,36 +14,37 @@
             <div class="form-header position-relative">
                 Sign Up
             </div>
-            <form class="position-relative form-input" method="post" onsubmit="return validateForm(event);">
+            <form class="position-relative form-input" method="post">
                 <div>
-                    <input type="text" name="id" placeholder="Username" />
+                    <input class="input-area" type="text" name="id" placeholder="Username" />
                 </div>
                 <div>
-                    <input type="text" name="pw" placeholder="Password"/>
+                    <input id="pw" class="input-area" type="password" name="pw" placeholder="Password"/>
+                </div>
+                <div class="input-area">
+                    <input id="pw-confirm" type="password" name="pwc" placeholder="Confirm Your Password"/>
+                    <img class="hidden confirm-icon" src="/images/confirmed.jpg"/>
                 </div>
                 <div>
-                    <input type="text" name="pwc" placeholder="Confirm Your Password"/>
+                    <input class="input-area" id="first-name" type="text" name="fn" placeholder="First Name"/>
+                    <input class="input-area" id="last-name" type="text" name="ln" placeholder="Last Name"/>
                 </div>
                 <div>
-                    <input id="first-name" type="text" name="fn" placeholder="First Name"/>
-                    <input id="last-name" type="text" name="ln" placeholder="Last Name"/>
+                    <input class="input-area" type="email" name="email" placeholder="Email Address"/>
                 </div>
                 <div>
-                    <input type="email" name="email" placeholder="Email Address"/>
-                </div>
-                <div>
-                    <input type="text" name="bd" placeholder="Birthday" onfocus="(this.type='date')" onblur="(this.type='text')"/>
+                    <input class="input-area" type="text" name="bd" placeholder="Birthday" onfocus="(this.type='date')" onblur="(this.type='text')"/>
                 </div>
                 <div>
                     <label>
-                    <input class="radio" type="radio" name="gender" value="fem"/>
+                    <input class="radio" type="radio" name="gender" checked=true value="fem"/>
                     Female</label>
                     <label>
                     <input class="radio" type="radio" name="gender" value="male"/>
                     Male</label>
                 </div>
                 <div>
-                    <input id="signup" type="submit" value="Sign Up"/>
+                    <input class="input-area" id="signup" type="submit" value="Sign Up"/>
                 </div>
             </form>
         </div>
