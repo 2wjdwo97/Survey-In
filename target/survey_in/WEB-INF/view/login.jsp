@@ -17,6 +17,12 @@
     <title>Sign in to Survey In</title>
 </head>
 <body>
+    <div class="position-relative logo-section">
+        <a class='position-absolute logo' href="/index">
+            <img src="/images/logo_light.png"
+             width="70" height="70">
+        </a>
+    </div>
     <div class="position-relative login-section">
         <div>
             <h1>Sign in to Survey In</h1>
@@ -25,7 +31,7 @@
             <label for="id-field">Username</label>
                 <input id="id-field" type="text" name="id"/>
             <label for="pw-field">Password</label>
-                <input id="pw-field" type="text" name="pw"/>
+                <input id="pw-field" type="password" name="pw"/>
             <input class=position-relative id="submit-form" type="submit" value="Submit"/>
         </form>
     </div>
