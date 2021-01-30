@@ -1,9 +1,40 @@
-header{
-    position: relative;
-    background: #24292e;
-    height: 65px;
-    padding: 10px 10px 10px 25px;
+.display-flex{
+    display: flex;
 }
+
+.display-inline{
+    display: inline;
+}
+
+.display-inline-block{
+    display: inline-block;
+}
+
+.position-relative {
+    position: relative!important;
+}
+
+.position-absolute {
+    position: absolute!important;
+}
+
+.flex-wrapper{
+    flex-wrap: wrap!important;
+}
+
+.content-box{
+    width: 75%;
+    padding: 35px;
+}
+
+.survey-box{
+    border-radius: 20px 20px 20px 20px;
+    margin: 25px;
+    height: 200px;
+    width: 200px;
+    background: #7AA3FC;
+}
+
 
 .vertical-center {
     margin: 0;
@@ -12,6 +43,14 @@ header{
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
+
+header{
+    position: relative;
+    background: #24292e;
+    height: 65px;
+    padding: 12px 10px 12px 25px;
+}
+
 
 .sign-out-form{
     padding: 20px;
@@ -29,7 +68,7 @@ header{
     width: 280px;
     height: 28px;
     border-radius: 5px 5px 5px 5px;
-    border: 1px solid #487BCB;
+    border: 1px solid #646464;
 }
 
 .search-input{
@@ -40,21 +79,10 @@ header{
 }
 
 aside{
-    width: fit-content;
-    height: 100%;
+    width: 25%;
+    max-width: 350px;
     padding: 35px;
-}
-
-.display-inline{
-    display: inline;
-}
-
-.position-relative {
-    position: relative!important;
-}
-
-.position-absolute {
-    position: absolute!important;
+    background: #FFFFFF;
 }
 
 .search-button{
@@ -65,12 +93,11 @@ aside{
     border: none;
 }
 
-header{
-}
 
 body{
     margin: 0px;
     position: relative;
+    background: #f0f0f0;
 }
 
 * {
