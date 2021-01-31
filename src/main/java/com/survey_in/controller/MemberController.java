@@ -33,7 +33,7 @@ public class MemberController {
         Boolean verified;
         verified = memberService.signIn(id, pw);
         if(verified)
-            return "redirect:/mySurveys";
+            return "redirect: mySurveys/list";
         else
             return null;
     }

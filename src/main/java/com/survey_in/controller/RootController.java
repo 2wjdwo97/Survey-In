@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class RootController {
-    @RequestMapping("/mySurveys")
-    public void mySurveys(){
-        System.out.println("a");
+    @RequestMapping("/mySurveys/list")
+    public String mySurveys(){
+        return "mySurveys.list";
     }
 
     @RequestMapping("/search")
