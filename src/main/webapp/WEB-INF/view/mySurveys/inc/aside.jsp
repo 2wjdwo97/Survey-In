@@ -11,10 +11,10 @@
         Username
     </div>
     <div>
-        My surveys
+        <a href = '/mySurveys/list'> My surveys</a>
     </div>
     <div>
-        New survey
+        <a href = '/mySurveys/new'> New survey</a>
     </div>
     <div>
         Take a survey
