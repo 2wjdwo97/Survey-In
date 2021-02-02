@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
 @Controller
@@ -29,12 +31,15 @@ public class MemberController {
     }
 
     @RequestMapping("/login")
-    public String login(String id, String pw) throws SQLException, ClassNotFoundException {
-        Boolean verified;
-        verified = memberService.signIn(id, pw);
-        if(verified)
+    public String login(HttpServletResponse response, String id, String pw) throws SQLException, ClassNotFoundException {
+        int user_no = memberService.signIn(id, pw);
+        if(user_no != -1) {
+            Cookie user = new Cookie("user_id", Integer.toString(user_no));
+            user.setMaxAge(1000);
+            response.addCookie(user);
             return "index";
+        }
         else
-            return null;
+            return "login";
     }
 }
