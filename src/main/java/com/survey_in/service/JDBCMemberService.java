@@ -8,24 +8,25 @@ import java.sql.*;
 @Service
 public class JDBCMemberService implements MemberService {
     @Override
-    public Boolean signIn(String id, String pw) throws ClassNotFoundException, SQLException {
+    public int signIn(String id, String pw) throws ClassNotFoundException, SQLException {
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection con = DriverManager.getConnection(SecretInfo.url(), SecretInfo.id(), SecretInfo.password());
-        String sql = "SELECT ID FROM MEMBER WHERE ID='" + id + "' AND PWD='" + pw + "'";
+        String sql = "SELECT USER_NO FROM MEMBER WHERE ID='" + id + "' AND PWD='" + pw + "'";
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
 
-        if (rs.next()) {
-            rs.close();
-            st.close();
-            con.close();
-            return true;
-        } else {
-            rs.close();
-            st.close();
-            con.close();
-            return false;
-        }
+        int user_no;
+
+        if (rs.next())
+            user_no = rs.getInt("USER_NO");
+        else
+            user_no = -1;
+
+        rs.close();
+        st.close();
+        con.close();
+
+        return user_no;
     }
     public void signUp(String id, String pw, String fn, String ln, String email, String bd, String gender) throws ClassNotFoundException, SQLException {
         Class.forName("oracle.jdbc.driver.OracleDriver");
