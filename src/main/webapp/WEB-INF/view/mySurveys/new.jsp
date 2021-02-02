@@ -13,29 +13,54 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
-<div class="content-box position-relative">
-    <div class="query-area">
-        <form method="post">
-            <input class="title-input" type="text" placeholder="Title"/>
-        </form>
-    </div>
+<div class="query-area flex-auto">
+    <form method="post">
+        <input class="title-input" type="text" placeholder="Title"/>
+    </form>
+</div>
 
+<div class="floating-area">
     <div class="floating-box">
         <div>
-            <button id="create-button">+</button>
+            <label>Points:
+                <input type="text" name="p"/>
+            </label>
         </div>
         <div>
-            Points:
+            <label>Capacity:
+                <input type="text" name="cap"/>
+            </label>
         </div>
         <div>
-            참여인원:
+            <label for="category">Category:</label>
+            <select name="cat" id="category">
+                <option value="volvo">Life Style</option>
+                <option value="saab">Food</option>
+                <option value="opel">Machine</option>
+                <option value="audi">Mobile</option>
+            </select>
         </div>
         <div>
-            Options
+            Options:
+        </div>
+        <div>
+            <label>
+                <input class="radio" type="radio" name="option" checked=true value="all"/>
+                All</label>
+            <label>
+                <input class="radio" type="radio" name="option" value="men"/>
+                Men Only</label>
+            <label>
+                <input class="radio" type="radio" name="option" value="women"/>
+                Women Only</label>
+        </div>
+        <div>
+            <button id="create-button" title="Add question"></button>
+            <button>Create</button>
         </div>
     </div>
 </div>
-<script type="text/javascript" src="/js/createJs.js?a"></script>
+<script type="text/javascript" src="/js/createJs.js"></script>
 
 
 <%--<div class="content-box position-relative">
