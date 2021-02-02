@@ -4,6 +4,6 @@ import java.sql.SQLException;
 
 public interface MemberService {
     int signIn(String id, String pw) throws ClassNotFoundException, SQLException;
-    void signUp(String id, String pw, String fn, String ln, String email, String bd, String gender)
+    void signUp(String id, String pw, String fn, String ln, String email, String bd, String gender, String job)
             throws ClassNotFoundException, SQLException;
 }

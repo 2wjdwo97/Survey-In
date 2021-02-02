@@ -20,10 +20,9 @@ public class MemberController {
 
     @RequestMapping("/join")
     public String join(String id, String pw, String pwc, String fn, String ln, String email,
-                       String bd, String gender) throws SQLException, ClassNotFoundException {
+                       String bd, String gender, String job) throws SQLException, ClassNotFoundException {
         if(id != null && !id.equals("")) {
-            memberService.signUp(id, pw, fn, ln, email, bd, gender);
-            System.out.println(id);
+            memberService.signUp(id, pw, fn, ln, email, bd, gender, job);
             return "login";
         }
 

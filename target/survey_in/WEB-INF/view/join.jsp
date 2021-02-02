@@ -44,6 +44,9 @@
                     Male</label>
                 </div>
                 <div>
+                    <input class="input-area" type="text" name="job" placeholder="Job""/>
+                </div>
+                <div>
                     <input class="input-area" id="signup" type="submit" value="Sign Up"/>
                 </div>
             </form>

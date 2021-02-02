@@ -28,7 +28,8 @@ public class JDBCMemberService implements MemberService {
 
         return user_no;
     }
-    public void signUp(String id, String pw, String fn, String ln, String email, String bd, String gender) throws ClassNotFoundException, SQLException {
+    public void signUp(String id, String pw, String fn, String ln, String email, String bd, String gender, String job)
+            throws ClassNotFoundException, SQLException {
         Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection con = DriverManager.getConnection(SecretInfo.url(), SecretInfo.id(), SecretInfo.password());
 
@@ -38,8 +39,9 @@ public class JDBCMemberService implements MemberService {
                 "NAME," +
                 "GENDER," +
                 "BIRTHDAY," +
-                "EMAIL" +
-                ") VALUES (?, ?, ?, ?, ?, ?)";
+                "EMAIL," +
+                "JOB" +
+                ") VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement pst = con.prepareStatement(sqlCreate);
 
@@ -51,6 +53,7 @@ public class JDBCMemberService implements MemberService {
         pst.setString(4, gender);
         pst.setString(5, bd);
         pst.setString(6, email);
+        pst.setString(7, job);
         int a = pst.executeUpdate(); //몇개의 row 영향을 받았는지 return
 
         pst.close();
