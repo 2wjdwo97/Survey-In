@@ -74,15 +74,25 @@ header{
     margin-left: 18px;
     width: 280px;
     height: 28px;
-    border-radius: 5px 5px 5px 5px;
+    border-radius: 7px 7px 7px 7px;
     border: 1px solid #646464;
 }
 
 .search-input{
-    width: 90%;
+    width: 100%;
     height: 100%;
     background: none;
     border: none;
+    padding-left: 8px;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 10pt;
+    color: #646464;
+}
+
+.search-input:focus{
+    color: white;
 }
 
 .aside-inner-div{
