@@ -23,8 +23,15 @@
 }
 
 .content-box{
-    width: 75%;
+    width:75%;
     padding: 35px;
+}
+
+.content-box-width-1{
+    width: 66.67% !important;
+}
+.content-box-width-2{
+    width: 100% !important;
 }
 
 .survey-box{
@@ -78,11 +85,32 @@ header{
     border: none;
 }
 
+.aside-inner-div{
+    display: flex;
+    flex-direction: column;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 13.5pt;
+}
+
+div.aside-inner-div div{
+    margin: 10px;
+}
+
 aside{
     width: 25%;
     max-width: 350px;
-    padding: 35px;
+    padding: 35px 35px 35px 50px;
     background: #FFFFFF;
+}
+
+.aside-width-1{
+    width: 33.33% !important;
+}
+
+.aside-width-2{
+    width: 100%;
 }
 
 .search-button{

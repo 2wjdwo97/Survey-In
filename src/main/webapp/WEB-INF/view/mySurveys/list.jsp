@@ -23,4 +23,29 @@
     <div class="survey-box display-inline-block">
 
     </div>
+    <div class="survey-box display-inline-block">
+
+    </div>
+    <div class="survey-box display-inline-block">
+
+    </div>
+    <div class="survey-box display-inline-block">
+
+    </div>
+    <div class="survey-box display-inline-block">
+
+    </div>
+    <div class="survey-box display-inline-block">
+
+    </div>
+    <div class="survey-box display-inline-block">
+
+    </div>
+    <div class="survey-box display-inline-block">
+
+    </div>
+    <div class="survey-box display-inline-block">
+
+    </div>
+
 </div>
