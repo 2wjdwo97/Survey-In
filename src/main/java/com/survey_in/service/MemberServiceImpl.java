@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.List;
 
-@Service("service")
+@Service("serviceBean")
 public class MemberServiceImpl implements MemberService {
     private MemberDao memberDao;
 
