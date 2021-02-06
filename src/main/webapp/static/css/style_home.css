@@ -11,7 +11,11 @@ Licence URI: https://www.os-templates.com/template-terms
 
 /* Main page */
 #main{background-image:url('../images/home/home.jpg');}
-#mainpage{padding:250px 0; width: 100vw; height: 100vh;}
+
+#mainnav{float:right;}
+#mainnav li{display:inline-block; position:relative; font-weight: bolder}
+
+#mainpage{padding:200px 0; width: 100vw; height: 90vh;}
 #mainpage article{display:block; margin-left: 5%; max-width:50%; word-break: keep-all; word-wrap: break-word;}
 #mainpage .heading{margin-bottom:20px; font-size:4rem;}
 #mainpage p{max-width:75%; margin: 20px 0; font-size:1.5rem;}
@@ -62,7 +66,7 @@ Licence URI: https://www.os-templates.com/template-terms
 #backtotop:hover{opacity:1;}
 
 
-/* Colours */
+/* Colours 7AA3FC 487BCB */
 /* ------------------------------------------------------------------------------------------------- */
 
 body{color:#C1C2C4; background-color:#292929;}
@@ -78,6 +82,7 @@ a:active, a:focus{background:transparent;}/* IE10 + 11 Bugfix - prevents grey ba
 
 .heading.underline::after{background-color:#DC8E47;}
 /*btn, .btn.inverse:hover{color:#FFFFFF; background-color:#DC8E47; border-color:#DC8E47;}*/
+
 
 
 /* Rows */

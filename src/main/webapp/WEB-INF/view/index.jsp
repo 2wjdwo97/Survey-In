@@ -17,12 +17,20 @@ Licence URI: https://www.os-templates.com/template-terms
 </head>
 <body>
 <!-- ################################################################################################ -->
-<div class="background overlay" id="main">
+<div id="main" class="background overlay">
+    <header id="header" class="hoc clear">
+        <nav id="mainnav">
+            <ul>
+<%--                <li class="active"><a class="btn inverse" href="/join" >가입하기</a></li>--%>
+                <li class="active"><a class="btn inverse" href="/login">로그인</a></li>
+            </ul>
+        </nav>
+    </header>
     <div id="mainpage" class="hoc clear">
         <article>
             <h1 class="heading underline">Survey In</h1>
             <p>당신의 목소리로 세상을 변화시키세요!</p>
-            <footer><a class="btn" href="#">시작하기</a></footer>
+            <footer><a class="btn" href="/join">시작하기</a></footer>
         </article>
     </div>
 </div>
