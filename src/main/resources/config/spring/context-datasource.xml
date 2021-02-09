@@ -8,7 +8,7 @@
 
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@172.30.1.41:1521/xepdb1"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521/xepdb1"/>
         <property name="username" value="JEONGJAE"/>
         <property name="password" value="w0j9d7w1o!"/>
     </bean>
