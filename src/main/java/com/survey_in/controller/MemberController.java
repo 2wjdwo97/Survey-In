@@ -2,10 +2,11 @@ package com.survey_in.controller;
 
 import com.survey_in.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
@@ -14,7 +15,7 @@ public class MemberController {
     private MemberService memberService;
 
     @Autowired
-    public MemberController(MemberService memberService){
+    public MemberController(@Qualifier("serviceBean") MemberService memberService){
         this.memberService = memberService;
     }
 
@@ -29,16 +30,10 @@ public class MemberController {
         return "join";
     }
 
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(HttpServletResponse response, String id, String pw) throws SQLException, ClassNotFoundException {
-        int user_no = memberService.signIn(id, pw);
-        if(user_no != -1) {
-            Cookie user = new Cookie("user_id", Integer.toString(user_no));
-            user.setMaxAge(1000);
-            response.addCookie(user);
-            return "redirect: mySurveys/list";
-        }
-        else
-            return "login";
+//        List<Member> list = memberService.signIn();
+//        System.out.println(list.get(0).getUsername());
+        return "login";
     }
 }
