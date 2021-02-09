@@ -29,7 +29,7 @@
     <param-value>
       /WEB-INF/spring/service-context.xml
       /WEB-INF/spring/security-context.xml
-      classpath*:config/spring/context-*.xml
+      classpath*:config/spring/*.xml
     </param-value>
   </context-param>
 

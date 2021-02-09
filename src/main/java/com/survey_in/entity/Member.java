@@ -1,7 +1,5 @@
 package com.survey_in.entity;
 
-import java.util.Date;
-
 public class Member {
     private String username;
     private String pwd;
@@ -9,10 +7,11 @@ public class Member {
     private String gender;
     private int age;
     private String birthday;
-    private String phone;
-    private Date regDate;
+//    private String phone;
+//    private Date regDate;
     private String email;
     private String job;
+    private String auth;
 
     public String getUsername() {
         return username;
@@ -62,7 +61,7 @@ public class Member {
         this.birthday = birthday;
     }
 
-    public String getPhone() {
+/*    public String getPhone() {
         return phone;
     }
 
@@ -76,7 +75,7 @@ public class Member {
 
     public void setRegDate(Date regDate) {
         this.regDate = regDate;
-    }
+    }*/
 
     public String getEmail() {
         return email;
@@ -93,6 +92,10 @@ public class Member {
     public void setJob(String job) {
         this.job = job;
     }
+
+    public String getAuth(){return auth;}
+
+    public void setAuth(String auth){this.auth = auth;}
 
     public Member(String username, String pwd, String name, String gender, int age, String birthday,
                    String email, String job) {

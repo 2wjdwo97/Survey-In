@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
     <haed>
         <link href="/css/style_signup.css?a" rel="stylesheet" type="text/css">
@@ -46,6 +47,7 @@
                 <div>
                     <input class="input-area" type="text" name="job" placeholder="Job""/>
                 </div>
+<%--                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
                 <div>
                     <input class="input-area" id="signup" type="submit" value="Sign Up"/>
                 </div>
