@@ -13,11 +13,12 @@ import java.util.List;
 
 @Service("serviceBean")
 public class MemberServiceImpl implements MemberService {
+
     private MemberDao memberDao;
     private BCryptPasswordEncoder bcryptPasswordEncoder;
 
     @Autowired
-    public MemberServiceImpl(MemberDao memberDao,
+    public MemberServiceImpl(@Qualifier("memberDaoBean") MemberDao memberDao,
                              @Qualifier("encoder") BCryptPasswordEncoder bcryptPasswordEncoder){
         this.memberDao = memberDao;
         this.bcryptPasswordEncoder = bcryptPasswordEncoder;
@@ -42,14 +43,13 @@ public class MemberServiceImpl implements MemberService {
         con.close();*/
 
 //        return user_no;
-        return memberDao.getList();
+        return memberDao.getMembers();
     }
-    public void signUp(String id, String pw, String fn, String ln, String email, String bd, String gender, String job)
-            throws ClassNotFoundException, SQLException {
+    public void signUp(String id, String pw, String fname, String lname, String email, String birthday, String gender, String job) {
         Calendar cal = Calendar.getInstance();
+        int age = cal.get(Calendar.YEAR) - Integer.parseInt(birthday.split("-")[0]) + 1;
 
-        int age = cal.get(Calendar.YEAR) - Integer.parseInt(bd.split("-")[0]) + 1;
-        Member member = new Member(id, bcryptPasswordEncoder.encode(pw), fn+ln, gender, age, bd, email, job);
-        memberDao.insert(member);
+        Member member = new Member(id, bcryptPasswordEncoder.encode(pw), fname + lname, gender, age, birthday, email, job);
+        memberDao.insertMember(member);
     }
 }
