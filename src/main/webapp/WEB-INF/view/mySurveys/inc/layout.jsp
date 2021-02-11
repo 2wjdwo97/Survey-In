@@ -22,5 +22,7 @@
         <%--main--%>
         <tiles:insertAttribute name="body"/>
     </div>
+
+    <script type="text/javascript" src="/js/asideJs.js"></script>
 </body>
 </html>

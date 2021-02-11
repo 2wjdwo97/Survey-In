@@ -16,11 +16,11 @@
         <div class="vertical-center search-wrapper display-inline">
             <form class="display-inline" action="/search">
                 <input class="search-input" type="text" name="q"/>
-                <input class="search-button position-absolute" type="image" src="/images/1.JPG" alt="Submit" />
+<%--                <input class="search-button position-absolute" type="image" src="/images/1.JPG" alt="Submit" />--%>
             </form>
         </div>
         <form class="vertical-center display-inline position-absolute sign-out-form" action="/logout">
-            <input class="sign-out-input" type="submit" value="sign out"/>
+            <input class="sign-out-input" type="submit" value="Sign Out"/>
         </form>
     </div>
 </header>

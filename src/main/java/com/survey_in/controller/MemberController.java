@@ -2,9 +2,12 @@ package com.survey_in.controller;
 
 import com.survey_in.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
 @Controller
@@ -12,29 +15,25 @@ public class MemberController {
     private MemberService memberService;
 
     @Autowired
-    public MemberController(MemberService memberService){
+    public MemberController(@Qualifier("serviceBean") MemberService memberService){
         this.memberService = memberService;
     }
 
     @RequestMapping("/join")
     public String join(String id, String pw, String pwc, String fn, String ln, String email,
-                       String bd, String gender) throws SQLException, ClassNotFoundException {
+                       String bd, String gender, String job) throws SQLException, ClassNotFoundException {
         if(id != null && !id.equals("")) {
-            memberService.signUp(id, pw, fn, ln, email, bd, gender);
-            System.out.println(id);
+            memberService.signUp(id, pw, fn, ln, email, bd, gender, job);
             return "login";
         }
 
         return "join";
     }
 
-    @RequestMapping("/login")
-    public String login(String id, String pw) throws SQLException, ClassNotFoundException {
-        Boolean verified;
-        verified = memberService.signIn(id, pw);
-        if(verified)
-            return "redirect: mySurveys/list";
-        else
-            return null;
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(HttpServletResponse response, String id, String pw) throws SQLException, ClassNotFoundException {
+//        List<Member> list = memberService.signIn();
+//        System.out.println(list.get(0).getUsername());
+        return "login";
     }
 }

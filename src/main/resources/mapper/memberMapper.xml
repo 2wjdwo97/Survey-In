@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MemberMapper">
+    <select id="getMembers" resultType="java.util.HashMap">
+        SELECT * FROM MEMBER
+    </select>
+
+    <select id="selectMember" resultType="com.survey_in.entity.Member">
+        SELECT * from Member
+        WHERE USERNAME = #{username}
+    </select>
+
+    <insert id="insertMember">
+        INSERT INTO MEMBER (USERNAME, PWD, NAME, GENDER, AGE, BIRTHDAY, EMAIL, JOB)
+        VALUES(#{username}, #{pwd}, #{name}, #{gender}, #{age}, #{birthday}, #{email}, #{job})
+    </insert>
+</mapper>

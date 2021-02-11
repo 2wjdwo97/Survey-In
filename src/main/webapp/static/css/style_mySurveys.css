@@ -23,8 +23,15 @@
 }
 
 .content-box{
-    width: 75%;
+    width:75%;
     padding: 35px;
+}
+
+.content-box-width-1{
+    width: 66.67% !important;
+}
+.content-box-width-2{
+    width: 100% !important;
 }
 
 .survey-box{
@@ -67,22 +74,53 @@ header{
     margin-left: 18px;
     width: 280px;
     height: 28px;
-    border-radius: 5px 5px 5px 5px;
+    border-radius: 7px 7px 7px 7px;
     border: 1px solid #646464;
 }
 
 .search-input{
-    width: 90%;
+    width: 100%;
     height: 100%;
     background: none;
     border: none;
+    padding-left: 8px;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 10pt;
+    color: #646464;
+}
+
+.search-input:focus{
+    color: white;
+}
+
+.aside-inner-div{
+    display: flex;
+    flex-direction: column;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 13.5pt;
+}
+
+div.aside-inner-div div{
+    margin: 10px;
 }
 
 aside{
     width: 25%;
     max-width: 350px;
-    padding: 35px;
+    padding: 35px 35px 35px 50px;
     background: #FFFFFF;
+}
+
+.aside-width-1{
+    width: 33.33% !important;
+}
+
+.aside-width-2{
+    width: 100%;
 }
 
 .search-button{

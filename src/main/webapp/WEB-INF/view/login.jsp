@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <link href="/css/style_login.css?a" rel="stylesheet" type="text/css">
@@ -27,7 +28,7 @@
         <div>
             <h1>Sign in to Survey In</h1>
         </div>
-        <form class="position-relative login-form" method="post" onsubmit="return validateMyForm(event);">
+        <form action="/login" class="position-relative login-form" method="post" onsubmit="return validateMyForm(event);">
             <label for="id-field">Username</label>
                 <input id="id-field" type="text" name="id"/>
             <label for="pw-field">Password</label>
