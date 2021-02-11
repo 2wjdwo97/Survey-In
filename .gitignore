@@ -11,3 +11,7 @@ projectName.iml
 /build
 /local.properties
 target/
+
+*.properties
+src/main/resources/jdbc.properties
+*.properties
