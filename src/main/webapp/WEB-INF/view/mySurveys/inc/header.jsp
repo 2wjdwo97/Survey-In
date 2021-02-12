@@ -19,7 +19,7 @@
 <%--                <input class="search-button position-absolute" type="image" src="/images/1.JPG" alt="Submit" />--%>
             </form>
         </div>
-        <form class="vertical-center display-inline position-absolute sign-out-form" action="/logout">
+        <form class="vertical-center display-inline position-absolute sign-out-form" action="/logout" method="post">
             <input class="sign-out-input" type="submit" value="Sign Out"/>
         </form>
     </div>

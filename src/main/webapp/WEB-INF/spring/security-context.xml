@@ -18,6 +18,10 @@
                 username-parameter="id"
                 password-parameter="pw"
                 default-target-url="/mySurveys/list" />
+        <security:logout
+                logout-url="/logout"
+                logout-success-url="/"
+                delete-cookies=""/>
         <security:csrf disabled="true"/>
     </security:http>
 
