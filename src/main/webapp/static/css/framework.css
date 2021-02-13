@@ -23,7 +23,7 @@ html, body{margin:0; padding:0; font-size:15px; line-height:1.5em;}
 
 .background{background-position:top center; background-repeat:no-repeat; background-size:cover;}
 
-.btn{display:inline-block; padding:8px 18px 10px; text-transform:uppercase; border:1px solid;}
+.btn{display:inline-block; padding:8px 18px 8px; text-transform:uppercase; border:1px solid;}
 
 .clear, .group{display:block;}
 .clear::before, .clear::after, .group::before, .group::after{display:table; content:"";}

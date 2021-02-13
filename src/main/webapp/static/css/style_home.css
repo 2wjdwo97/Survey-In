@@ -70,10 +70,10 @@ Licence URI: https://www.os-templates.com/template-terms
 /* ------------------------------------------------------------------------------------------------- */
 
 body{color:#C1C2C4; background-color:#292929;}
-a{color:#DC8E47;}
+a{color:#DC8E47; }
 a:active, a:focus{background:transparent;}/* IE10 + 11 Bugfix - prevents grey background */
 
-.btn, .btn.inverse:hover{color:#FFFFFF; background-color:#DC8E47; border-color:#DC8E47;}
+.btn, .btn.inverse:hover{color:#FFFFFF; background-color:#DC8E47; border-color:#DC8E47; border-radius: 7px;}
 .btn:hover, .btn.inverse{color:inherit; background-color:transparent; border-color:inherit;}
 
 .overlay{color:#FFFFFF; background-color:inherit;}

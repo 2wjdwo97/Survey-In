@@ -10,8 +10,8 @@ public class RootController {
         return "mySurveys.list";
     }
 
-    @RequestMapping("/search")
-    public void search(){
-        System.out.println("a");
-    }
+//    @RequestMapping("/search")
+//    public void search(){
+//        System.out.println("a");
+//    }
 }
