@@ -19,7 +19,7 @@ public class MemberDaoImpl implements MemberDao{
 
     @Override
     public List<Member> getMembers() {
-        return sqlSession.selectOne("MemberMapper.getMembers");
+        return sqlSession.selectList("MemberMapper.getMembers");
     }
 
     @Override
@@ -28,12 +28,12 @@ public class MemberDaoImpl implements MemberDao{
     }
 
     @Override
-    public Member selectMember(String id) {
-        return (Member) sqlSession.selectOne("MemberMapper.selectMember", id);
+    public Member selectMember(String username) {
+        return (Member) sqlSession.selectOne("MemberMapper.selectMember", username);
     }
 
     @Override
-    public void deleteMember(String id) {
-
+    public void deleteMember(String username) {
+        sqlSession.delete("MemberMapper.deleteMember", username);
     }
 }
