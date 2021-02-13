@@ -23,7 +23,6 @@ public class MySurveyController {
 
     @RequestMapping(value = "/mySurveys/new", method = RequestMethod.GET)
     public String newSurvey() {
-        System.out.println("hi");
         return "mySurveys.new";
     }
 

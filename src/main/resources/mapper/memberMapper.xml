@@ -22,4 +22,9 @@
         INSERT INTO MEMBER (USERNAME, PWD, NAME, GENDER, AGE, BIRTHDAY, EMAIL, JOB)
         VALUES(#{username}, #{pwd}, #{name}, #{gender}, #{age}, #{birthday}, #{email}, #{job})
     </insert>
+
+    <delete id="deleteMember">
+        DELETE FROM MEMBER
+        WHERE USERNAME = #{username}
+    </delete>
 </mapper>

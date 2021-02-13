@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository("surveyDaoBean")
 public class SurveyDaoImpl implements SurveyDao{
+
     private final SqlSession sqlSession;
 
     @Autowired
@@ -17,7 +18,23 @@ public class SurveyDaoImpl implements SurveyDao{
         this.sqlSession = sqlSession;
     }
 
+    @Override
+    public List<Survey> getSurveys() {
+        return sqlSession.selectList("SurveyMapper.getSurveys");
+    }
+
+    @Override
     public void insertSurvey(Survey survey) {
         sqlSession.insert("SurveyMapper.insertSurvey", survey);
+    }
+
+    @Override
+    public Survey selectSurvey(String survey_id) {
+        return (Survey) sqlSession.selectOne("SurveyMapper.selectSurvey", survey_id);
+    }
+
+    @Override
+    public void deleteSurvey(String survey_id) {
+        sqlSession.delete("MemberMapper.deleteMember", survey_id);
     }
 }

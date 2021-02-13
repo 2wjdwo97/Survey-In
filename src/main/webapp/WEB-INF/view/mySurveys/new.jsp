@@ -13,14 +13,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
-<form class="flex-auto" method="post">
+<form class="display-flex flex-auto content-box" method="post">
     <div class="query-area flex-auto">
         <div>
             <input class="title-input" type="text" placeholder="Title" name="title"/>
         </div>
+<%--
+        <div class="query-box position-relative">
+            <input type="button" valaue="X" class="delete-query-button""/>
+            <div class="query-form">
+                <input type="text" placeholder="Question" class="query-title-input"/>
+            </div>
+            <input type="button" value="+"/>
+        </div>
+--%>
     </div>
 
-    <div class="floating-area">
+    <div class="floating-area flex-auto">
         <div class="floating-box">
             <div>
                 <label>Points:
@@ -56,7 +65,7 @@
                     Women Only</label>
             </div>
             <div>
-                <button id="create-button" title="Add question"></button>
+                <button id="create-button" title="Add question" type="button"></button>
                 <input type="submit" value="Create" />
             </div>
         </div>

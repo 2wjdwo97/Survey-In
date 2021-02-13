@@ -23,9 +23,7 @@ public class SurveyServiceImpl implements SurveyService{
     }
 
     public void createSurvey(String memberID, String title, int capacity, String category, int point){
-        System.out.println(memberID);
         int id = memberDao.selectMemberId(memberID);
-        System.out.println(id);
         Survey newSurvey = new Survey(id, title, category, capacity, point, 0);
         surveyDao.insertSurvey(newSurvey);
     }

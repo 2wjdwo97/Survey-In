@@ -11,13 +11,14 @@ function createQuery() {
     deleteButton.className = "delete-query-button"
     deleteButton.addEventListener('click', function(){deleteElement(this, queryArea)}, false);
 
-    const newForm = document.createElement("form");
+    const newForm = document.createElement("div");
     newForm.className = "query-form"
 
     const queryTitle = document.createElement("input");
     queryTitle.type = "text";
     queryTitle.placeholder = "Question";
     queryTitle.className = "query-title-input";
+
     newForm.appendChild(queryTitle);
 
     const createOptionButton = document.createElement("input");
