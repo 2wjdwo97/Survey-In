@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="surveyMapper">
+    <insert id="insertSurvey">
+        INSERT INTO SURVEY (MEMBER_ID, TITLE, CATEGORY, CAPCITY, POINT, QUESTIONCNT)
+        VALUES(#{member_id}, #{title}, #{category}, #{capacity}, #{point}, #{questionCnt})
+    </insert>
+</mapper>

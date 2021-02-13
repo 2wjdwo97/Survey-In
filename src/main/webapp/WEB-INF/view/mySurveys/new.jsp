@@ -61,37 +61,3 @@
     </div>
 </div>
 <script type="text/javascript" src="/js/createJs.js"></script>
-
-
-<%--<div class="content-box position-relative">
-    <div class="query-area">
-        <form method="post">
-            <input class="title-input" type="text" placeholder="Title"/>
-        </form>
-        <div class="query-box position-relative">
-            <input class="delete-query-button" type="button" value="x"/>
-            <form>
-                <input class="query-title-input" type="text" placeholder="Question"/>
-                <div>
-                <input/> <input type='button' value='x'/><br>
-                <div
-                <input/> <input type='button' value='x'/><br>
-                <input/> <input type='button' value='x'/><br>
-                <input/><br>
-                <input/><br>
-                <input/><br>
-                <input/><br>
-                <input/><br>
-                <input/><br>
-                <input/><br>
-                <input/><br>
-                <input/><br>
-            </form>
-            <input type='button' value='+'/>
-        </div>
-    </div>
-
-    <div class="floating-box">
-        <input id="create-button" type="button" value="+"/>
-    </div>
-</div>--%>
