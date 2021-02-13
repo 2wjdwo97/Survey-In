@@ -10,7 +10,7 @@
 
 <html>
 <head>
-    <link href="/css/style_mySurveys.css" rel="stylesheet" type="text/css">
+    <link href="/css/style_explore.css" rel="stylesheet" type="text/css">
     <title><tiles:getAsString name="title" /></title>
 </head>
 <body>
