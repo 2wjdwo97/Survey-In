@@ -9,7 +9,12 @@
     </select>
 
     <select id="selectMember" resultType="com.survey_in.entity.Member">
-        SELECT * from Member
+        SELECT * from MEMBER
+        WHERE USERNAME = #{username}
+    </select>
+
+    <select id="selectMemberId" resultType="int">
+        SELECT MEMBER_ID from MEMBER
         WHERE USERNAME = #{username}
     </select>
 

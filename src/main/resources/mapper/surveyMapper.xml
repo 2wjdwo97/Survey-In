@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="surveyMapper">
+<mapper namespace="SurveyMapper">
     <insert id="insertSurvey">
-        INSERT INTO SURVEY (MEMBER_ID, TITLE, CATEGORY, CAPCITY, POINT, QUESTIONCNT)
+        INSERT INTO SURVEY (MEMBER_ID, TITLE, CATEGORY, CAPACITY, POINT, QUESTION_CNT)
         VALUES(#{member_id}, #{title}, #{category}, #{capacity}, #{point}, #{questionCnt})
     </insert>
 </mapper>

@@ -8,5 +8,6 @@ public interface MemberDao {
     List<Member> getMembers();
     void insertMember(Member member);
     Member selectMember(String id);
+    int selectMemberId(String id);
     void deleteMember(String id);
 }

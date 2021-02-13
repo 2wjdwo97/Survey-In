@@ -49,11 +49,11 @@ public class Survey {
         this.point = point;
     }
 
-    public int getQuestionCount() {
+    public int getQuestionCnt() {
         return questionCnt;
     }
 
-    public void setQuestionCount(int questionCnt) {
+    public void setQuestionCnt(int questionCnt) {
         this.questionCnt = questionCnt;
     }
 

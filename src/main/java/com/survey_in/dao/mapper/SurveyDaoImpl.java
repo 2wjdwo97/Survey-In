@@ -4,9 +4,11 @@ import com.survey_in.entity.Member;
 import com.survey_in.entity.Survey;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository("surveyDaoBean")
 public class SurveyDaoImpl implements SurveyDao{
     private final SqlSession sqlSession;
 
@@ -16,6 +18,6 @@ public class SurveyDaoImpl implements SurveyDao{
     }
 
     public void insertSurvey(Survey survey) {
-        sqlSession.insert("MemberMapper.insertMember", survey);
+        sqlSession.insert("SurveyMapper.insertSurvey", survey);
     }
 }

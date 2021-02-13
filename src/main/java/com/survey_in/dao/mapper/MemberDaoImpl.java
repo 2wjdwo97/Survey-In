@@ -33,6 +33,11 @@ public class MemberDaoImpl implements MemberDao{
     }
 
     @Override
+    public int selectMemberId(String id) {
+        return sqlSession.selectOne("MemberMapper.selectMemberId", id);
+    }
+
+    @Override
     public void deleteMember(String id) {
 
     }
