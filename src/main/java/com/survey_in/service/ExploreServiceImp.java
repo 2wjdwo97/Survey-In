@@ -1,0 +1,33 @@
+package com.survey_in.service;
+
+
+import com.survey_in.dao.mapper.MemberDao;
+import com.survey_in.dao.mapper.SurveyDao;
+import com.survey_in.entity.Survey;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+
+
+@Service("serviceBeanExplore")
+public class ExploreServiceImp implements ExploreService{
+
+    private SurveyDao surveyDao;
+    public ExploreServiceImp(@Qualifier("surveyDaoBean") SurveyDao surveyDao){
+        this.surveyDao = surveyDao;
+        System.out.println("exploreservice hihi");
+    }
+
+    @Override
+    public List<HashMap<String, String>> getAllSurveys() throws ClassNotFoundException, SQLException {
+        return surveyDao.getAllSurvey();
+    }
+
+    @Override
+    public List<Survey> getSurveyByFilter() throws ClassNotFoundException, SQLException {
+        return null;
+    }
+}

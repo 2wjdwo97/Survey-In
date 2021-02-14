@@ -4,16 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-<!--    old data source -->
-<!--    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">-->
-<!--        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>-->
-<!--        <property name="url" value="jdbc:oracle:thin:@localhost:1521/xepdb1"/>-->
-<!--        <property name="username" value="JEONGJAE"/>-->
-<!--        <property name="password" value="w0j9d7w1o!"/>-->
-<!--    </bean>-->
-
 <!--    new datasource-->
-
     <!-- properties -->
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
