@@ -18,15 +18,6 @@
         <div>
             <input class="title-input" type="text" placeholder="Title" name="title"/>
         </div>
-<%--
-        <div class="query-box position-relative">
-            <input type="button" valaue="X" class="delete-query-button""/>
-            <div class="query-form">
-                <input type="text" placeholder="Question" class="query-title-input"/>
-            </div>
-            <input type="button" value="+"/>
-        </div>
---%>
     </div>
 
     <div class="floating-area flex-auto">
@@ -66,7 +57,7 @@
             </div>
             <div>
                 <button id="create-button" title="Add question" type="button"></button>
-                <input type="submit" value="Create" />
+                <input type="submit" value="create" onclick="validForm(event)"/>
             </div>
         </div>
     </div>

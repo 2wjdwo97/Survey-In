@@ -13,7 +13,7 @@
         WHERE SURVEY_ID = #{survey_id}
     </select>
 
-    <insert id="insertSurvey">
+    <insert id="insertSurvey" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO SURVEY (MEMBER_ID, TITLE, CATEGORY, CAPACITY, POINT, QUESTION_CNT)
         VALUES(#{member_id}, #{title}, #{category}, #{capacity}, #{point}, #{questionCnt})
     </insert>

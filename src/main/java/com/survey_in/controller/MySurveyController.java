@@ -1,11 +1,9 @@
 package com.survey_in.controller;
 
-import com.survey_in.entity.Member;
-import com.survey_in.service.MemberService;
+import com.survey_in.entity.NewSurveyEntity;
 import com.survey_in.service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,8 +25,8 @@ public class MySurveyController {
     }
 
     @RequestMapping(value = "/mySurveys/new", method = RequestMethod.POST)
-    public String create(Principal principal, String title, int point, String category, int capacity){
-        surveyService.createSurvey(principal.getName(), title, point, category, capacity);
-        return "mySurveys.list";
+    public String create(NewSurveyEntity newSurveyEntity, Principal principal, String title, int point, String category, int capacity){
+        surveyService.createSurvey(principal.getName(), title, point, category, capacity, newSurveyEntity.getList());
+        return "redirect:/mySurveys/list";
     }
 }
