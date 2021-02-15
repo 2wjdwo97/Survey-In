@@ -36,10 +36,11 @@
 
 .survey-box{
     border-radius: 20px 20px 20px 20px;
-    margin: 25px;
-    height: 200px;
-    width: 200px;
-    background: #7AA3FC;
+    border: 2px solid #717171;
+    margin: 22px 22px 0px 30px;
+    height: 210px;
+    width: 210px;
+    background: #FFFFFF;
 }
 
 
