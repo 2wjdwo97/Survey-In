@@ -13,7 +13,7 @@
 #search-filter li{float: left; margin:0 0 10px 0; padding:0 15px; width: 20%;}
 #search-filter li:first-child{padding-left:0;}
 #search-filter li .select-dropdown{width: 100%; padding: 8px; border: none;}
-
+#search-filter li .search-btn{display:inline-block; padding:8px 18px 8px; text-transform:uppercase; border:1px solid;}
 
 /* Comments */
 #search-list{clear: left; padding: 30px 0; margin: 20px 0;}
@@ -25,7 +25,7 @@
 #search-list .survey-header h3{width: 75%; margin: 0px;}
 #search-list .survey-header h4{width: 25%; margin: 0px; text-align: right}
 #search-list .survey-body p{min-height:5%; margin: 20px 0;}
-#search-list .survey-footer date{font-size:smaller;}
+#search-list .survey-footer time{font-size:smaller;}
 
 
 /* Pagination */

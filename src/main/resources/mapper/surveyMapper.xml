@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SurveyMapper">
+    <select id="getAllSurvey" resultType="com.survey_in.entity.Survey">
+        SELECT * FROM SURVEY
+    </select>
+
+    <select id="searchSurvey" resultType="com.survey_in.entity.Survey">
+        SELECT * FROM survey
+        WHERE title LIKE '%'||#{keyword}||'%'
+
+<!--        <choose>-->
+<!--            <when test="!category.equals('all')">-->
+<!--                AND category = #{category}-->
+<!--            </when>-->
+<!--        </choose>-->
+    </select>
+</mapper>

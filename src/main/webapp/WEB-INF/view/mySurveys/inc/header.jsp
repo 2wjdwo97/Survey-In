@@ -14,7 +14,7 @@
                  width="40" height="40">
         </a>
         <div class="vertical-center search-wrapper display-inline">
-            <form class="display-inline" action="/search">
+            <form class="display-inline" action="/search" method="get">
                 <input class="search-input" type="text" name="q"/>
 <%--                <input class="search-button position-absolute" type="image" src="/images/1.JPG" alt="Submit" />--%>
             </form>

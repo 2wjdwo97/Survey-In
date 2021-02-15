@@ -20,12 +20,12 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public List<Survey> searchSurveys() {
-        return null;
+    public List<Survey> searchSurvey(String keyword, String category, String age) {
+        return surveyDao.searchSurvey(keyword, category, age);
     }
 
     @Override
-    public List<Question> searchQuestions() {
+    public List<Survey> searchQuestion() {
         return null;
     }
 }
