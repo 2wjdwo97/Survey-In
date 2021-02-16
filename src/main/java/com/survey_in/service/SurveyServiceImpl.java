@@ -1,13 +1,15 @@
 package com.survey_in.service;
 
 import com.survey_in.dao.mapper.*;
-import com.survey_in.dto.NewSurveyDto;
+import com.survey_in.dto.QuestionDto;
 import com.survey_in.dto.OptionDto;
+import com.survey_in.dto.SurveyDto;
 import com.survey_in.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("surveyService")
@@ -31,7 +33,7 @@ public class SurveyServiceImpl implements SurveyService{
         this.questionOptionDao = questionOptionDao;
     }
 
-    public void createSurvey(String username, String title, int capacity, String category, int point, List<NewSurveyDto> questions){
+    public void createSurvey(String username, String title, int capacity, String category, int point, List<QuestionDto> questions){
         int memberId = memberDao.selectMemberId(username);
 
         Survey newSurvey = new Survey(memberId, title, category, capacity, point, questions.size());
@@ -39,7 +41,7 @@ public class SurveyServiceImpl implements SurveyService{
         int lastSurveyId = newSurvey.getId();
 
 
-        for(NewSurveyDto question: questions){
+        for(QuestionDto question: questions){
             Question newQuestion = new Question(lastSurveyId, question.getTitle());
             questionDao.insertQuestion(newQuestion);
             int lastQuestionId = newQuestion.getId();
@@ -60,7 +62,17 @@ public class SurveyServiceImpl implements SurveyService{
         return surveyDao.selectMemberSurveys(memberId);
     }
 
-    public Survey getSurveyDetail(int id) {
-        return surveyDao.selectSurvey(id);
+    public SurveyDto getSurveyDetail(int id) {
+        Survey survey = surveyDao.selectSurvey(id);
+        List<Question> questionEntities = questionDao.selectQuestions(survey.getId());
+        List<QuestionDto> questionDtos = new ArrayList<QuestionDto>();
+
+        for(Question questionEntity: questionEntities){
+            List<Option> optionEntities = optionDao.selectOptions(questionEntity.getId());
+            questionDtos.add(QuestionDto.of(questionEntity, OptionDto.of(optionEntities)));
+        }
+
+        SurveyDto surveyDto = SurveyDto.of(survey, questionDtos);
+        return surveyDto;
     }
 }
