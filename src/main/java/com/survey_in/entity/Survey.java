@@ -10,9 +10,9 @@ public class Survey {
     private int capacity;
     private int point;
     private int questionCnt;
-    private Time time;
+    private Time createdAt;
 
-    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt,Time time) {
+    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt,Time createdAt) {
         this.id = id;
         this.member_id = member_id;
         this.title = title;
@@ -20,7 +20,7 @@ public class Survey {
         this.capacity = capacity;
         this.point = point;
         this.questionCnt = questionCnt;
-        this.time = time;
+        this.createdAt = createdAt;
     }
 
     public Survey(int member_id, String title, String category, int capacity, int point, int questionCnt) {
@@ -84,7 +84,7 @@ public class Survey {
 
     public void setId(int id) {this.id = id;}
 
-    public Time getTime(){return time;}
+    public Time getCreatedAt(){return createdAt;}
 
-    public void setTIme(Time time){this.time = time;}
+    public void setCreatedAt(Time createdAt){this.createdAt = createdAt;}
 }
