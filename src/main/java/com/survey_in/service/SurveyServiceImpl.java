@@ -1,6 +1,8 @@
 package com.survey_in.service;
 
 import com.survey_in.dao.mapper.*;
+import com.survey_in.dto.NewSurveyDto;
+import com.survey_in.dto.OptionDto;
 import com.survey_in.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,7 +31,7 @@ public class SurveyServiceImpl implements SurveyService{
         this.questionOptionDao = questionOptionDao;
     }
 
-    public void createSurvey(String username, String title, int capacity, String category, int point, List<NewSurveyEntity> questions){
+    public void createSurvey(String username, String title, int capacity, String category, int point, List<NewSurveyDto> questions){
         int memberId = memberDao.selectMemberId(username);
 
         Survey newSurvey = new Survey(memberId, title, category, capacity, point, questions.size());
@@ -37,13 +39,13 @@ public class SurveyServiceImpl implements SurveyService{
         int lastSurveyId = newSurvey.getId();
 
 
-        for(NewSurveyEntity question: questions){
+        for(NewSurveyDto question: questions){
             Question newQuestion = new Question(lastSurveyId, question.getTitle());
             questionDao.insertQuestion(newQuestion);
             int lastQuestionId = newQuestion.getId();
 
-            for(String data: question.getOption().get(0).split(",")) {
-                Option newOption = new Option(data);
+            for(OptionDto option: question.getOption()) {
+                Option newOption = new Option(option.getData());
                 optionDao.insertOption(newOption);
                 int lastOptionId = newOption.getId();
 
@@ -56,5 +58,9 @@ public class SurveyServiceImpl implements SurveyService{
     public List<Survey> getMemberSurveys(String username) {
         int memberId = memberDao.selectMemberId(username);
         return surveyDao.selectMemberSurveys(memberId);
+    }
+
+    public Survey getSurveyDetail(int id) {
+        return surveyDao.selectSurvey(id);
     }
 }

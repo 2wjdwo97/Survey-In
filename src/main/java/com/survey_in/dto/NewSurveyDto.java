@@ -1,34 +1,31 @@
-package com.survey_in.entity;
+package com.survey_in.dto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewSurveyEntity {
+public class NewSurveyDto {
     private String title;
-    private List<String> option = new ArrayList<String>();
-    private List<NewSurveyEntity> list;
+    private List<OptionDto> option = new ArrayList<OptionDto>();
+    private List<NewSurveyDto> list;
 
     public void setTitle(String title) {
         this.title = title;
     }
-
     public String getTitle() {
         return this.title;
     }
 
     public void setOption(String option) {
-        this.option.add(option);
+        this.option.add(new OptionDto(option));
     }
-
-    public List<String> getOption () {
+    public List<OptionDto> getOption () {
         return this.option;
     }
 
-    public void setList(List<NewSurveyEntity> list) {
+    public void setList(List<NewSurveyDto> list) {
         this.list = list;
     }
-
-    public List<NewSurveyEntity> getList() {
+    public List<NewSurveyDto> getList() {
         return this.list;
     }
 }
