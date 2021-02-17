@@ -12,10 +12,10 @@
         SELECT * FROM survey
         WHERE title LIKE '%'||#{keyword}||'%'
 
-<!--        <choose>-->
-<!--            <when test="!category.equals('all')">-->
-<!--                AND category = #{category}-->
-<!--            </when>-->
-<!--        </choose>-->
+        <choose>
+            <when test="category != 'all'">
+                AND category = #{category}
+            </when>
+        </choose>
     </select>
 </mapper>

@@ -17,41 +17,42 @@
 <div id="search" class="content-box">
     <!-- ################################################################################################ -->
     <div id="search-title">
-        <h2 class="heading underline">Search Results for "<strong>${keyword}</strong>"</h2>
+        <h2 class="heading underline">Search Results for "<strong>${searchParam.keyword}</strong>"</h2>
     </div>
     <!-- ################################################################################################ -->
     <div id="search-filter">
         <form action="/search" method="get">
+            <input type="hidden" id="search-hidden-input" name="q" value=${searchParam.keyword}>
             <ul class="filter-type-container">
                 <li class="filter-box">
-                    <select class="select-dropdown" name="target">
-                        <option value="survey">Search for survey</option>
-                        <option value="question">Search for question</option>
+                    <select class="select-dropdown" id="filter-target" name="tar">
+                        <option value="survey" <c:if test="${searchParam.target == 'survey'}">selected="selected"</c:if>>Search for survey</option>
+                        <option value="question" <c:if test="${searchParam.target == 'question'}">selected="selected"</c:if>>Search for question</option>
                     </select>
                 </li>
                 <li>
-                    <select class="select-dropdown" name="category">
-                        <option value="all">All categories</option>
-                        <option value="life">Lifestyle</option>
-                        <option value="food">Food</option>
-                        <option value="machine">Machine</option>
-                        <option value="mobile">Mobile</option>
+                    <select class="select-dropdown" id="filter-category" name="cat">
+                        <option value="all" <c:if test="${searchParam.category == 'all'}">selected="selected"</c:if>>All categories</option>
+                        <option value="life" <c:if test="${searchParam.category == 'life'}">selected="selected"</c:if>>Lifestyle</option>
+                        <option value="food" <c:if test="${searchParam.category == 'food'}">selected="selected"</c:if>>Food</option>
+                        <option value="machine" <c:if test="${searchParam.category == 'machine'}">selected="selected"</c:if>>Machine</option>
+                        <option value="mobile" <c:if test="${searchParam.category == 'mobile'}">selected="selected"</c:if>>Mobile</option>
                     </select>
                 </li>
                 <li class="filter-box">
-                    <select class="select-dropdown" name="age">
-                        <option value="all">All ages</option>
-                        <option value="lt10">Less than 10</option>
-                        <option value="10">10s</option>
-                        <option value="20">20s</option>
-                        <option value="30">30s</option>
-                        <option value="40">40s</option>
-                        <option value="50">50s</option>
-                        <option value="mt60">More than 60</option>
+                    <select class="select-dropdown" id="filter-age" name="age">
+                        <option value="all" <c:if test="${searchParam.age == 'all'}">selected="selected"</c:if>>All ages</option>
+                        <option value="lt10" <c:if test="${searchParam.age == 'lt10'}">selected="selected"</c:if>>Less than 10</option>
+                        <option value="10s" <c:if test="${searchParam.age == '10s'}">selected="selected"</c:if>>10s</option>
+                        <option value="20s" <c:if test="${searchParam.aeg == '20s'}">selected="selected"</c:if>>20s</option>
+                        <option value="30s" <c:if test="${searchParam.aeg == '30s'}">selected="selected"</c:if>>30s</option>
+                        <option value="40s" <c:if test="${searchParam.aeg == '40s'}">selected="selected"</c:if>>40s</option>
+                        <option value="50s" <c:if test="${searchParam.aeg == '50s'}">selected="selected"</c:if>>50s</option>
+                        <option value="mt60" <c:if test="${searchParam.aeg == 'mt60'}">selected="selected"</c:if>>More than 60</option>
                     </select>
                 </li>
                 <%--            <li class="filter-box">--%>
-                <%--                <select class="select-dropdown" name="gender">--%>
+                <%--                <select class="select-dropdown" id="gender" name="gender">--%>
                 <%--                    <option value="all">gender</option>--%>
                 <%--                    <option value="m">male</option>--%>
                 <%--                    <option value="f">female</option>--%>
@@ -71,7 +72,7 @@
                     <article>
                         <div class="survey-header">
                             <h3><a href="#">${s.title}</a></h3>
-                            <h4>?/${s.capacity}</h4>
+                            <h4>(참여인원)/${s.capacity}</h4>
                         </div>
                         <div class="survey-body">
                             <p>
@@ -90,7 +91,7 @@
     <nav class="pagination">
         <ul>
             <li><a href="#">&laquo; Previous</a></li>
-            <c:set var="page" value="${(param.page==null)? 1: param.page}"/>
+            <c:set var="page" value="${(searchParam.page==null)? 1: searchParam.page}"/>
             <c:set var="startNum" value="${page-(page-1)%5}"/>
             <c:forEach var="i" begin="0" end="4">
                 <c:choose>
@@ -107,4 +108,5 @@
     </nav>
     <!-- ################################################################################################ -->
 </div>
+<script type="text/javascript" src="/js/searchJs.js"></script>
 </body>

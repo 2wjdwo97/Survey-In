@@ -15,7 +15,7 @@
         </a>
         <div class="vertical-center search-wrapper display-inline">
             <form class="display-inline" action="/search" method="get">
-                <input class="search-input" type="text" name="q"/>
+                <input class="search-input" id="search-input" type="text" name="q" value=${searchPar.keyword}/>
 <%--                <input class="search-button position-absolute" type="image" src="/images/1.JPG" alt="Submit" />--%>
             </form>
         </div>

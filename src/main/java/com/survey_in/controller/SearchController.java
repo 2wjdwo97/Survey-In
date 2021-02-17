@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class SearchController {
@@ -26,23 +28,31 @@ public class SearchController {
     public String search(Model model,
                          @RequestParam(value = "q", defaultValue = "") String keyword,
                          @RequestParam(value = "p", defaultValue = "1") String page,
-                         String target, String category, String age) {
+                         @RequestParam(value = "tar", defaultValue = "survey") String target,
+                         @RequestParam(value = "cat", defaultValue = "all") String category,
+                         @RequestParam(value = "age", defaultValue = "all") String age) {
+
+//        System.out.println("keyword:" + keyword + "  page:" + page + "  target:" + target + "  cate:" + category + "  age:" + age);
 
         List<Survey> surveys;
 
-        if (null == category) category = "all";
-        if (null == age) age = "all";
-
-        if (null == target || target.equals("question"))
+        if (target.equals("survey"))
             surveys = searchService.searchSurvey(keyword, category, age);
         else
             surveys = searchService.searchQuestion();
 
-        System.out.println(surveys.size());
 
-        model.addAttribute("keyword", keyword);
+        Map<String, String> param = new HashMap<>();
+
+        param.put("keyword", keyword);
+        param.put("target", target);
+        param.put("category", category);
+        param.put("age", age);
+        param.put("page", page);
+
+
         model.addAttribute("surveys", surveys);
-        model.addAttribute("patage", page);
+        model.addAttribute("searchParam", param);
 
         return "mySurveys.search";
     }
