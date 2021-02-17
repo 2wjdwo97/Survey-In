@@ -1,5 +1,6 @@
 package com.survey_in.dto;
 
+import com.survey_in.entity.Answer;
 import com.survey_in.entity.Option;
 
 import java.util.ArrayList;
@@ -7,11 +8,16 @@ import java.util.List;
 
 public class OptionDto {
     private String data;
-    private List<AnswerDto> answer;
+    private List<AnswerDto> answers;
 
     public OptionDto(String data){
         this.data = data;
-        answer = null;
+        answers = null;
+    }
+
+    public OptionDto(String data, List<AnswerDto> answers){
+        this.data = data;
+        this.answers = answers;
     }
 
     public String getData() {
@@ -22,23 +28,15 @@ public class OptionDto {
         this.data = data;
     }
 
-    public List<AnswerDto> getAnswer() {
-        return answer;
+    public List<AnswerDto> getAnswers() {
+        return answers;
     }
 
-    public void setAnswer(List<AnswerDto> answer) {
-        this.answer = answer;
+    public void setAnswers(List<AnswerDto> answers) {
+        this.answers = answers;
     }
 
-    public static OptionDto of(Option option){
-        return new OptionDto(option.getData());
-    }
-
-    public static List<OptionDto> of(List<Option> options){
-        List<OptionDto> list = new ArrayList<OptionDto>();
-        for(Option option : options) {
-            list.add(OptionDto.of(option));
-        }
-        return list;
+    public static OptionDto of(Option option, List<AnswerDto> answers){
+        return new OptionDto(option.getData(), answers);
     }
 }

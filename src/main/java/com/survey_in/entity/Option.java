@@ -4,6 +4,11 @@ public class Option {
     private int id;
     private String data;
 
+    public Option(int id, String data) {
+        this.id = id;
+        this.data = data;
+    }
+
     public Option(String data) {
         this.data = data;
     }

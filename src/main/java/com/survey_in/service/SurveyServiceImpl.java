@@ -1,6 +1,7 @@
 package com.survey_in.service;
 
 import com.survey_in.dao.mapper.*;
+import com.survey_in.dto.AnswerDto;
 import com.survey_in.dto.QuestionDto;
 import com.survey_in.dto.OptionDto;
 import com.survey_in.dto.SurveyDto;
@@ -19,18 +20,21 @@ public class SurveyServiceImpl implements SurveyService{
     private QuestionDao questionDao;
     private OptionDao optionDao;
     private QuestionOptionDao questionOptionDao;
+    private AnswerDao answerDao;
 
     @Autowired
     public SurveyServiceImpl(@Qualifier("surveyDaoBean") SurveyDao surveyDao,
                              @Qualifier("memberDaoBean") MemberDao memberDao,
                              @Qualifier("questionDaoBean") QuestionDao questionDao,
                              @Qualifier("optionDaoBean") OptionDao optionDao,
-                             @Qualifier("questionOptionDaoBean") QuestionOptionDao questionOptionDao){
+                             @Qualifier("questionOptionDaoBean") QuestionOptionDao questionOptionDao,
+                             @Qualifier("answerDaoBean") AnswerDao answerDao){
         this.surveyDao = surveyDao;
         this.memberDao = memberDao;
         this.questionDao = questionDao;
         this.optionDao = optionDao;
         this.questionOptionDao = questionOptionDao;
+        this.answerDao = answerDao;
     }
 
     public void createSurvey(String username, String title, int capacity, String category, int point, List<QuestionDto> questions){
@@ -69,7 +73,15 @@ public class SurveyServiceImpl implements SurveyService{
 
         for(Question questionEntity: questionEntities){
             List<Option> optionEntities = optionDao.selectOptions(questionEntity.getId());
-            questionDtos.add(QuestionDto.of(questionEntity, OptionDto.of(optionEntities)));
+            List<OptionDto> optionDtos = new ArrayList<OptionDto>();
+
+            for(Option optionEntity: optionEntities){
+                List<Answer> answerEntities = answerDao.selectAnswers(optionEntity.getId());
+                OptionDto optionDto = OptionDto.of(optionEntity, AnswerDto.of(answerEntities));
+                optionDtos.add(optionDto);
+            }
+
+            questionDtos.add(QuestionDto.of(questionEntity, optionDtos));
         }
 
         SurveyDto surveyDto = SurveyDto.of(survey, questionDtos);
