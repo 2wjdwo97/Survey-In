@@ -1,9 +1,7 @@
 const queryArea = document.querySelector('.query-area');
 const menu_bar = document.querySelector('.floating-box');
-let cnt = 0;
 
 function createQuery() {
-    const constCount = cnt;
     const newDiv = document.createElement("div");
     newDiv.className = "query-box position-relative";
 
@@ -17,24 +15,24 @@ function createQuery() {
     newForm.className = "query-form"
 
     const queryTitle = document.createElement("input");
-    queryTitle.name = "list["+cnt+"].title";
+    queryTitle.name = "queryTitle";
     queryTitle.type = "text";
     queryTitle.placeholder = "Question";
     queryTitle.className = "query-title-input";
+    queryTitle.classList.add("text");
 
     newForm.appendChild(queryTitle);
 
     const createOptionButton = document.createElement("input");
     createOptionButton.type = "button";
     createOptionButton.value = "+";
-    createOptionButton.addEventListener('click', function(){createOption(newForm, constCount)}, false);
+    createOptionButton.addEventListener('click', function(){createOption(newForm)}, false);
 
     newDiv.appendChild(deleteButton);
     newDiv.appendChild(newForm);
     newDiv.appendChild(createOptionButton);
 
     queryArea.appendChild(newDiv);
-    cnt += 1;
 }
 
 function deleteElement(self, parent){
@@ -42,10 +40,11 @@ function deleteElement(self, parent){
     parent.removeChild(element);
 }
 
-function createOption(form, count){
+function createOption(form){
     const div = document.createElement("div");
     const option = document.createElement("input");
-    option.name = "list["+count+"].option";
+    option.name = "option";
+    option.classList.add("text");
     option.type = "text";
 
     const deleteButton = document.createElement("input");
@@ -71,27 +70,71 @@ window.addEventListener("scroll", () => {
 const createButton = document.querySelector("#create-button");
 createButton.addEventListener("click", createQuery);
 
-function validForm(e)
-{
+function checkValid(e) {
+    e.preventDefault();
     const list = document.querySelectorAll('input');
     for(let inputForm of list) {
         if (inputForm.name !=="q" && inputForm.value === "") {
-            e.preventDefault();
             alert(`Empty input: ${inputForm.name}`);
             inputForm.focus();
             return false;
         }
         if((inputForm.name === "point" || inputForm.name === "capacity") && !Number.isInteger(Number(inputForm.value))){
-            e.preventDefault();
             alert(`Invalid input: ${inputForm.value}`);
             inputForm.focus();
             return false;
         }
     }
+    if(setInputName(e)) {
+        e.currentTarget.submit();
+        return true;
+    }
+    return false;
+}
 
-    if(cnt === 0){
-        e.preventDefault();
-        alert("Create your question");
+function setInputName(e){
+    const inputs = document.querySelectorAll("input.text");
+
+    let origNames = [];
+    for(let input of inputs){
+        origNames.push(input.name);
+    }
+
+    let cnt = -1;
+    let opCnt = 0;
+
+    for(let input of inputs){
+        if(input.name === "queryTitle"){
+            if(opCnt === -1){
+                alert("Create at least one option");
+                for(let index in inputs){
+                    inputs[index].name = origNames[index];
+                }
+                return false;
+            }
+            opCnt = -1;
+            ++cnt;
+            input.name = "list["+cnt+"].title";
+        }
+        else if(input.name === "option"){
+            input.name = "list["+cnt+"].option";
+            ++opCnt;
+        }
+    }
+
+    if(opCnt === -1){
+        alert("Create at least one option");
+        for(let index in inputs){
+            inputs[index].name = origNames[index];
+        }
+        return false;
+    }
+
+    if(cnt === -1){
+        alert("Create at least one question");
+        for(let index in inputs){
+            inputs[index].name = origNames[index];
+        }
         return false;
     }
     return true;

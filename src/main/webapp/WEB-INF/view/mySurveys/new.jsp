@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
-<form class="display-flex flex-auto content-box" method="post">
+<form class="display-flex flex-auto content-box" method="post" onsubmit="return checkValid(event)">
     <div class="query-area flex-auto">
         <div>
             <input class="title-input" type="text" placeholder="Title" name="title"/>
@@ -57,7 +57,7 @@
             </div>
             <div>
                 <button id="create-button" title="Add question" type="button"></button>
-                <input type="submit" value="create" onclick="validForm(event)"/>
+                <input type="submit" value="create"/>
             </div>
         </div>
     </div>
