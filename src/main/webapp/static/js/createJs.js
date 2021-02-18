@@ -5,27 +5,25 @@ function createQuery() {
     const newDiv = document.createElement("div");
     newDiv.className = "query-box position-relative";
 
-    const deleteButton = document.createElement("input");
+    const deleteButton = document.createElement("button");
     deleteButton.type = "button";
-    deleteButton.value = 'X';
-    deleteButton.className = "delete-query-button"
+    deleteButton.className = "delete-button top-right-corner position-absolute";
     deleteButton.addEventListener('click', function(){deleteElement(this, queryArea)}, false);
 
     const newForm = document.createElement("div");
-    newForm.className = "query-form"
+    newForm.className = "query-form";
 
     const queryTitle = document.createElement("input");
     queryTitle.name = "queryTitle";
     queryTitle.type = "text";
     queryTitle.placeholder = "Question";
-    queryTitle.className = "query-title-input";
-    queryTitle.classList.add("text");
+    queryTitle.className = "query-title-input text";
 
     newForm.appendChild(queryTitle);
 
-    const createOptionButton = document.createElement("input");
+    const createOptionButton = document.createElement("button");
     createOptionButton.type = "button";
-    createOptionButton.value = "+";
+    createOptionButton.className = "create-button";
     createOptionButton.addEventListener('click', function(){createOption(newForm)}, false);
 
     newDiv.appendChild(deleteButton);
@@ -42,16 +40,29 @@ function deleteElement(self, parent){
 
 function createOption(form){
     const div = document.createElement("div");
+    div.style.marginBottom = "16px";
+    div.className = "display-flex";
+
+    const radioBtn = document.createElement("img");
+    radioBtn.src = "/images/radioButton.png";
+    radioBtn.style.width = "20px";
+    radioBtn.style.height = "20px";
+    radioBtn.style.marginRight = "8px";
+    radioBtn.className = "align-self-center";
+
     const option = document.createElement("input");
     option.name = "option";
+    option.placeholder = "Option";
     option.classList.add("text");
+    option.classList.add("option");
     option.type = "text";
 
-    const deleteButton = document.createElement("input");
+    const deleteButton = document.createElement("button");
     deleteButton.type = "button";
-    deleteButton.value = 'X';
+    deleteButton.className = "delete-button align-self-center";
     deleteButton.addEventListener('click', function(){deleteElement(this, form)}, false);
 
+    div.appendChild(radioBtn);
     div.appendChild(option);
     div.appendChild(deleteButton);
 
@@ -67,7 +78,7 @@ window.addEventListener("scroll", () => {
         menu_bar.style.top = '50';
 });
 
-const createButton = document.querySelector("#create-button");
+const createButton = document.querySelector(".create-button");
 createButton.addEventListener("click", createQuery);
 
 function checkValid(e) {
@@ -92,17 +103,28 @@ function checkValid(e) {
     return false;
 }
 
+
+/**
+ *  @brief Set input names when user presses the create button
+ *  @date 2021-02-17
+ *  @return false: error (no question, no option)
+ *          true: no error
+ *  @param submit event e
+ */
 function setInputName(e){
     const inputs = document.querySelectorAll("input.text");
-
     let origNames = [];
+    let cnt = -1;
+    let opCnt = 0;
+
+    // Save original input name values
+    // so that we can recover names when error occurs during the naming process
     for(let input of inputs){
         origNames.push(input.name);
     }
 
-    let cnt = -1;
-    let opCnt = 0;
-
+    //Naming process
+    //Return false when there's no question or option
     for(let input of inputs){
         if(input.name === "queryTitle"){
             if(opCnt === -1){
