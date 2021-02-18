@@ -8,6 +8,10 @@
         SELECT * FROM SURVEY
     </select>
 
+    <select id="getCntSurvey" resultType="int">
+        SELECT COUNT(*) FROM SURVEY
+    </select>
+
     <select id="searchSurvey" resultType="com.survey_in.entity.Survey">
         SELECT * FROM survey
         WHERE title LIKE '%'||#{keyword}||'%'

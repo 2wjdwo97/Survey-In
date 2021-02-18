@@ -4,4 +4,5 @@ import com.survey_in.entity.Question;
 
 public interface SurveyService {
     void createSurvey(Question questions, int memberNum);
+    int getCntSurvey();
 }
