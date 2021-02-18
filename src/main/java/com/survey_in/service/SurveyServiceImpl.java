@@ -53,4 +53,8 @@ public class SurveyServiceImpl implements SurveyService{
         }
     }
 
+    public List<Survey> getMemberSurveys(String username) {
+        int memberId = memberDao.selectMemberId(username);
+        return surveyDao.selectMemberSurveys(memberId);
+    }
 }

@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface SurveyService {
     void createSurvey(String username, String title, int capacity, String category, int point, List<NewSurveyEntity> questions);
+    List<Survey> getMemberSurveys(String username);
 }

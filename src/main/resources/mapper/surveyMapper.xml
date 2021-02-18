@@ -22,4 +22,9 @@
         DELETE FROM SURVEY
         WHERE SURVEY_ID = #{survey_id}
     </delete>
+
+    <select id="selectMemberSurveys" resultType="com.survey_in.entity.Survey">
+        SELECT * from SURVEY
+        WHERE MEMBER_ID = #{member_id}
+    </select>
 </mapper>
