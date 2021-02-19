@@ -17,7 +17,7 @@
                 login-page="/login"
                 username-parameter="id"
                 password-parameter="pw"
-                default-target-url="/mySurveys/list" />
+                default-target-url="/mySurveys/surveys" />
         <security:logout
                 logout-url="/logout"
                 logout-success-url="/"

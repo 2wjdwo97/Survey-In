@@ -19,7 +19,7 @@
         </div>
 
         <div style="margin-top: 80px">
-                <a href = '/mySurveys/list'> My surveys</a>
+                <a href = '/mySurveys/surveys'> My surveys</a>
         </div>
 
         <div>

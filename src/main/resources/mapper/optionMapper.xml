@@ -8,4 +8,11 @@
         INSERT INTO OPTION (DATA)
         VALUES(#{data})
     </insert>
+
+    <select id="selectOption" resultType="com.survey_in.entity.Option">
+        SELECT * from OPTION
+        WHERE OPTION_ID
+                  IN ( SELECT OPTION_ID from QUESTION_OPTION
+                   WHERE QUESTION_ID = #{question_id} )
+    </select>
 </mapper>
