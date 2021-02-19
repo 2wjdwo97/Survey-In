@@ -1,25 +1,47 @@
 package com.survey_in.entity;
 
+import java.sql.Time;
+import java.util.HashMap;
+
 public class Survey {
     private String title;
     private String category;
+    private int id;
     private int capacity;
     private int point;
     private int questionCount;
     private String optionGender;
     private String optionAge;
-    private String createdAt;
+    private Time createdAt;
+    private int member_id;
+    private String survey_id;
+    private int questionCnt;
 
-    public Survey(String title, String category, int capacity, int point, int questionCount, String optionGender,
-                  String optionAge, String createdAt) {
+    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt, Time createdAt) {
+        this.id = id;
+        this.member_id = member_id;
         this.title = title;
         this.category = category;
         this.capacity = capacity;
         this.point = point;
-        this.questionCount = questionCount;
-        this.optionGender = optionGender;
-        this.optionAge = optionAge;
+        this.questionCnt = questionCnt;
         this.createdAt = createdAt;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getMember_id() {
+        return member_id;
+    }
+
+    public void setMember_id(int member_id) {
+        this.member_id = member_id;
     }
 
     public String getTitle() {
@@ -78,11 +100,11 @@ public class Survey {
         this.optionAge = optionAge;
     }
 
-    public String getCreatedAt() {
+    public Time getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Time createdAt) {
         this.createdAt = createdAt;
     }
 }

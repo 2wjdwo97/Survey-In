@@ -18,11 +18,10 @@ public class ExploreServiceImp implements ExploreService{
     private SurveyDao surveyDao;
     public ExploreServiceImp(@Qualifier("surveyDaoBean") SurveyDao surveyDao){
         this.surveyDao = surveyDao;
-        System.out.println("exploreservice hihi");
     }
 
     @Override
-    public List<HashMap<String, String>> getAllSurveys() throws ClassNotFoundException, SQLException {
+    public List<Survey> getAllSurveys() throws ClassNotFoundException, SQLException {
         return surveyDao.getAllSurvey();
     }
 

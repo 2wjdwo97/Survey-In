@@ -13,6 +13,7 @@ public class Member {
     private String job;
     private String auth;
 
+
     public String getUsername() {
         return username;
     }

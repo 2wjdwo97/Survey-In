@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,10 +29,12 @@ public class ExploreController {
     @RequestMapping(value = ("/explore"), method = RequestMethod.GET)
     public String index(){
         try {
-            List<HashMap<String, String>> surveys = exploreService.getAllSurveys();
+            List<Survey> surveys = exploreService.getAllSurveys();
             surveys.forEach((elem) -> {
-                System.out.println(elem);
+                System.out.println(elem.getTitle());
+
             });
+
         }catch(Exception e){
             System.out.println("exception!! "+ e.toString());
             if(e instanceof ClassNotFoundException){
@@ -44,6 +47,10 @@ public class ExploreController {
         return "explore.explore";
     }
 
+//    public ModelAndView getAllSurveyList(){
+//        ModelAndView v = new ModelAndView();
+//        v.setViewName("explore/explore");
+//    }
 
 
 

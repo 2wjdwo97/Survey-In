@@ -19,8 +19,8 @@ public class SurveyDaoImpl implements SurveyDao{
     }
 
     @Override
-    public List<HashMap<String,String>> getAllSurvey() {
-//        System.out.println(sqlSession.selectList("SurveyMapper.getAllSurvey").getClass());
+    public List<Survey> getAllSurvey() {
+        System.out.println(sqlSession.selectList("SurveyMapper.getAllSurvey").getClass());
         return sqlSession.selectList("SurveyMapper.getAllSurvey");
     }
 
