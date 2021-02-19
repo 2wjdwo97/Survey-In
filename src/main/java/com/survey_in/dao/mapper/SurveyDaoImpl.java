@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository("surveyDaoBean")
-public class SurveyDaoImpl implements SurveyDao {
+public class SurveyDaoImpl implements SurveyDao{
 
     private final SqlSession sqlSession;
 
@@ -20,6 +20,33 @@ public class SurveyDaoImpl implements SurveyDao {
         this.sqlSession = sqlSession;
     }
 
+
+    @Override
+    public List<Survey> getSurveys() {
+        return sqlSession.selectList("SurveyMapper.getSurveys");
+    }
+
+    @Override
+    public void insertSurvey(Survey survey) {
+        sqlSession.insert("SurveyMapper.insertSurvey", survey);
+    }
+
+    @Override
+    public Survey selectSurvey(String survey_id) {
+        return sqlSession.selectOne("SurveyMapper.selectSurvey", survey_id);
+    }
+
+    @Override
+    public void deleteSurvey(String survey_id) {
+        sqlSession.delete("MemberMapper.deleteMember", survey_id);
+    }
+
+    @Override
+    public List<Survey> selectMemberSurveys(int member_id) {
+        return sqlSession.selectList("SurveyMapper.selectMemberSurveys", member_id);
+    }
+
+    // search
     @Override
     public int getCntSurvey() {
         return sqlSession.selectOne("SurveyMapper.getCntSurvey");

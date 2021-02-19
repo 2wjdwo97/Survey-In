@@ -25,8 +25,8 @@ public class SearchController {
     private SearchService searchService;
 
     @Autowired
-    public SearchController(@Qualifier("surveyServiceBean") SurveyService surveyService,
-                            @Qualifier("searchServiceBean") SearchService searchService) {
+    public SearchController(@Qualifier("surveyService") SurveyService surveyService,
+                            @Qualifier("searchService") SearchService searchService) {
         this.surveyService = surveyService;
         this.searchService = searchService;
     }
@@ -38,6 +38,7 @@ public class SearchController {
                          @ModelAttribute("filter") FilterVO filter) {
 
         List<Survey> surveys;
+        PagingVO paging = new PagingVO(page, surveyService.getCntSurvey());
 
         if (filter.getTar().equals("survey"))
             surveys = searchService.searchSurvey(keyword, filter);
@@ -45,9 +46,6 @@ public class SearchController {
             surveys = searchService.searchQuestion();
 
         model.addAttribute("surveys", surveys);
-
-        PagingVO paging = new PagingVO(page, surveyService.getCntSurvey());
-
         model.addAttribute("paging", paging);
         model.addAttribute("keyword", keyword);
 

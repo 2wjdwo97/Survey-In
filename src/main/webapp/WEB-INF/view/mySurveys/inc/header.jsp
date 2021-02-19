@@ -5,6 +5,7 @@
   Time: 오전 11:13
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <header>
@@ -15,7 +16,7 @@
         </a>
         <div class="vertical-center search-wrapper display-inline">
             <form class="display-inline" action="/search" method="get">
-                <input class="search-input" id="search-input" type="text" name="q" value=${searchPar.keyword}/>
+                <input class="search-input" id="search-input" type="text" name="q" <c:if test="${searchPar.keyword != null}">value=${searchPar.keyword}</c:if>/>
 <%--                <input class="search-button position-absolute" type="image" src="/images/1.JPG" alt="Submit" />--%>
             </form>
         </div>

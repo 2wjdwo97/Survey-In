@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("searchServiceBean")
+@Service("searchService")
 public class SearchServiceImpl implements SearchService {
 
     private SurveyDao surveyDao;

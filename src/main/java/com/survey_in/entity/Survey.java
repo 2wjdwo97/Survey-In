@@ -12,6 +12,15 @@ public class Survey {
     private int questionCnt;
     private Time createdAt;
 
+    public Survey(int member_id, String title, String category, int capacity, int point, int questionCnt) {
+        this.member_id = member_id;
+        this.title = title;
+        this.category = category;
+        this.capacity = capacity;
+        this.point = point;
+        this.questionCnt = questionCnt;
+    }
+
     public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt, Time createdAt) {
         this.id = id;
         this.member_id = member_id;
@@ -85,5 +94,19 @@ public class Survey {
 
     public void setCreatedAt(Time createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Survey{" +
+                "id=" + id +
+                ", member_id=" + member_id +
+                ", title='" + title + '\'' +
+                ", category='" + category + '\'' +
+                ", capacity=" + capacity +
+                ", point=" + point +
+                ", questionCnt=" + questionCnt +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }

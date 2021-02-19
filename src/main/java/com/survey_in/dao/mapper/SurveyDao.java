@@ -6,6 +6,12 @@ import com.survey_in.vo.FilterVO;
 import java.util.List;
 
 public interface SurveyDao {
+    List<Survey> getSurveys();
+    void insertSurvey(Survey survey);
+    Survey selectSurvey(String survey_id);
+    void deleteSurvey(String survey_id);
+    List<Survey> selectMemberSurveys(int member_id);
+
     int getCntSurvey();
     List<Survey> searchSurvey(String keyword, FilterVO filter);
 }

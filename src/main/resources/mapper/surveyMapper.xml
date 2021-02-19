@@ -4,8 +4,28 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="SurveyMapper">
-    <select id="getAllSurvey" resultType="com.survey_in.entity.Survey">
+    <select id="getSurveys" resultType="java.util.HashMap">
         SELECT * FROM SURVEY
+    </select>
+
+    <select id="selectSurvey" resultType="com.survey_in.entity.Survey">
+        SELECT * from SURVEY
+        WHERE SURVEY_ID = #{survey_id}
+    </select>
+
+    <insert id="insertSurvey" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO SURVEY (MEMBER_ID, TITLE, CATEGORY, CAPACITY, POINT, QUESTION_CNT)
+        VALUES(#{member_id}, #{title}, #{category}, #{capacity}, #{point}, #{questionCnt})
+    </insert>
+
+    <delete id="deleteSurvey">
+        DELETE FROM SURVEY
+        WHERE SURVEY_ID = #{survey_id}
+    </delete>
+
+    <select id="selectMemberSurveys" resultType="com.survey_in.entity.Survey">
+        SELECT * from SURVEY
+        WHERE MEMBER_ID = #{member_id}
     </select>
 
     <select id="getCntSurvey" resultType="int">

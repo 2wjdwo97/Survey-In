@@ -58,9 +58,9 @@
                 <%--                    <option value="f">female</option>--%>
                 <%--                </select>--%>
                 <%--            </li>--%>
-                <li>
-                    <input class="search-btn" type="submit" value="search">
-                </li>
+<%--                <li>--%>
+<%--                    <input class="search-btn" type="submit" value="search">--%>
+<%--                </li>--%>
             </ul>
         </form>
     </div>
