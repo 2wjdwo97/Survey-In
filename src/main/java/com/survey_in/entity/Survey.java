@@ -1,23 +1,19 @@
 package com.survey_in.entity;
 
 import java.sql.Time;
-import java.util.HashMap;
 
 public class Survey {
+    private int id;
+    private int member_id;
     private String title;
     private String category;
     private int id;
     private int capacity;
     private int point;
-    private int questionCount;
-    private String optionGender;
-    private String optionAge;
-    private Time createdAt;
-    private int member_id;
-    private String survey_id;
     private int questionCnt;
+    private Time createdAt;
 
-    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt, Time createdAt) {
+    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt,Time createdAt) {
         this.id = id;
         this.member_id = member_id;
         this.title = title;
@@ -28,20 +24,13 @@ public class Survey {
         this.createdAt = createdAt;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getMember_id() {
-        return member_id;
-    }
-
-    public void setMember_id(int member_id) {
+    public Survey(int member_id, String title, String category, int capacity, int point, int questionCnt) {
         this.member_id = member_id;
+        this.title = title;
+        this.category = category;
+        this.capacity = capacity;
+        this.point = point;
+        this.questionCnt = questionCnt;
     }
 
     public String getTitle() {
@@ -76,35 +65,27 @@ public class Survey {
         this.point = point;
     }
 
-    public int getQuestionCount() {
-        return questionCount;
+    public int getQuestionCnt() {
+        return questionCnt;
     }
 
-    public void setQuestionCount(int questionCount) {
-        this.questionCount = questionCount;
+    public void setQuestionCnt(int questionCnt) {
+        this.questionCnt = questionCnt;
     }
 
-    public String getOptionGender() {
-        return optionGender;
+    public int getMember_id() {
+        return member_id;
     }
 
-    public void setOptionGender(String optionGender) {
-        this.optionGender = optionGender;
+    public void setMember_id(int member_id) {
+        this.member_id = member_id;
     }
 
-    public String getOptionAge() {
-        return optionAge;
-    }
+    public int getId(){ return id;}
 
-    public void setOptionAge(String optionAge) {
-        this.optionAge = optionAge;
-    }
+    public void setId(int id) {this.id = id;}
 
-    public Time getCreatedAt() {
-        return createdAt;
-    }
+    public Time getCreatedAt(){return createdAt;}
 
-    public void setCreatedAt(Time createdAt) {
-        this.createdAt = createdAt;
-    }
+    public void setCreatedAt(Time createdAt){this.createdAt = createdAt;}
 }

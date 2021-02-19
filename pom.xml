@@ -96,13 +96,6 @@
       <version>1.4</version>
     </dependency>
 
-<!--    &lt;!&ndash; https://mvnrepository.com/artifact/com.oracle.ojdbc/ojdbc8 &ndash;&gt;-->
-<!--    <dependency>-->
-<!--      <groupId>com.oracle.ojdbc</groupId>-->
-<!--      <artifactId>ojdbc8</artifactId>-->
-<!--      <version>19.3.0.0</version>-->
-<!--    </dependency>-->
-
     <!-- PostgreSQL 9.4 -->
     <dependency>
       <groupId>org.postgresql</groupId>
@@ -161,6 +154,12 @@
       <groupId>commons-el</groupId>
       <artifactId>commons-el</artifactId>
       <version>1.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.webjars.npm/chart.js -->
+    <dependency>
+      <groupId>org.webjars.npm</groupId>
+      <artifactId>chart.js</artifactId>
+      <version>2.9.4</version>
     </dependency>
 
   </dependencies>

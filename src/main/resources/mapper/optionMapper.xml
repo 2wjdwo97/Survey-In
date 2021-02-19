@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="OptionMapper">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO OPTION (DATA)
+        VALUES(#{data})
+    </insert>
+
+    <select id="selectOption" resultType="com.survey_in.entity.Option">
+        SELECT * from OPTION
+        WHERE OPTION_ID
+                  IN ( SELECT OPTION_ID from QUESTION_OPTION
+                   WHERE QUESTION_ID = #{question_id} )
+    </select>
+</mapper>

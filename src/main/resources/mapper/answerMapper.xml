@@ -3,21 +3,15 @@
         PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="MemberMapper">
-    <select id="getMembers" resultType="java.util.HashMap">
-        SELECT * FROM MEMBER
+<mapper namespace="AnswerMapper">
+    <select id="selectAnswers" resultType="com.survey_in.entity.Answer">
+        SELECT * from ANSWER
+        WHERE QUESTION_OPTION_ID =
+              (SELECT QUESTION_OPTION_ID from QUESTION_OPTION
+                  WHERE OPTION_ID = #{option_id})
     </select>
 
-    <select id="selectMember" resultType="com.survey_in.entity.Member">
-        SELECT * from MEMBER
-        WHERE USERNAME = #{username}
-    </select>
-
-    <select id="selectMemberId" resultType="int">
-        SELECT MEMBER_ID from MEMBER
-        WHERE USERNAME = #{username}
-    </select>
-
+<!--
     <insert id="insertMember">
         INSERT INTO MEMBER (USERNAME, PWD, NAME, GENDER, AGE, BIRTHDAY, EMAIL, JOB)
         VALUES(#{username}, #{pwd}, #{name}, #{gender}, #{age}, #{birthday}, #{email}, #{job})
@@ -26,5 +20,5 @@
     <delete id="deleteMember">
         DELETE FROM MEMBER
         WHERE USERNAME = #{username}
-    </delete>
+    </delete>-->
 </mapper>
