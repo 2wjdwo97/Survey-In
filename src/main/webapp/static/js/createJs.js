@@ -136,10 +136,10 @@ function setInputName(e){
             }
             opCnt = -1;
             ++cnt;
-            input.name = "list["+cnt+"].title";
+            input.name = "questions["+cnt+"].title";
         }
         else if(input.name === "option"){
-            input.name = "list["+cnt+"].option";
+            input.name = "questions["+cnt+"].option";
             ++opCnt;
         }
     }

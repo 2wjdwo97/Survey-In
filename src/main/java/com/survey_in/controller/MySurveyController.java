@@ -1,6 +1,7 @@
 package com.survey_in.controller;
 
 import com.survey_in.dto.QuestionDto;
+import com.survey_in.dto.SurveyDto;
 import com.survey_in.service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,8 +30,8 @@ public class MySurveyController {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String create(QuestionDto questionDto, Principal principal, String title, int point, String category, int capacity){
-        surveyService.createSurvey(principal.getName(), title, point, category, capacity, questionDto.getList());
+    public String create(SurveyDto surveyDto, Principal principal, String title, int capacity, String category, int point){
+        surveyService.createSurvey(principal.getName(), title, point, category, capacity, surveyDto.getQuestions());
         return "redirect:/mySurveys/surveys";
     }
 
