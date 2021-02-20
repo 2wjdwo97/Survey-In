@@ -22,7 +22,7 @@ public class ExploreServiceImp implements ExploreService{
 
     @Override
     public List<Survey> getAllSurveys() throws ClassNotFoundException, SQLException {
-        return surveyDao.getAllSurvey();
+        return surveyDao.getAllSurveys();
     }
 
     @Override

@@ -19,7 +19,7 @@ public class SurveyDaoImpl implements SurveyDao{
     }
 
     @Override
-    public List<Survey> getSurveys() {
+    public List<Survey> getAllSurveys() {
         return sqlSession.selectList("SurveyMapper.getSurveys");
     }
 

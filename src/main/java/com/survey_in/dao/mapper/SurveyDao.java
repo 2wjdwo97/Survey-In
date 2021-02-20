@@ -5,7 +5,7 @@ import com.survey_in.entity.Survey;
 import java.util.List;
 
 public interface SurveyDao {
-    List<Survey> getSurveys();
+    List<Survey> getAllSurveys();
     void insertSurvey(Survey survey);
     Survey selectSurvey(int survey_id);
     void deleteSurvey(String survey_id);

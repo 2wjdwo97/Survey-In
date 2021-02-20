@@ -50,7 +50,6 @@
     <div class="content-box">
 
         <div class="survey-view display-inline-block">
-
             <div class="survey-main-info">
                 <div class="survey-title-participate-container">
                     <div class="survey-name">
@@ -78,7 +77,6 @@
                 </div>
 
             </div>
-
             <div class="survey-description-block">
                 <span>
                     <p>
