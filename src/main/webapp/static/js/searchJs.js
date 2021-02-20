@@ -5,10 +5,15 @@ const inputKeyword = document.querySelector('#search-hidden-input');
 
 
 function makeUrl(target, category, age) {
-    let keyword = inputKeyword.value;
-    let page = 1;   //TODO
+    const URLSearch = new URLSearchParams(location.search);
 
-    return `./search?q=${keyword}&p=${page}&tar=${target}&cat=${category}&age=${age}`;
+    URLSearch.set("q", inputKeyword.value);
+    URLSearch.set("page", 1);       //TODO
+    URLSearch.set("tar", target);
+    URLSearch.set("cat", category);
+    URLSearch.set("age", age);
+
+    return `./search?${URLSearch}`;
 }
 
 function moveUrlByTarget() {
@@ -34,9 +39,30 @@ function moveUrlByAge() {
 
 
 function init() {
+    // 검색칸에 검색했던 단어 넣기
     const searchInput = document.querySelector('#search-input');
     searchInput.value = document.querySelector('#search-hidden-input').value;
 
+
+    // 검색 필터 유지
+    const searchForm = document.querySelector('#form-search-input');
+    searchForm.addEventListener('submit', function (event) {
+
+        const URLSearch = new URLSearchParams(location.search);
+
+        URLSearch.delete("q");
+        URLSearch.forEach(function (value, key) {
+            let hiddenField = document.createElement('input');
+            hiddenField.setAttribute('type', 'hidden');
+            hiddenField.setAttribute('name', key);
+            hiddenField.setAttribute('value', value);
+            searchForm.appendChild(hiddenField);
+        });
+        searchForm.submit();
+    });
+
+
+    // 필터 변경 시 url 이동
     filterTarget.addEventListener('change', moveUrlByTarget);
     filterCat.addEventListener('change', moveUrlByCat);
     filterAge.addEventListener('change', moveUrlByAge);

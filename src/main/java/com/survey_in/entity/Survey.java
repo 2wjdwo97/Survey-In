@@ -11,6 +11,8 @@ public class Survey {
     private int point;
     private int questionCnt;
     private Time createdAt;
+    private String ageLimit;
+    private String genderLimit;
 
     public Survey(int member_id, String title, String category, int capacity, int point, int questionCnt) {
         this.member_id = member_id;
@@ -21,7 +23,7 @@ public class Survey {
         this.questionCnt = questionCnt;
     }
 
-    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt, Time createdAt) {
+    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt, Time createdAt, String ageLimit, String genderLimit) {
         this.id = id;
         this.member_id = member_id;
         this.title = title;
@@ -30,6 +32,8 @@ public class Survey {
         this.point = point;
         this.questionCnt = questionCnt;
         this.createdAt = createdAt;
+        this.ageLimit = ageLimit;
+        this.genderLimit = genderLimit;
     }
 
     public int getId() {
@@ -94,6 +98,22 @@ public class Survey {
 
     public void setCreatedAt(Time createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getAgeLimit() {
+        return ageLimit;
+    }
+
+    public void setAgeLimit(String ageLimit) {
+        this.ageLimit = ageLimit;
+    }
+
+    public String getGenderLimit() {
+        return genderLimit;
+    }
+
+    public void setGenderLimit(String genderLimit) {
+        this.genderLimit = genderLimit;
     }
 
     @Override

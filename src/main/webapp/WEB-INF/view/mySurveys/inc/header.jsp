@@ -15,9 +15,9 @@
                  width="40" height="40">
         </a>
         <div class="vertical-center search-wrapper display-inline">
-            <form class="display-inline" action="/search" method="get">
-                <input class="search-input" id="search-input" type="text" name="q" <c:if test="${searchPar.keyword != null}">value=${searchPar.keyword}</c:if>/>
-<%--                <input class="search-button position-absolute" type="image" src="/images/1.JPG" alt="Submit" />--%>
+            <form class="display-inline" id="form-search-input" action="/search" method="get">
+                <input class="search-input" id="search-input" type="text" name="q"
+                       <c:if test="${searchPar.keyword != null}">value=${searchPar.keyword}</c:if>/>
             </form>
         </div>
         <form class="vertical-center display-inline position-absolute sign-out-form" action="/logout" method="post">

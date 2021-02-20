@@ -51,13 +51,13 @@
                         <option value="mt60" <c:if test="${filter.age == 'mt60'}">selected="selected"</c:if>>More than 60</option>
                     </select>
                 </li>
-                <%--            <li class="filter-box">--%>
-                <%--                <select class="select-dropdown" id="gender" name="gender">--%>
-                <%--                    <option value="all">gender</option>--%>
-                <%--                    <option value="m">male</option>--%>
-                <%--                    <option value="f">female</option>--%>
-                <%--                </select>--%>
-                <%--            </li>--%>
+                <li class="filter-box">
+                    <select class="select-dropdown" id="gender" name="gender">
+                        <option value="all">gender</option>
+                        <option value="m">male</option>
+                        <option value="f">female</option>
+                    </select>
+                </li>
 <%--                <li>--%>
 <%--                    <input class="search-btn" type="submit" value="search">--%>
 <%--                </li>--%>
@@ -72,7 +72,7 @@
                     <article>
                         <div class="survey-header">
                             <h3><a href="#">${s.title}</a></h3>
-                            <h4>(참여인원)/${s.capacity}</h4>
+                            <h4>p/${s.capacity}</h4>
                         </div>
                         <div class="survey-body">
                             <p>

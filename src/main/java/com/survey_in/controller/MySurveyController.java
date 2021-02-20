@@ -30,7 +30,7 @@ public class MySurveyController {
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String create(NewSurveyEntity newSurveyEntity, Principal principal, String title, int point, String category, int capacity){
         surveyService.createSurvey(principal.getName(), title, point, category, capacity, newSurveyEntity.getList());
-        return "mySurveys/surveys";
+        return "redirect:/mySurveys/surveys";
     }
 
     @RequestMapping("/surveys")
