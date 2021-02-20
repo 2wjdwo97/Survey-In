@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.security.Principal;
 
 @Controller
-@RequestMapping("/mySurveys")
+@RequestMapping("/{username}")
 public class MySurveyController {
     private SurveyService surveyService;
 
@@ -24,28 +24,30 @@ public class MySurveyController {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String newSurvey() {
+    public String newSurvey(Model model, Principal principal) {
+        model.addAttribute("username", principal.getName());
         return "mySurveys.new";
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String create(SurveyDto surveyDto, Principal principal, String title, int capacity, String category,
+    public String create(Principal principal, SurveyDto surveyDto, String title, int capacity, String category,
                          int point, String gender_limit, String age_limit){
         surveyService.createSurvey(principal.getName(), title, point, category, capacity, gender_limit, age_limit,
                 surveyDto.getQuestions());
-        return "redirect:/mySurveys/surveys";
+        return "redirect:/" + principal.getName() + "/surveys";
     }
 
     @RequestMapping("/surveys")
-    public String mySurveys(Model model, Principal principal){
-        model.addAttribute("list", surveyService.getMemberSurveys(principal.getName()));
+    public String mySurveys(Model model, @PathVariable String username, Principal principal){
+        model.addAttribute("list", surveyService.getMemberSurveys(username));
+        model.addAttribute("username", principal.getName());
         return "mySurveys.surveys";
     }
 
     @RequestMapping("/surveys/{surveyId}")
-    public String mySurveyDetail(Model model, @PathVariable int surveyId){
+    public String mySurveyDetail(Model model, @PathVariable int surveyId, Principal principal){
         model.addAttribute("survey", surveyService.getSurveyDetail(surveyId)); //return survey
-        //return answer survey question option questionOption
+        model.addAttribute("username", principal.getName());
         return "mySurveys.detail";
     }
 }
