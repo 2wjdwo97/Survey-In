@@ -29,7 +29,7 @@ public class SurveyDaoImpl implements SurveyDao{
     }
 
     @Override
-    public Survey selectSurvey(String survey_id) {
+    public Survey selectSurvey(int survey_id) {
         return (Survey) sqlSession.selectOne("SurveyMapper.selectSurvey", survey_id);
     }
 

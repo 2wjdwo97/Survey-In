@@ -8,4 +8,9 @@
         INSERT INTO QUESTION (SURVEY_ID, TITLE)
         VALUES(#{survey_id}, #{title})
     </insert>
+
+    <select id="selectQuestion" resultType="com.survey_in.entity.Question">
+        SELECT * from QUESTION
+        WHERE SURVEY_ID = #{survey_id}
+    </select>
 </mapper>
