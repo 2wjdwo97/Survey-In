@@ -24,14 +24,15 @@ public class MySurveyController {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-
     public String newSurvey() {
         return "mySurveys.new";
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String create(SurveyDto surveyDto, Principal principal, String title, int capacity, String category, int point){
-        surveyService.createSurvey(principal.getName(), title, point, category, capacity, surveyDto.getQuestions());
+    public String create(SurveyDto surveyDto, Principal principal, String title, int capacity, String category,
+                         int point, String gender_limit, String age_limit){
+        surveyService.createSurvey(principal.getName(), title, point, category, capacity, gender_limit, age_limit,
+                surveyDto.getQuestions());
         return "redirect:/mySurveys/surveys";
     }
 

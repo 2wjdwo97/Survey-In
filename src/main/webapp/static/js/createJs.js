@@ -1,5 +1,5 @@
 const queryArea = document.querySelector('.query-area');
-const menu_bar = document.querySelector('.floating-box');
+const menu_bar = document.querySelector('.floating-box-group');
 
 function createQuery() {
     const newDiv = document.createElement("div");
