@@ -9,6 +9,7 @@
         <put-attribute name="aside" value="/WEB-INF/view/mySurveys/inc/aside.jsp" />
         <put-attribute name="body" value="/WEB-INF/view/mySurveys/{1}.jsp" />
     </definition>
+
     <definition name="explore.*" template="/WEB-INF/view/explore/inc/layout.jsp">
         <put-attribute name="title" value="Survey In" />
         <put-attribute name="header" value="/WEB-INF/view/explore/inc/header.jsp" />

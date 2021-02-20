@@ -14,4 +14,5 @@ public interface ExploreService {
     public List<Survey> getSurveyByFilter()
             throws ClassNotFoundException, SQLException;
 
+
 }

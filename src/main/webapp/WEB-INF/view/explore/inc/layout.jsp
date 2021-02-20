@@ -20,7 +20,7 @@
         <%--aside--%>
         <tiles:insertAttribute name="aside"/>
         <%--main--%>
-        <tiles:insertAttribute name="body"/>
+        <tiles:insertAttribute name="body" />
     </div>
 
     <script type="text/javascript" src="/js/asideJs.js"></script>

@@ -44,7 +44,6 @@ public class SurveyServiceImpl implements SurveyService{
         surveyDao.insertSurvey(newSurvey);
         int lastSurveyId = newSurvey.getId();
 
-
         for(QuestionDto question: questions){
             Question newQuestion = new Question(lastSurveyId, question.getTitle());
             questionDao.insertQuestion(newQuestion);

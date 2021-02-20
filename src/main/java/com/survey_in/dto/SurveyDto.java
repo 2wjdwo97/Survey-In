@@ -9,6 +9,8 @@ import java.util.List;
 
 public class SurveyDto {
     private String title;
+
+
     private List<QuestionDto> questions = new ArrayList<QuestionDto>();
 
     public SurveyDto(String title, List<QuestionDto> questions){

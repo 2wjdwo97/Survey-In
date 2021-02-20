@@ -6,13 +6,10 @@ import com.survey_in.service.ExploreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -27,30 +24,25 @@ public class ExploreController {
     }
 
     @RequestMapping(value = ("/explore"), method = RequestMethod.GET)
-    public String index(){
+    public String index(Model model){
         try {
             List<Survey> surveys = exploreService.getAllSurveys();
+            model.addAttribute("surveys", surveys);
             surveys.forEach((elem) -> {
                 System.out.println(elem.getTitle());
-
             });
-
         }catch(Exception e){
-            System.out.println("exception!! "+ e.toString());
+            System.out.println("exception!! " + e.toString());
             if(e instanceof ClassNotFoundException){
                 // log
             }else{
                 //log
             }
         }
-
+        System.out.println("returning explore.explore");
         return "explore.explore";
     }
 
-//    public ModelAndView getAllSurveyList(){
-//        ModelAndView v = new ModelAndView();
-//        v.setViewName("explore/explore");
-//    }
 
 
 

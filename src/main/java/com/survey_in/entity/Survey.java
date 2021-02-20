@@ -7,22 +7,12 @@ public class Survey {
     private int member_id;
     private String title;
     private String category;
-    private int id;
     private int capacity;
     private int point;
     private int questionCnt;
     private Time createdAt;
-
-    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt,Time createdAt) {
-        this.id = id;
-        this.member_id = member_id;
-        this.title = title;
-        this.category = category;
-        this.capacity = capacity;
-        this.point = point;
-        this.questionCnt = questionCnt;
-        this.createdAt = createdAt;
-    }
+    private String ageLimit;
+    private String genderLimit;
 
     public Survey(int member_id, String title, String category, int capacity, int point, int questionCnt) {
         this.member_id = member_id;
@@ -31,6 +21,35 @@ public class Survey {
         this.capacity = capacity;
         this.point = point;
         this.questionCnt = questionCnt;
+    }
+
+    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt, Time createdAt, String ageLimit, String genderLimit) {
+        this.id = id;
+        this.member_id = member_id;
+        this.title = title;
+        this.category = category;
+        this.capacity = capacity;
+        this.point = point;
+        this.questionCnt = questionCnt;
+        this.createdAt = createdAt;
+        this.ageLimit = ageLimit;
+        this.genderLimit = genderLimit;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getMember_id() {
+        return member_id;
+    }
+
+    public void setMember_id(int member_id) {
+        this.member_id = member_id;
     }
 
     public String getTitle() {
@@ -73,19 +92,41 @@ public class Survey {
         this.questionCnt = questionCnt;
     }
 
-    public int getMember_id() {
-        return member_id;
+    public Time getCreatedAt() {
+        return createdAt;
     }
 
-    public void setMember_id(int member_id) {
-        this.member_id = member_id;
+    public void setCreatedAt(Time createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public int getId(){ return id;}
+    public String getAgeLimit() {
+        return ageLimit;
+    }
 
-    public void setId(int id) {this.id = id;}
+    public void setAgeLimit(String ageLimit) {
+        this.ageLimit = ageLimit;
+    }
 
-    public Time getCreatedAt(){return createdAt;}
+    public String getGenderLimit() {
+        return genderLimit;
+    }
 
-    public void setCreatedAt(Time createdAt){this.createdAt = createdAt;}
+    public void setGenderLimit(String genderLimit) {
+        this.genderLimit = genderLimit;
+    }
+
+    @Override
+    public String toString() {
+        return "Survey{" +
+                "id=" + id +
+                ", member_id=" + member_id +
+                ", title='" + title + '\'' +
+                ", category='" + category + '\'' +
+                ", capacity=" + capacity +
+                ", point=" + point +
+                ", questionCnt=" + questionCnt +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }
