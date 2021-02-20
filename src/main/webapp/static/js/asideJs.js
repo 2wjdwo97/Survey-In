@@ -19,34 +19,37 @@ function setAsidePosition(){
 }
 
 function resize(){
-    if (window.innerWidth < 760){
+    if (window.innerWidth < 760) {
         setAsidePosition();
         aside.classList.add('aside-width-2');
         aside.style.maxWidth = 'none';
         aside.classList.remove('aside-width-1');
-
-        content.classList.add('content-box-width-2');
-        content.classList.remove('content-box-width-1');
+        if (content !== null) {
+            content.classList.add('content-box-width-2');
+            content.classList.remove('content-box-width-1');
+        }
     }
-    else if (window.innerWidth < 1000){
+    else if (window.innerWidth < 1000) {
         setAsidePosition();
         aside.classList.add('aside-width-1');
         aside.style.maxWidth = 'none';
         aside.classList.remove('aside-width-2');
-
-        content.classList.add('content-box-width-1');
-        content.classList.remove('content-box-width-2');
+        if (content !== null) {
+            content.classList.add('content-box-width-1');
+            content.classList.remove('content-box-width-2');
+        }
     }
-    else{
+    else {
         setAsidePosition();
         aside.classList.remove('aside-width-1');
         aside.classList.remove('aside-width-2');
 
         aside.style.maxWidth = '350px';
-        content.classList.remove('content-box-width-2');
-        content.classList.remove('content-box-width-1');
+        if (content !== null) {
+            content.classList.remove('content-box-width-2');
+            content.classList.remove('content-box-width-1');
+        }
     }
-
 }
 
 window.onresize = resize;
