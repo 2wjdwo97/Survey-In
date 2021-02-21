@@ -43,12 +43,15 @@ public class SurveyServiceImpl implements SurveyService{
         return surveyDao.getCntSurvey();
     }
 
-    public void createSurvey(String username, String title, int capacity, String category, int point, List<NewSurveyEntity> questions){
+    @Override
+    public void createSurvey(String username, String title, int capacity, String category, int point, String gender_limit, String age_limit, List<QuestionDto> questions) {
         int memberId = memberDao.selectMemberId(username);
 
-        Survey newSurvey = new Survey(memberId, title, category, capacity, point, questions.size());
+        Survey newSurvey = new Survey(memberId, title, category, capacity, point,
+                questions.size(), age_limit, gender_limit);
         surveyDao.insertSurvey(newSurvey);
         int lastSurveyId = newSurvey.getId();
+
 
         for(QuestionDto question: questions){
             Question newQuestion = new Question(lastSurveyId, question.getTitle());

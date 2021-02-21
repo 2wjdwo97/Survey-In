@@ -78,9 +78,7 @@
     height: 100px;
     transition:height 2s;
 }
-.ad-view-extra{
-    display: none;
-}
+
 .ad-view-extra:hover{
     display: block;
     background-color: #d97a7a;
@@ -244,4 +242,74 @@ body{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+.qcnt-button-box {
+    float: left;
+    width: 20%;
+    height: 1%
+}
+.qcnt-button-box button {
+    flex-grow: 1;
+    cursor: pointer;
+    position: relative;
+    border: 3px solid black;
+    color: black;
+    background-color: deepskyblue;
+    font-size: 1.5rem;
+    text-transform: lowercase;
+    text-shadow: rgba(0,0,0,0.1) 2px 2px;
+    transition: flex-grow 250ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.sort-toggle-button{
+    flex-grow: 1;
+    margin-left: 20px;
+    cursor: pointer;
+    position: relative;
+    border: 3px solid black;
+    color: black;
+    background-color: moccasin;
+    font-size: 1.5rem;
+    text-transform: lowercase;
+    text-shadow: rgba(0,0,0,0.1) 2px 2px;
+    transition: flex-grow 250ms cubic-bezier(0.215, 0.61, 0.355, 1);;
+}
+.sort-toggle-button:hover,
+.sort-toggle-button:focus {
+    flex-grow: 4;
+    color: white;
+    outline: none;
+    text-shadow: none;
+    background-color: firebrick;
+}
+
+.qcnt-button-box button + button {
+    border-left: 3px solid black;
+    margin-left: calc(3px * -1);
+}
+
+.qcnt-button-box button:hover,
+.qcnt-button-box button:focus {
+    flex-grow: 2;
+    color: white;
+    outline: none;
+    text-shadow: none;
+    background-color: black;
+}
+
+.qcnt-button-box button:focus {
+    outline: 3px dashed white;
+    outline-offset: calc(2px * -3);
+}
+
+.qcnt-button-box:hover button:focus:not(:hover) {
+    flex-grow: 1;
+    color: black;
+    background-color: white;
+    outline-color: dodgerblue;
+}
+
+.qcnt-button-box button:active {
+    transform: translateY(3px);
 }

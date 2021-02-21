@@ -14,13 +14,15 @@ public class Survey {
     private String ageLimit;
     private String genderLimit;
 
-    public Survey(int member_id, String title, String category, int capacity, int point, int questionCnt) {
+    public Survey(int member_id, String title, String category, int capacity, int point, int questionCnt, String age_limit, String gender_limit) {
         this.member_id = member_id;
         this.title = title;
         this.category = category;
         this.capacity = capacity;
         this.point = point;
         this.questionCnt = questionCnt;
+        this.ageLimit = age_limit;
+        this.genderLimit = gender_limit;
     }
 
     public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt, Time createdAt, String ageLimit, String genderLimit) {

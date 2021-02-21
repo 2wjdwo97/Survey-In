@@ -19,10 +19,9 @@
     </div>
     <div class="filter-type-container">
         <div class="filter-box">
-            <select class="select-dropdown">
-                <option value="" >Select your option</option>
-                <option value="default">default</option>
-            </select>
+            <div class="point-sort-box">
+                <button class="sort-toggle-button" id="sortToggle" value="none">Point</button>
+            </div>
         </div>
         <div class="filter-box">
             <select class="select-dropdown">
@@ -36,11 +35,10 @@
                 <option value="default">default</option>
             </select>
         </div>
-        <div class="filter-box">
-            <select class="select-dropdown">
-                <option value="" >Select your option</option>
-                <option value="default">default</option>
-            </select>
+        <div class="qcnt-button-box">
+            <button class="qcntbutton">~10</button>
+            <button class="qcntbutton">10~30</button>
+            <button class="qcntbutton">30~</button>
         </div>
         <div class="filter-box">
             <select class="select-dropdown">
@@ -100,6 +98,16 @@
             </c:forEach>
 
     </div>
+    <script type="text/javascript" src="/js/exploreJs.js"></script>
+    <script>
+        function togglePointSort() {
+            let sortbutton = document.getElementById("sortToggle");
+
+
+
+        }
+
+    </script>
 </div>
 
 
