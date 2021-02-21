@@ -30,7 +30,14 @@
                         <option value="question" <c:if test="${filter.tar == 'question'}">selected="selected"</c:if>>Search for question</option>
                     </select>
                 </li>
-                <li>
+                <li class="filter-box">
+                    <select class="select-dropdown" id="filter-order" name="ord">
+<%--                        <option value="default" <c:if test="${filter.ord == 'default'}">selected="selected"</c:if>>Default order</option>--%>
+                        <option value="latest" <c:if test="${filter.ord == 'latest'}">selected="selected"</c:if>>Latest order</option>
+                        <option value="point" <c:if test="${filter.ord == 'point'}">selected="selected"</c:if>>Point order</option>
+                    </select>
+                </li>
+                <li class="filter-box">
                     <select class="select-dropdown" id="filter-category" name="cat">
                         <option value="all" <c:if test="${filter.cat == 'all'}">selected="selected"</c:if>>All categories</option>
                         <option value="life" <c:if test="${filter.cat == 'life'}">selected="selected"</c:if>>Lifestyle</option>
@@ -43,24 +50,21 @@
                     <select class="select-dropdown" id="filter-age" name="age">
                         <option value="all" <c:if test="${filter.age == 'all'}">selected="selected"</c:if>>All ages</option>
                         <option value="lt10" <c:if test="${filter.age == 'lt10'}">selected="selected"</c:if>>Less than 10</option>
-                        <option value="10s" <c:if test="${filter.age == '10s'}">selected="selected"</c:if>>10s</option>
-                        <option value="20s" <c:if test="${filter.age == '20s'}">selected="selected"</c:if>>20s</option>
-                        <option value="30s" <c:if test="${filter.age == '30s'}">selected="selected"</c:if>>30s</option>
-                        <option value="40s" <c:if test="${filter.age == '40s'}">selected="selected"</c:if>>40s</option>
-                        <option value="50s" <c:if test="${filter.age == '50s'}">selected="selected"</c:if>>50s</option>
+                        <option value="10" <c:if test="${filter.age == '10'}">selected="selected"</c:if>>10s</option>
+                        <option value="20" <c:if test="${filter.age == '20'}">selected="selected"</c:if>>20s</option>
+                        <option value="30" <c:if test="${filter.age == '30'}">selected="selected"</c:if>>30s</option>
+                        <option value="40" <c:if test="${filter.age == '40'}">selected="selected"</c:if>>40s</option>
+                        <option value="50" <c:if test="${filter.age == '50'}">selected="selected"</c:if>>50s</option>
                         <option value="mt60" <c:if test="${filter.age == 'mt60'}">selected="selected"</c:if>>More than 60</option>
                     </select>
                 </li>
                 <li class="filter-box">
-                    <select class="select-dropdown" id="gender" name="gender">
-                        <option value="all">gender</option>
-                        <option value="m">male</option>
-                        <option value="f">female</option>
+                    <select class="select-dropdown" id="filter-gender" name="gen">
+                        <option value="all" <c:if test="${filter.gen == 'all'}">selected="selected"</c:if>>gender</option>
+                        <option value="men" <c:if test="${filter.gen == 'men'}">selected="selected"</c:if>>men</option>
+                        <option value="women" <c:if test="${filter.gen == 'women'}">selected="selected"</c:if>>women</option>
                     </select>
                 </li>
-<%--                <li>--%>
-<%--                    <input class="search-btn" type="submit" value="search">--%>
-<%--                </li>--%>
             </ul>
         </form>
     </div>
@@ -71,8 +75,13 @@
                 <li>
                     <article>
                         <div class="survey-header">
-                            <h3><a href="#">${s.title}</a></h3>
-                            <h4>p/${s.capacity}</h4>
+                            <div class="survey-title">
+                                <h3><a href="#">${s.title}</a></h3>
+                                <h4>p/${s.capacity}</h4>
+                            </div>
+                            <div class="survey-point">
+                                <h4>${s.point} POINT</h4>
+                            </div>
                         </div>
                         <div class="survey-body">
                             <p>

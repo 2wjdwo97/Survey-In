@@ -26,9 +26,9 @@ public class PageVO {
         this.surveyPerPage = surveyPerPage;
     }
 
-    public int getPageStart() {
-        return (this.page - 1) * surveyPerPage;
-    }
+//    public int getPageStart() {
+//        return (this.page - 1) * surveyPerPage;
+//    }
 
     @Override
     public String toString() {

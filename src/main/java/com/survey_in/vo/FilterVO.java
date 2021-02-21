@@ -1,16 +1,21 @@
 package com.survey_in.vo;
 
-import org.springframework.web.bind.annotation.RequestParam;
+import org.apache.tiles.autotag.core.runtime.annotation.Parameter;
 
 public class FilterVO {
-    private String tar; // target
-    private String cat; // category
-    private String age;
+
+    private String tar;     // target
+    private String cat;     // category
+    private String ord;        // order
+    private String age;     // ageLimit
+    private String gen;     // gender
 
     public FilterVO() {
         this.tar = "survey";
         this.cat = "all";
+        this.ord = "latest";
         this.age = "all";
+        this.gen = "all";
     }
 
     public String getTar() {
@@ -29,11 +34,27 @@ public class FilterVO {
         this.cat = cat;
     }
 
+    public String getOrd() {
+        return ord;
+    }
+
+    public void setOrd(String ord) {
+        this.ord = ord;
+    }
+
     public String getAge() {
         return age;
     }
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public String getGen() {
+        return gen;
+    }
+
+    public void setGen(String gen) {
+        this.gen = gen;
     }
 }

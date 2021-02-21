@@ -36,10 +36,28 @@
         SELECT * FROM survey
         WHERE title LIKE '%'||#{keyword}||'%'
 
+        <if test="filter.cat != 'all'">
+          AND category = #{filter.cat}
+        </if>
+
+        <if test="filter.age != 'all'">
+            AND age_limit = #{filter.age}
+        </if>
+
+        <if test="filter.gen != 'all'">
+            AND gender_limit = #{filter.gen}
+        </if>
+
         <choose>
-            <when test="category != 'all'">
-                AND category = #{category}
+            <when test="filter.ord == 'latest'">
+                ORDER BY created_at DESC
             </when>
+            <when test="filter.ord == 'point'">
+                ORDER BY point DESC
+            </when>
+            <otherwise>
+
+            </otherwise>
         </choose>
     </select>
 </mapper>

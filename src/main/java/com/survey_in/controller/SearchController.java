@@ -41,7 +41,7 @@ public class SearchController {
         PagingVO paging = new PagingVO(page, surveyService.getCntSurvey());
 
         if (filter.getTar().equals("survey"))
-            surveys = searchService.searchSurvey(keyword, filter);
+            surveys = searchService.searchSurvey(keyword, filter, paging);
         else
             surveys = searchService.searchQuestion();
 

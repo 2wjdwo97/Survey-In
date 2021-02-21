@@ -2,6 +2,7 @@ package com.survey_in.dao.mapper;
 
 import com.survey_in.entity.Survey;
 import com.survey_in.vo.FilterVO;
+import com.survey_in.vo.PagingVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -53,12 +54,12 @@ public class SurveyDaoImpl implements SurveyDao{
     }
 
     @Override
-    public List<Survey> searchSurvey(String keyword, FilterVO filter) {
+    public List<Survey> searchSurvey(String keyword, FilterVO filter, PagingVO paging) {
         Map<String, Object> param = new HashMap<>();
 
         param.put("keyword", keyword);
-        param.put("category", filter.getCat());
-        param.put("age", filter.getAge());
+        param.put("filter", filter);
+        param.put("paging", paging);
 
         return sqlSession.selectList("SurveyMapper.searchSurvey", param);
     }
