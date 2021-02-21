@@ -27,4 +27,19 @@
         SELECT * from SURVEY
         WHERE MEMBER_ID = #{member_id}
     </select>
+
+    <select id="getCntSurvey" resultType="int">
+        SELECT COUNT(*) FROM SURVEY
+    </select>
+
+    <select id="searchSurvey" resultType="com.survey_in.entity.Survey">
+        SELECT * FROM survey
+        WHERE title LIKE '%'||#{keyword}||'%'
+
+        <choose>
+            <when test="category != 'all'">
+                AND category = #{category}
+            </when>
+        </choose>
+    </select>
 </mapper>

@@ -23,17 +23,16 @@ public class MySurveyController {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-
     public String newSurvey() {
         return "mySurveys.new";
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String create(QuestionDto questionDto, Principal principal, String title, int point, String category, int capacity){
-        surveyService.createSurvey(principal.getName(), title, point, category, capacity, questionDto.getList());
+    public String create(NewSurveyEntity newSurveyEntity, Principal principal, String title, int point, String category, int capacity){
+        surveyService.createSurvey(principal.getName(), title, point, category, capacity, newSurveyEntity.getList());
         return "redirect:/mySurveys/surveys";
     }
-
+ㅗ
     @RequestMapping("/surveys")
     public String mySurveys(Model model, Principal principal){
         model.addAttribute("list", surveyService.getMemberSurveys(principal.getName()));

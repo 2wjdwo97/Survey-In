@@ -1,12 +1,14 @@
 package com.survey_in.dao.mapper;
 
-import com.survey_in.entity.Member;
 import com.survey_in.entity.Survey;
+import com.survey_in.vo.FilterVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository("surveyDaoBean")
 public class SurveyDaoImpl implements SurveyDao{
@@ -17,6 +19,7 @@ public class SurveyDaoImpl implements SurveyDao{
     public SurveyDaoImpl(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
     }
+
 
     @Override
     public List<Survey> getAllSurveys() {
@@ -29,8 +32,8 @@ public class SurveyDaoImpl implements SurveyDao{
     }
 
     @Override
-    public Survey selectSurvey(int survey_id) {
-        return (Survey) sqlSession.selectOne("SurveyMapper.selectSurvey", survey_id);
+    public Survey selectSurvey(String survey_id) {
+        return sqlSession.selectOne("SurveyMapper.selectSurvey", survey_id);
     }
 
     @Override
@@ -38,8 +41,25 @@ public class SurveyDaoImpl implements SurveyDao{
         sqlSession.delete("MemberMapper.deleteMember", survey_id);
     }
 
+    @Override
     public List<Survey> selectMemberSurveys(int member_id) {
         return sqlSession.selectList("SurveyMapper.selectMemberSurveys", member_id);
     }
 
+    // search
+    @Override
+    public int getCntSurvey() {
+        return sqlSession.selectOne("SurveyMapper.getCntSurvey");
+    }
+
+    @Override
+    public List<Survey> searchSurvey(String keyword, FilterVO filter) {
+        Map<String, Object> param = new HashMap<>();
+
+        param.put("keyword", keyword);
+        param.put("category", filter.getCat());
+        param.put("age", filter.getAge());
+
+        return sqlSession.selectList("SurveyMapper.searchSurvey", param);
+    }
 }

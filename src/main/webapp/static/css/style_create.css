@@ -1,45 +1,187 @@
-.query-title-input{
-    background: none;
-    border: none;
-    border-bottom: 1px solid #E1E4E8;
-    width: 80%;
-    height: 40px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    font-size: 16pt;
-}
-.query-form{
-
-}
-
-.delete-query-button{
-    position: absolute;
-    border: none;
-    background: none;
-    color: #646464;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-}
-
-.delete-query-button:hover{
-    color:black;
-}
-
-.position-relative{
-    position: relative
+.top-right-corner{
+    top: 30px;
+    right: 30px;
 }
 
 .flex-auto{
     flex: auto !important;
 }
 
+.align-self-center{
+    align-self: center;
+}
+
+.floating-area{
+    position: relative;
+    width: 25%;
+    max-width: 320px;
+}
+
+
+.floating-box{
+    position: absolute;
+    top: 50px;
+    min-width: 90%;
+    height: fit-content;
+
+
+}
+
+.floating-box-inner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    border: 3px solid #e8e8e8;
+    border-radius: 9px 9px 9px 9px;
+    background: #FEFEFE;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 19px;
+    color: #7e5959;
+}
+
+.floating-option-area{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 16px;
+}
+
+.option-input{
+    padding-left: 10px;
+    border: 2px solid #b3b3b3;
+    border-radius: 4px 4px 4px 4px;
+    width: 100%;
+    height: 38px;
+
+    font-size: 18px;
+    font-weight: 600;
+    color: #595959;
+}
+
+.option-input:focus{
+    outline: none;
+    box-shadow: 0 0 0 3px #7AA3FC;
+}
+
+.floating-option-area div{
+    margin-bottom: 5px;
+    margin-top: 3px
+}
+
+.floating-box-header{
+    display: flex;
+    align-items: center;
+
+    background-color: #fafafa;
+    height: 50px;
+    width: 100%;
+    border-radius: 13px 13px 0px 0px;
+    border-bottom: 3px solid #e8e8e8;
+    padding-left: 16px;
+
+    font-weight: 600;
+    font-size: 20px;
+    color: #595959;
+}
+
+.floating-box-header-mark {
+    background-color: #7AA3FC;
+    height: 10px;
+    width: 100%;
+    border-radius: 13px 13px 0px 0px;
+    border: 3px solid #7AA3FC;
+}
+
+.floating-box-follow{
+    position: relative;
+    min-width: 90%;
+    height: 80px;
+    margin-top: 10px;
+
+    background-color: #FFFFFF;
+    border: 3px solid #e8e8e8;
+    border-radius: 13px 13px 13px 13px;
+}
+
+.floating-box
+
+#submit-survey-button{
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+
+    color: #FFFFFF;
+    background-color: #7AA3FC;
+
+    border:none;
+    border-radius: 19px;
+    height: 38px;
+    width: 100px;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 16pt;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+#create-question{
+    position: absolute;
+    height: 38px;
+    width: 38px;
+    left: 20px;
+    bottom: 10px;
+}
+
+.title-input{
+    background: none;
+    border: none;
+    border-bottom: 3px solid #808080;
+
+    width: 90%;
+    height: 64px;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 25pt;
+}
+
+input:focus{
+    outline: none;
+}
+
+.query-title-input{
+    background: none;
+    border: none;
+    border-bottom: 3px solid #E1E4E8;
+
+    width: 80%;
+    height: 60px;
+    padding-bottom: 5px;
+    margin-bottom: 26px;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 19pt;
+}
+
+.query-title-input:hover{
+    background-color: #F6F8FA;
+}
+
+.query-title-input:focus{
+    border-bottom: 3px solid #487BCB;
+}
+
 .query-area{
     display:flex!important;
     flex-direction: column;
     width: 50%;
-    padding-left: 32px;
-    padding-right: 32px;
+    padding-left: 26px;
+    padding-right: 26px;
 }
 
 .query-box{
@@ -48,54 +190,33 @@
     background: white;
     min-height: 200px;
     margin-top:10px;
-    padding: 20px;
+    padding: 16px 32px 32px;
 }
 
-.title-input{
-    background: none;
+.query-form{
+
+}
+
+.option{
     border: none;
-    border-bottom: 1px solid #E1E4E8;
-    width: 80%;
-    height: 80px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 24pt;
-}
-
-input:focus{
-    outline: none;
-}
-
-.floating-area{
-    position: relative;
-    width: 25%;
-    max-width: 350px;
-}
-
-div.floating-box div{
-    margin-top: 20px;
-}
-
-.floating-box{
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-
-    position: absolute;
-    top: 50px;
-    min-width: 90%;
-    height: 350px;
-
-    border: 4px solid #7AA3FC;
-    border-radius: 12px 12px 12px 12px;
-    background: #FEFEFE;
+    width: 100%;
+    height: 35px;
+    margin-right: 25px;
 
     font-family: 'Roboto', sans-serif;
-    font-weight: 500;
+    font-weight: 300;
     font-size: 16px;
 }
 
-#create-button{
+.option:hover{
+    border-bottom: 1px solid #C1C2C4;
+}
+
+.option:focus{
+    border-bottom: 3px solid #487BCB;
+}
+
+.create-button{
     background: no-repeat center/100% url("/images/addQuestionBtn.png");
     border: none;
     width: 30px;
@@ -103,6 +224,24 @@ div.floating-box div{
     cursor: pointer;
 }
 
-#create-button:focus{
-
+.create-button:focus{
+    outline: none;
 }
+
+.delete-button{
+    background: no-repeat center/100% url("/images/deleteBtn.png");
+    width: 16px;
+    height: 16px;
+    border: none;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.delete-button:hover{
+    opacity: 1;
+}
+
+.delete-button:focus{
+    outline: none;
+}
+
