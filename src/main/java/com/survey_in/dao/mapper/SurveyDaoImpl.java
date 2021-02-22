@@ -1,5 +1,6 @@
 package com.survey_in.dao.mapper;
 
+import com.survey_in.dto.SurveyDto;
 import com.survey_in.entity.Member;
 import com.survey_in.entity.Survey;
 import org.apache.ibatis.session.SqlSession;
@@ -40,6 +41,10 @@ public class SurveyDaoImpl implements SurveyDao{
 
     public List<Survey> selectMemberSurveys(int member_id) {
         return sqlSession.selectList("SurveyMapper.selectMemberSurveys", member_id);
+    }
+
+    public SurveyDto testJoin(int survey_id){
+        return sqlSession.selectOne("SurveyMapper.testJoin", survey_id);
     }
 
 }

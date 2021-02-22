@@ -67,24 +67,12 @@ public class SurveyServiceImpl implements SurveyService{
     }
 
     public SurveyDto getSurveyDetail(int id) {
-        Survey survey = surveyDao.selectSurvey(id);
-        List<Question> questionEntities = questionDao.selectQuestions(survey.getId());
-        List<QuestionDto> questionDtos = new ArrayList<QuestionDto>();
+        SurveyDto surveyDto = surveyDao.testJoin(id);
 
-        for(Question questionEntity: questionEntities){
-            List<Option> optionEntities = optionDao.selectOptions(questionEntity.getId());
-            List<OptionDto> optionDtos = new ArrayList<OptionDto>();
-
-            for(Option optionEntity: optionEntities){
-                List<Answer> answerEntities = answerDao.selectAnswers(optionEntity.getId());
-                OptionDto optionDto = OptionDto.of(optionEntity, AnswerDto.of(answerEntities));
-                optionDtos.add(optionDto);
-            }
-
-            questionDtos.add(QuestionDto.of(questionEntity, optionDtos));
+        System.out.println(surveyDto.getTitle());
+        for(QuestionDto questionDto: surveyDto.getQuestions()) {
+            System.out.println(questionDto.getTitle());
         }
-
-        SurveyDto surveyDto = SurveyDto.of(survey, questionDtos);
         return surveyDto;
     }
 }

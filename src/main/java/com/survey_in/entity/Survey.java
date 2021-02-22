@@ -12,7 +12,7 @@ public class Survey {
     private int questionCnt;
     private Time createdAt;
 
-    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt,Time createdAt) {
+    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt, Time createdAt) {
         this.id = id;
         this.member_id = member_id;
         this.title = title;

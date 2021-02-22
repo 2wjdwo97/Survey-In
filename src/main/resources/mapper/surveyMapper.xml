@@ -27,4 +27,17 @@
         SELECT * from SURVEY
         WHERE MEMBER_ID = #{member_id}
     </select>
+
+    <resultMap type="com.survey_in.dto.SurveyDto" id="SurveyDto">
+        <result column="title" property="title"/>
+        <collection property="questions" ofType="com.survey_in.dto.QuestionDto">
+            <result column="title" property="title"/>
+        </collection>
+    </resultMap>
+
+    <select id="testJoin" resultMap="SurveyDto">
+        SELECT s.TItle, q.TITLE from SURVEY s JOIN QUESTION q
+            ON s.SURVEY_ID = q.SURVEY_ID WHERE s.SURVEY_ID = #{survey_id}
+    </select>
+
 </mapper>
