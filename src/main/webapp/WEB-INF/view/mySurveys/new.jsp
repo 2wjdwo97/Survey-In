@@ -13,51 +13,89 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
-<form class="display-flex flex-auto content-box" method="post">
+<form class="display-flex flex-auto content-box" method="post" onsubmit="return checkValid(event)">
     <div class="query-area flex-auto">
-        <div>
+        <div style="margin-bottom: 40px">
             <input class="title-input" type="text" placeholder="Title" name="title"/>
         </div>
     </div>
 
     <div class="floating-area flex-auto">
-        <div class="floating-box">
-            <div>
-                <label>Points:
-                    <input type="text" name="point"/>
-                </label>
+        <div class="floating-box-group">
+            <div class="floating-box-1">
+                <div class="floating-box-header">
+                    <div>Survey Options</div>
+                </div>
+                <div class="floating-option-area">
+                    <div>
+                        <label>Points
+                            <div>
+                                <input class="option-input" type="text" name="point"/>
+                            </div>
+                        </label>
+                    </div>
+                    <div>
+                        <label>Capacity
+                            <div>
+                                <input class="option-input" type="text" name="capacity"/>
+                            </div>
+                        </label>
+                    </div>
+                    <div>
+                        <label for="category">Category</label>
+                        <div>
+                            <select class="option-input" name="category" id="category">
+                                <option value="life">Life Style</option>
+                                <option value="food">Food</option>
+                                <option value="machine">Machine</option>
+                                <option value="mobile">Mobile</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <label>Capacity:
-                    <input type="text" name="capacity"/>
-                </label>
+            <div class="floating-box-1">
+                <div class="floating-box-header">
+                    <div>Limitation</div>
+                </div>
+                <div class="floating-option-area">
+                    <div>Gender Limit</div>
+                    <div class="display-flex">
+                        <label>
+                            <input class="radio" type="radio" name="gender_limit" checked=true value="all"/>
+                            All</label>
+                        <label>
+                            <input class="radio" type="radio" name="gender_limit" value="men"/>
+                            Men Only</label>
+                        <label>
+                            <input class="radio" type="radio" name="gender_limit" value="women"/>
+                            Women Only</label>
+                    </div>
+
+                    <div>Age Limit</div>
+                    <div class="display-flex">
+                        <label>
+                            <input class="radio" type="radio" name="age_limit" checked=true value="all"/>
+                            All</label>
+                        <label>
+                            <input class="radio" type="radio" name="age_limit" value="10"/>
+                            10~19</label>
+                        <label>
+                            <input class="radio" type="radio" name="age_limit" value="20"/>
+                            20~29</label>
+                        <label>
+                            <input class="radio" type="radio" name="age_limit" value="30"/>
+                            30~39</label>
+                    </div>
+                </div>
             </div>
-            <div>
-                <label for="category">Category:</label>
-                <select name="category" id="category">
-                    <option value="life">Life Style</option>
-                    <option value="food">Food</option>
-                    <option value="machine">Machine</option>
-                    <option value="mobile">Mobile</option>
-                </select>
-            </div>
-            <div>
-                Options:
-            </div>
-            <div>
-                <label>
-                    <input class="radio" type="radio" name="option" checked=true value="all"/>
-                    All</label>
-                <label>
-                    <input class="radio" type="radio" name="option" value="men"/>
-                    Men Only</label>
-                <label>
-                    <input class="radio" type="radio" name="option" value="women"/>
-                    Women Only</label>
-            </div>
-            <div>
-                <button id="create-button" title="Add question" type="button"></button>
-                <input type="submit" value="create" onclick="validForm(event)"/>
+            <div class="floating-box-3 display-flex">
+                <div class="floating-box-header-mark">
+                </div>
+                <div>
+                    <button id="create-question" class="create-button" title="Add question" type="button"></button>
+                    <input id="submit-survey-button" type="submit" value="Submit"/>
+                </div>
             </div>
         </div>
     </div>

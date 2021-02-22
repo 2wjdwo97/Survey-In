@@ -14,8 +14,8 @@
     </select>
 
     <insert id="insertSurvey" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO SURVEY (MEMBER_ID, TITLE, CATEGORY, CAPACITY, POINT, QUESTION_CNT)
-        VALUES(#{member_id}, #{title}, #{category}, #{capacity}, #{point}, #{questionCnt})
+        INSERT INTO SURVEY (MEMBER_ID, TITLE, CATEGORY, CAPACITY, POINT, QUESTION_CNT, AGE_LIMIT, GENDER_LIMIT)
+        VALUES(#{member_id}, #{title}, #{category}, #{capacity}, #{point}, #{questionCnt}, #{age_limit}, #{gender_limit})
     </insert>
 
     <delete id="deleteSurvey">
