@@ -59,5 +59,8 @@
 
             </otherwise>
         </choose>
+
+        LIMIT #{paging.page.surveyPerPage}
+        OFFSET #{surveyStart}
     </select>
 </mapper>

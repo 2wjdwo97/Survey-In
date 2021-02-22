@@ -38,7 +38,7 @@
 .pagination{display:block; width:100%; text-align:center; clear:both;}
 .pagination li{display:inline-block; margin:0 2px 0 0;}
 .pagination li:last-child{margin-right:0;}
-.pagination a, .pagination strong{display:block; padding:8px 11px; border:1px solid; background-clip:padding-box; font-weight:normal;}
+.pagination a{display:block; padding:8px 11px; border:1px solid; background-clip:padding-box; font-weight:normal;}
 
 
 
@@ -61,5 +61,5 @@
 
 
 /* Pagination */
-.pagination a, .pagination strong{border-color:#D7D7D7;}
-.pagination .current *{color:#FFFFFF; background-color:#7AA3FC;}
+.pagination a{border-color:#D7D7D7;}
+.pagination #paging-cur{color:#FFFFFF; background-color:#7AA3FC;}

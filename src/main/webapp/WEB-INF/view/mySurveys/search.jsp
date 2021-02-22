@@ -99,20 +99,20 @@
     <!-- ################################################################################################ -->
     <nav class="pagination">
         <ul>
-            <li <c:if test="${paging.prev eq false}">class="hidden"</c:if>><a href="#">&laquo; Previous</a></li>
+            <li <c:if test="${paging.prev eq false}">class="hidden"</c:if>><a id="paging-prev">&laquo; Previous</a></li>
 
             <c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
                 <c:choose>
-                    <c:when test="${i == paging.pagevo.page}">
-                        <li class="current"><strong>${i}</strong></li>
+                    <c:when test="${i == paging.page.page}">
+                        <li><a id="paging-cur">${i}</a></li>
                     </c:when>
                     <c:otherwise>
-                        <li><a href="?page=${i}">${i}</a></li>
+                        <li><a class="paging-other">${i}</a></li>
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
 
-            <li <c:if test="${paging.next eq false}">class="hidden"</c:if>><a href="#">Next &raquo;</a></li>
+            <li <c:if test="${paging.next eq false}">class="hidden"</c:if>><a id="paging-next">Next &raquo;</a></li>
         </ul>
     </nav>
     <!-- ################################################################################################ -->
