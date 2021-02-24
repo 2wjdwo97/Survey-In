@@ -5,6 +5,9 @@ public class MemberDto {
     private String gender;
     private String job;
 
+    public MemberDto(){
+
+    }
 
     public MemberDto(int age, String gender, String job) {
         this.age = age;

@@ -10,6 +10,10 @@ public class AnswerDto {
     private MemberDto member;
     private Time createdAt;
 
+    public AnswerDto(){
+
+    }
+
     public AnswerDto(MemberDto member, Time createdAt) {
         this.member = member;
         this.createdAt = createdAt;

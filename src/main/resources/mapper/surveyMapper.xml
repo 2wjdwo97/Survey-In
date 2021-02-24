@@ -29,15 +29,35 @@
     </select>
 
     <resultMap type="com.survey_in.dto.SurveyDto" id="SurveyDto">
-        <result column="title" property="title"/>
-        <collection property="questions" ofType="com.survey_in.dto.QuestionDto">
-            <result column="title" property="title"/>
+        <result column="s_title" property="title"/>
+        <collection property="questions" javaType="java.util.ArrayList" ofType="com.survey_in.dto.QuestionDto">
+            <result column="q_title" property="title"/>
+            <collection property="option" javaType="java.util.ArrayList" ofType="com.survey_in.dto.OptionDto">
+                <result column="data" property="data"/>
+                <collection property="answers" javaType="java.util.ArrayList" ofType="com.survey_in.dto.AnswerDto">
+                    <collection property="member" javaType="com.survey_in.dto.MemberDto">
+                        <result column="age" property="age"/>
+                        <result column="gender" property="gender"/>
+                        <result column="job" property="job"/>
+                    </collection>
+                </collection>
+            </collection>
         </collection>
     </resultMap>
 
     <select id="testJoin" resultMap="SurveyDto">
-        SELECT s.TItle, q.TITLE from SURVEY s JOIN QUESTION q
-            ON s.SURVEY_ID = q.SURVEY_ID WHERE s.SURVEY_ID = #{survey_id}
+        SELECT s.TITLE AS s_title,
+               q.TITLE AS q_title,
+               o.DATA AS data,
+               m.AGE AS age,
+               m.GENDER AS gender,
+               m.JOB AS job
+        from SURVEY s
+            INNER JOIN QUESTION q ON s.SURVEY_ID = q.SURVEY_ID
+            INNER JOIN QUESTION_OPTION qo ON q.QUESTION_ID = qo.QUESTION_ID
+            INNER JOIN OPTION o ON qo.OPTION_ID = o.OPTION_ID
+            LEFT JOIN ANSWER a ON a.QUESTION_OPTION_ID = qo.QUESTION_OPTION_ID
+            LEFT JOIN MEMBER m ON a.MEMBER_ID = m.MEMBER_ID WHERE s.SURVEY_ID = #{survey_id} ORDER BY o.OPTION_ID
     </select>
 
 </mapper>
