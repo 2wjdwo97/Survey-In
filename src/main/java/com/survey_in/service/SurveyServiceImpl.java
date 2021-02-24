@@ -30,11 +30,6 @@ public class SurveyServiceImpl implements SurveyService{
     }
 
 
-    @Override
-    public int getCntSurvey() {
-        return surveyDao.getCntSurvey();
-    }
-
     public void createSurvey(String username, String title, int capacity, String category, int point, List<NewSurveyEntity> questions){
         int memberId = memberDao.selectMemberId(username);
 

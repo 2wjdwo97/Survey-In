@@ -2,7 +2,6 @@ package com.survey_in.controller;
 
 import com.survey_in.entity.Survey;
 import com.survey_in.service.SearchService;
-import com.survey_in.service.SurveyService;
 import com.survey_in.vo.FilterVO;
 import com.survey_in.vo.PageVO;
 import com.survey_in.vo.PagingVO;
@@ -21,13 +20,10 @@ import java.util.List;
 @Controller
 public class SearchController {
 
-    private SurveyService surveyService;
     private SearchService searchService;
 
     @Autowired
-    public SearchController(@Qualifier("surveyService") SurveyService surveyService,
-                            @Qualifier("searchService") SearchService searchService) {
-        this.surveyService = surveyService;
+    public SearchController(@Qualifier("searchService") SearchService searchService) {
         this.searchService = searchService;
     }
 
@@ -38,7 +34,7 @@ public class SearchController {
                          @ModelAttribute("filter") FilterVO filter) {
 
         List<Survey> surveys;
-        PagingVO paging = new PagingVO(page, surveyService.getCntSurvey());
+        PagingVO paging = new PagingVO(page, searchService.getCntSearchSurvey(keyword, filter));
 
         if (filter.getTar().equals("survey"))
             surveys = searchService.searchSurvey(keyword, filter, paging);

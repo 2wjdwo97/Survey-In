@@ -13,6 +13,6 @@ public interface SurveyDao {
     void deleteSurvey(String survey_id);
     List<Survey> selectMemberSurveys(int member_id);
 
-    int getCntSurvey();
+    int getCntSearchSurvey(String keyword, FilterVO filter);
     List<Survey> searchSurvey(String keyword, FilterVO filter, PagingVO paging);
 }

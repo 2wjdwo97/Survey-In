@@ -49,8 +49,13 @@ public class SurveyDaoImpl implements SurveyDao{
 
     // search
     @Override
-    public int getCntSurvey() {
-        return sqlSession.selectOne("SurveyMapper.getCntSurvey");
+    public int getCntSearchSurvey(String keyword, FilterVO filter) {
+        Map<String, Object> param = new HashMap<>();
+
+        param.put("keyword", keyword);
+        param.put("filter", filter);
+
+        return sqlSession.selectOne("SurveyMapper.getCntSearchSurvey", param);
     }
 
     @Override

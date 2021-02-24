@@ -77,7 +77,7 @@
                         <div class="survey-header">
                             <div class="survey-title">
                                 <h3><a href="#">${s.title}</a></h3>
-                                <h4>p/${s.capacity}</h4>
+                                <h4>(temp)/${s.capacity}</h4>
                             </div>
                             <div class="survey-point">
                                 <h4>${s.point} POINT</h4>
@@ -85,7 +85,11 @@
                         </div>
                         <div class="survey-body">
                             <p>
-                                <a href="#">(desc of the survey)</a>
+                                <a href="#">
+                                    Number of questions : ${s.questionCnt}<br/>
+                                    Age Limit : ${s.ageLimit}<br/>
+                                    Gender Limit : ${s.genderLimit}
+                                </a>
                             </p>
                         </div>
                         <div class="survey-footer">

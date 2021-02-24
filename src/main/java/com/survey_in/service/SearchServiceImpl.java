@@ -22,6 +22,11 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
+    public int getCntSearchSurvey(String keyword, FilterVO filter) {
+        return surveyDao.getCntSearchSurvey(keyword, filter);
+    }
+
+    @Override
     public List<Survey> searchSurvey(String keyword, FilterVO filter, PagingVO paging) {
         return surveyDao.searchSurvey(keyword, filter, paging);
     }

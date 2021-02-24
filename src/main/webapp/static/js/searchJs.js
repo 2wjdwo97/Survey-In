@@ -25,6 +25,7 @@ function init() {
         let URLSearch = new URLSearchParams(location.search);
 
         URLSearch.delete("q");
+        URLSearch.delete("page");
         URLSearch.forEach(function (value, key) {
             let hiddenField = document.createElement('input');
             hiddenField.setAttribute('type', 'hidden');
@@ -43,6 +44,8 @@ function init() {
     filterAge.addEventListener('change', moveUrl);
     filterGen.addEventListener('change', moveUrl);
 
+    
+    // 페이징 버튼
     let curPage = pagingCur.innerText;
     pagingPrev.href = makePageURL(curPage - 3);
     for(let pageBtn of pagingOther)
@@ -65,6 +68,7 @@ function moveUrl() {
 function makeUrl(target, order, category, age, gender) {
     let URLSearch = new URLSearchParams(location.search);
     URLSearch.set("q", inputKeyword.value);
+    URLSearch.delete("page");
     URLSearch.set("tar", target);
     URLSearch.set("ord", order)
     URLSearch.set("cat", category);
