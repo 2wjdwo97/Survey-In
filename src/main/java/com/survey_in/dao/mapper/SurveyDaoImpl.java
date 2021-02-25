@@ -1,5 +1,7 @@
 package com.survey_in.dao.mapper;
 
+import com.survey_in.dto.SurveyDto;
+import com.survey_in.entity.Member;
 import com.survey_in.entity.Survey;
 import com.survey_in.vo.FilterVO;
 import com.survey_in.vo.PagingVO;
@@ -33,7 +35,7 @@ public class SurveyDaoImpl implements SurveyDao{
     }
 
     @Override
-    public Survey selectSurvey(String survey_id) {
+    public Survey selectSurvey(int survey_id) {
         return sqlSession.selectOne("SurveyMapper.selectSurvey", survey_id);
     }
 
@@ -45,6 +47,10 @@ public class SurveyDaoImpl implements SurveyDao{
     @Override
     public List<Survey> selectMemberSurveys(int member_id) {
         return sqlSession.selectList("SurveyMapper.selectMemberSurveys", member_id);
+    }
+
+    public SurveyDto testJoin(int survey_id){
+        return sqlSession.selectOne("SurveyMapper.testJoin", survey_id);
     }
 
     // search

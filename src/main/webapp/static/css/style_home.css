@@ -70,17 +70,17 @@ Licence URI: https://www.os-templates.com/template-terms
 /* ------------------------------------------------------------------------------------------------- */
 
 body{color:#C1C2C4; background-color:#292929;}
-a{color:#DC8E47; }
+a{color:#7AA3FC /*#DC8E47*/; }
 a:active, a:focus{background:transparent;}/* IE10 + 11 Bugfix - prevents grey background */
 
-.btn, .btn.inverse:hover{color:#FFFFFF; background-color:#DC8E47; border-color:#DC8E47; border-radius: 7px;}
+.btn, .btn.inverse:hover{color:#FFFFFF; background-color:#7AA3FC /*#DC8E47*/; border-color:#7AA3FC /*#DC8E47*/; border-radius: 7px;}
 .btn:hover, .btn.inverse{color:inherit; background-color:transparent; border-color:inherit;}
 
 .overlay{color:#FFFFFF; background-color:inherit;}
 .overlay::after{background-color:rgba(0,0,0,.55);}
 .overlay.light::after{background-color:rgba(255,255,255,.6);}
 
-.heading.underline::after{background-color:#DC8E47;}
+.heading.underline::after{background-color:#7AA3FC /*#DC8E47*/;}
 /*btn, .btn.inverse:hover{color:#FFFFFF; background-color:#DC8E47; border-color:#DC8E47;}*/
 
 
@@ -95,22 +95,22 @@ a:active, a:focus{background:transparent;}/* IE10 + 11 Bugfix - prevents grey ba
 
 /* Content - row2 */
 .articles a{color:inherit;}
-.articles article:hover a{color:#DC8E47;}
+.articles article:hover a{color:#7AA3FC /*#DC8E47*/;}
 
 
 /* Content - row3 */
-.figures > li > figure figcaption a{border-color:#FFFFFF #DC8E47;}
-.figures > li > figure:hover figcaption a{border-left-color:#DC8E47;}
-.figures.latest > li > figure figcaption a::after{border-color:#DC8E47;}
+.figures > li > figure figcaption a{border-color:#FFFFFF #7AA3FC /*#DC8E47*/;}
+.figures > li > figure:hover figcaption a{border-left-color:#7AA3FC /*#DC8E47*/;}
+.figures.latest > li > figure figcaption a::after{border-color:#7AA3FC /*#DC8E47*/;}
 .figures.latest > li > figure:hover figcaption a::after{border-color:#FFFFFF;}
 .figures > li > figure figcaption a{color:#474747; background-color:#FFFFFF;}
-.figures > li > figure:hover figcaption a{color:#FFFFFF; background-color:#DC8E47;}
-.figures > li > figure figcaption em{color:#FFFFFF; background-color:rgba(220,142,71,.5);}
-#popular_svy > footer a:hover{color:#DC8E47;}
+.figures > li > figure:hover figcaption a{color:#FFFFFF; background-color:#7AA3FC /*#DC8E47*/;}
+.figures > li > figure figcaption em{color:#FFFFFF; background-color:rgba(122,163,252,.5) /*rgba(220,142,71,.5)*/;}
+#popular_svy > footer a:hover{color:#7AA3FC /*#DC8E47*/;}
 
 
 /* TOP button */
-#backtotop{color:#FFFFFF; background-color:#DC8E47;}
+#backtotop{color:#FFFFFF; background-color:#7AA3FC /*#DC8E47*/;}
 
 
 /* Max Wrapper Width - Laptop, Desktop etc.

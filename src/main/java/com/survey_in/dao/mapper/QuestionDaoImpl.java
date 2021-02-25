@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository("questionDaoBean")
 public class QuestionDaoImpl implements QuestionDao{
     private final SqlSession sqlSession;
@@ -18,5 +20,9 @@ public class QuestionDaoImpl implements QuestionDao{
 
     public void insertQuestion(Question question) {
         sqlSession.insert("QuestionMapper.insert", question);
+    }
+
+    public List<Question> selectQuestions(int survey_id) {
+        return sqlSession.selectList("QuestionMapper.selectQuestion", survey_id);
     }
 }

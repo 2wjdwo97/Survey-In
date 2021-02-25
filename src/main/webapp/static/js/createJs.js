@@ -1,5 +1,5 @@
 const queryArea = document.querySelector('.query-area');
-const menu_bar = document.querySelector('.floating-box');
+const menu_bar = document.querySelector('.floating-box-group');
 
 function createQuery() {
     const newDiv = document.createElement("div");
@@ -136,10 +136,10 @@ function setInputName(e){
             }
             opCnt = -1;
             ++cnt;
-            input.name = "list["+cnt+"].title";
+            input.name = "questions["+cnt+"].title";
         }
         else if(input.name === "option"){
-            input.name = "list["+cnt+"].option";
+            input.name = "questions["+cnt+"].option";
             ++opCnt;
         }
     }

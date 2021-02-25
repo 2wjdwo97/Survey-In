@@ -4,7 +4,7 @@ import java.sql.Time;
 
 public class Survey {
     private int id;
-    private int member_id;
+    private int memberId;
     private String title;
     private String category;
     private int capacity;
@@ -14,24 +14,27 @@ public class Survey {
     private String ageLimit;
     private String genderLimit;
 
-    public Survey(int member_id, String title, String category, int capacity, int point, int questionCnt) {
-        this.member_id = member_id;
-        this.title = title;
-        this.category = category;
-        this.capacity = capacity;
-        this.point = point;
-        this.questionCnt = questionCnt;
-    }
-
-    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt, Time createdAt, String ageLimit, String genderLimit) {
+    public Survey(int id, int memberId, String title, String category, int capacity, int point, int questionCnt, Time createdAt, String ageLimit, String genderLimit) {
         this.id = id;
-        this.member_id = member_id;
+        this.memberId = memberId;
         this.title = title;
         this.category = category;
         this.capacity = capacity;
         this.point = point;
         this.questionCnt = questionCnt;
         this.createdAt = createdAt;
+        this.ageLimit = ageLimit;
+        this.genderLimit = genderLimit;
+    }
+
+    public Survey(int memberId, String title, String category, int capacity, int point, int questionCnt, String ageLimit, String genderLimit) {
+        this.id = id;
+        this.memberId = memberId;
+        this.title = title;
+        this.category = category;
+        this.capacity = capacity;
+        this.point = point;
+        this.questionCnt = questionCnt;
         this.ageLimit = ageLimit;
         this.genderLimit = genderLimit;
     }
@@ -44,12 +47,12 @@ public class Survey {
         this.id = id;
     }
 
-    public int getMember_id() {
-        return member_id;
+    public int getMemberId() {
+        return memberId;
     }
 
-    public void setMember_id(int member_id) {
-        this.member_id = member_id;
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
     }
 
     public String getTitle() {
@@ -120,13 +123,15 @@ public class Survey {
     public String toString() {
         return "Survey{" +
                 "id=" + id +
-                ", member_id=" + member_id +
+                ", memberId=" + memberId +
                 ", title='" + title + '\'' +
                 ", category='" + category + '\'' +
                 ", capacity=" + capacity +
                 ", point=" + point +
                 ", questionCnt=" + questionCnt +
                 ", createdAt=" + createdAt +
+                ", ageLimit='" + ageLimit + '\'' +
+                ", genderLimit='" + genderLimit + '\'' +
                 '}';
     }
 }

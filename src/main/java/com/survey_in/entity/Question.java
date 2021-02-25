@@ -5,6 +5,12 @@ public class Question {
     private int survey_id;
     private String title;
 
+    public Question(int id, int survey_id, String title){
+        this.id = id;
+        this.survey_id = survey_id;
+        this.title = title;
+    }
+
     public Question(int survey_id, String title){
         this.survey_id = survey_id;
         this.title = title;

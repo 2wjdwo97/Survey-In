@@ -21,8 +21,8 @@
     </div>
 
     <div class="floating-area flex-auto">
-        <div class="floating-box">
-            <div class="floating-box-inner">
+        <div class="floating-box-group">
+            <div class="floating-box-1">
                 <div class="floating-box-header">
                     <div>Survey Options</div>
                 </div>
@@ -52,22 +52,44 @@
                             </select>
                         </div>
                     </div>
-<%--                    <div>
-                        <div>Options</div>
-
-                        <label>
-                            <input class="radio" type="radio" name="option" checked=true value="all"/>
-                            All</label>
-                        <label>
-                            <input class="radio" type="radio" name="option" value="men"/>
-                            Men Only</label>
-                        <label>
-                            <input class="radio" type="radio" name="option" value="women"/>
-                            Women Only</label>
-                    </div>--%>
                 </div>
             </div>
-            <div class="floating-box-follow display-flex">
+            <div class="floating-box-1">
+                <div class="floating-box-header">
+                    <div>Limitation</div>
+                </div>
+                <div class="floating-option-area">
+                    <div>Gender Limit</div>
+                    <div class="display-flex">
+                        <label>
+                            <input class="radio" type="radio" name="gender_limit" checked=true value="all"/>
+                            All</label>
+                        <label>
+                            <input class="radio" type="radio" name="gender_limit" value="men"/>
+                            Men Only</label>
+                        <label>
+                            <input class="radio" type="radio" name="gender_limit" value="women"/>
+                            Women Only</label>
+                    </div>
+
+                    <div>Age Limit</div>
+                    <div class="display-flex">
+                        <label>
+                            <input class="radio" type="radio" name="age_limit" checked=true value="all"/>
+                            All</label>
+                        <label>
+                            <input class="radio" type="radio" name="age_limit" value="10"/>
+                            10~19</label>
+                        <label>
+                            <input class="radio" type="radio" name="age_limit" value="20"/>
+                            20~29</label>
+                        <label>
+                            <input class="radio" type="radio" name="age_limit" value="30"/>
+                            30~39</label>
+                    </div>
+                </div>
+            </div>
+            <div class="floating-box-3 display-flex">
                 <div class="floating-box-header-mark">
                 </div>
                 <div>
