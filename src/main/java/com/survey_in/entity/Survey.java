@@ -12,7 +12,6 @@ public class Survey {
     private int questionCnt;
     private Time createdAt;
     private String age_limit;
-
     private String gender_limit;
 
     public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt,

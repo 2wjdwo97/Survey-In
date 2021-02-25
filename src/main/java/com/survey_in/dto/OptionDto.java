@@ -10,6 +10,10 @@ public class OptionDto {
     private String data;
     private List<AnswerDto> answers;
 
+    public OptionDto(){
+
+    }
+
     public OptionDto(String data){
         this.data = data;
         answers = null;
