@@ -8,6 +8,7 @@ import java.util.List;
 
 public class AnswerDto {
     private MemberDto member;
+    private int questionOptionId;
     private Time createdAt;
 
     public AnswerDto(){
@@ -17,6 +18,12 @@ public class AnswerDto {
     public AnswerDto(MemberDto member, Time createdAt) {
         this.member = member;
         this.createdAt = createdAt;
+    }
+
+    public AnswerDto(MemberDto member, Time createdAt, int questionOptionId) {
+        this.member = member;
+        this.createdAt = createdAt;
+        this.questionOptionId = questionOptionId;
     }
 
     public AnswerDto(Time createdAt){
@@ -29,6 +36,22 @@ public class AnswerDto {
 
     public void setMember(MemberDto member) {
         this.member = member;
+    }
+
+    public int getQuestionOptionId() {
+        return questionOptionId;
+    }
+
+    public void setQuestionOptionId(int questionOptionId) {
+        this.questionOptionId = questionOptionId;
+    }
+
+    public Time getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Time createdAt) {
+        this.createdAt = createdAt;
     }
 
     public static AnswerDto of(Answer answer){

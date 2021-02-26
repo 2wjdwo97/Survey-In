@@ -11,6 +11,11 @@
                   WHERE OPTION_ID = #{option_id})
     </select>
 
+    <insert id="createAnswer">
+        INSERT INTO ANSWER (MEMBER_ID, QUESTION_OPTION_ID)
+        VALUES(#{member_id}, #{question_option_id})
+    </insert>
+
 <!--
     <insert id="insertMember">
         INSERT INTO MEMBER (USERNAME, PWD, NAME, GENDER, AGE, BIRTHDAY, EMAIL, JOB)

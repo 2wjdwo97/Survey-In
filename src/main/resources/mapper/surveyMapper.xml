@@ -31,9 +31,11 @@
     <resultMap type="com.survey_in.dto.SurveyDto" id="SurveyDto">
         <result column="s_title" property="title"/>
         <collection property="questions" javaType="java.util.ArrayList" ofType="com.survey_in.dto.QuestionDto">
+            <id property="id" column="q_id" javaType="int" />
             <result column="q_title" property="title"/>
             <collection property="option" javaType="java.util.ArrayList" ofType="com.survey_in.dto.OptionDto">
                 <result column="data" property="data"/>
+                <result column="question_option_id" property="questionOptionId"/>
                 <collection property="answers" javaType="java.util.ArrayList" ofType="com.survey_in.dto.AnswerDto">
                     <collection property="member" javaType="com.survey_in.dto.MemberDto">
                         <result column="age" property="age"/>
@@ -48,7 +50,9 @@
     <select id="testJoin" resultMap="SurveyDto">
         SELECT s.TITLE AS s_title,
                q.TITLE AS q_title,
+               q.QUESTION_ID AS q_id,
                o.DATA AS data,
+               qo.QUESTION_OPTION_ID AS question_option_id,
                m.AGE AS age,
                m.GENDER AS gender,
                m.JOB AS job

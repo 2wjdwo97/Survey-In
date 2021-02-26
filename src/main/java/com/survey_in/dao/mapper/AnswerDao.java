@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AnswerDao {
     List<Answer> selectAnswers(int option_id);
+    void createAnswer(Answer answer);
 }
