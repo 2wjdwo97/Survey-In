@@ -11,10 +11,10 @@
         <div>
             <img>
 
-            </img>${username}
+            </img>${member.username}
         </div>
         <div>
-            ▨▨▨▨□□□
+            ▨▨▨▨□□□${member.point}
         </div>
 
         <div style="margin-top: 80px">

@@ -3,6 +3,7 @@ package com.survey_in.dto;
 import com.survey_in.entity.Member;
 
 public class MemberDto {
+    private String username;
     private int age;
     private String gender;
     private String job;
@@ -14,7 +15,8 @@ public class MemberDto {
 
     }
 
-    public MemberDto(int age, String gender, String job, int point, String name, String email) {
+    public MemberDto(String username, int age, String gender, String job, int point, String name, String email) {
+        this.username = username;
         this.age = age;
         this.gender = gender;
         this.job = job;
@@ -71,8 +73,17 @@ public class MemberDto {
         this.email = email;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public static MemberDto of(Member member){
-        return new MemberDto(member.getAge(), member.getGender(), member.getJob(),
+        return new MemberDto(member.getUsername(), member.getAge(), member.getGender(), member.getJob(),
                 member.getPoint(), member.getName(), member.getEmail());
     }
 }
+

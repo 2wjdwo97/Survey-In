@@ -10,4 +10,5 @@ public interface MemberDao {
     Member selectMember(String username);
     int selectMemberId(String username);
     void deleteMember(String username);
+    int countMember(int member_id);
 }

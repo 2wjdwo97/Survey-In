@@ -3,6 +3,7 @@ package com.survey_in.dto;
 import com.survey_in.entity.Survey;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class SurveyDto {
     private String title;
     private int capacity;
     private int point;
-    Time createdAt;
+    private Timestamp createdAt;
     private List<QuestionDto> questions = new ArrayList<>();
 
     public SurveyDto(){
@@ -46,11 +47,11 @@ public class SurveyDto {
         this.point = point;
     }
 
-    public Time getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Time createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 

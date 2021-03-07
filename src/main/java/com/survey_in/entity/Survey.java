@@ -1,6 +1,6 @@
 package com.survey_in.entity;
 
-import java.sql.Time;
+import java.sql.Timestamp;
 
 public class Survey {
     private int id;
@@ -10,11 +10,12 @@ public class Survey {
     private int capacity;
     private int point;
     private int questionCnt;
-    private Time createdAt;
+    private Timestamp createdAt;
     private String ageLimit;
     private String genderLimit;
+    private Boolean status;
 
-    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt, Time createdAt, String ageLimit, String genderLimit) {
+    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt, String ageLimit, String genderLimit, Timestamp createdAt, Boolean status) {
         this.id = id;
         this.member_id = member_id;
         this.title = title;
@@ -25,6 +26,7 @@ public class Survey {
         this.createdAt = createdAt;
         this.ageLimit = ageLimit;
         this.genderLimit = genderLimit;
+        this.status = status;
     }
 
     public Survey(int member_id, String title, String category, int capacity, int point, int questionCnt, String ageLimit, String genderLimit) {
@@ -95,11 +97,11 @@ public class Survey {
         this.questionCnt = questionCnt;
     }
 
-    public Time getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Time createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -133,5 +135,13 @@ public class Survey {
                 ", ageLimit='" + ageLimit + '\'' +
                 ", genderLimit='" + genderLimit + '\'' +
                 '}';
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

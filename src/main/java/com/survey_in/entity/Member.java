@@ -1,5 +1,7 @@
 package com.survey_in.entity;
 
+import java.util.Date;
+
 public class Member {
     private String username;
     private String pwd;
@@ -11,9 +13,10 @@ public class Member {
     private String job;
     private String auth;
     private int point;
+    private Date regDate;
 
-    public Member(String username, String pwd, String name, String gender, int age, String birthday,
-                  String email, String job, int point) {
+    public Member(int memberId, String name, String gender, int age, String birthday, Date regDate,
+                  String email, String username, String pwd, String job, int point, String auth, int enabled) {
         this.username = username;
         this.pwd = pwd;
         this.name = name;

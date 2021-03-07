@@ -27,4 +27,15 @@
         DELETE FROM MEMBER
         WHERE USERNAME = #{username}
     </delete>
+
+    <select id="countMember" resultType="int">
+        SELECT count(*)
+        FROM SURVEY s
+            INNER JOIN QUESTION q ON s.SURVEY_ID = q.SURVEY_ID
+            INNER JOIN QUESTION_OPTION qo ON q.QUESTION_ID = qo.QUESTION_ID
+            INNER JOIN OPTION o ON qo.OPTION_ID = o.OPTION_ID
+            LEFT JOIN ANSWER a ON a.QUESTION_OPTION_ID = qo.QUESTION_OPTION_ID
+            LEFT JOIN MEMBER m ON a.MEMBER_ID = m.MEMBER_ID
+        WHERE m.MEMBER_ID = #{memberId}
+    </select>
 </mapper>
