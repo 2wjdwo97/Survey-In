@@ -1,6 +1,7 @@
 package com.survey_in.service;
 
 import com.survey_in.dao.mapper.SurveyDao;
+import com.survey_in.dto.SurveyDto;
 import com.survey_in.entity.Question;
 import com.survey_in.entity.Survey;
 import com.survey_in.vo.FilterVO;
@@ -27,12 +28,17 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public List<Survey> searchSurvey(String keyword, FilterVO filter, PagingVO paging) {
+    public int getCntSearchQuestion(String keyword, FilterVO filter) {
+        return surveyDao.getCntSearchQuestion(keyword, filter);
+    }
+
+    @Override
+    public List<SurveyDto> searchSurvey(String keyword, FilterVO filter, PagingVO paging) {
         return surveyDao.searchSurvey(keyword, filter, paging);
     }
 
     @Override
-    public List<Survey> searchQuestion() {
-        return null;
+    public List<SurveyDto> searchQuestion(String keyword, FilterVO filter, PagingVO paging) {
+        return surveyDao.searchQuestion(keyword, filter, paging);
     }
 }

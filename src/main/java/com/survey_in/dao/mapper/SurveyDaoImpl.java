@@ -1,7 +1,6 @@
 package com.survey_in.dao.mapper;
 
 import com.survey_in.dto.SurveyDto;
-import com.survey_in.entity.Member;
 import com.survey_in.entity.Survey;
 import com.survey_in.vo.FilterVO;
 import com.survey_in.vo.PagingVO;
@@ -56,23 +55,37 @@ public class SurveyDaoImpl implements SurveyDao{
     // search
     @Override
     public int getCntSearchSurvey(String keyword, FilterVO filter) {
-        Map<String, Object> param = new HashMap<>();
-
-        param.put("keyword", keyword);
-        param.put("filter", filter);
-
-        return sqlSession.selectOne("SurveyMapper.getCntSearchSurvey", param);
+        return sqlSession.selectOne("SurveyMapper.getCntSearchSurvey", getMapParam(keyword, filter));
     }
 
     @Override
-    public List<Survey> searchSurvey(String keyword, FilterVO filter, PagingVO paging) {
-        Map<String, Object> param = new HashMap<>();
+    public int getCntSearchQuestion(String keyword, FilterVO filter) {
+        return sqlSession.selectOne("SurveyMapper.getCntSearchQuestion", getMapParam(keyword, filter));
+    }
 
+    @Override
+    public List<SurveyDto> searchSurvey(String keyword, FilterVO filter, PagingVO paging) {
+        return sqlSession.selectList("SurveyMapper.searchSurvey", getMapParam(keyword, filter, paging));
+    }
+
+    @Override
+    public List<SurveyDto> searchQuestion(String keyword, FilterVO filter, PagingVO paging) {
+        return sqlSession.selectList("SurveyMapper.searchQuestion", getMapParam(keyword, filter, paging));
+    }
+
+    Map<String, Object> getMapParam(String keyword, FilterVO filter){
+        Map<String, Object> param = new HashMap<>();
+        param.put("keyword", keyword);
+        param.put("filter", filter);
+        return param;
+    }
+
+    Map<String, Object> getMapParam(String keyword, FilterVO filter, PagingVO paging){
+        Map<String, Object> param = new HashMap<>();
         param.put("keyword", keyword);
         param.put("filter", filter);
         param.put("paging", paging);
-
-        return sqlSession.selectList("SurveyMapper.searchSurvey", param);
+        return param;
     }
 
 }

@@ -1,6 +1,6 @@
 package com.survey_in.controller;
 
-import com.survey_in.entity.Survey;
+import com.survey_in.dto.SurveyDto;
 import com.survey_in.service.SearchService;
 import com.survey_in.vo.FilterVO;
 import com.survey_in.vo.PageVO;
@@ -9,11 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 
@@ -28,22 +26,30 @@ public class SearchController {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String search(Model model,
+    public String search(Model model, Principal principal,
                          @RequestParam(value = "q", defaultValue = "") String keyword,
                          @ModelAttribute("page") PageVO page,
                          @ModelAttribute("filter") FilterVO filter) {
 
-        List<Survey> surveys;
-        PagingVO paging = new PagingVO(page, searchService.getCntSearchSurvey(keyword, filter));
+        if (keyword.equals(""))
+            return "mySurveys.search";
 
-        if (filter.getTar().equals("survey"))
+        List<SurveyDto> surveys;
+        PagingVO paging;
+
+        if (filter.getTar().equals("survey")) {
+            paging = new PagingVO(page, searchService.getCntSearchSurvey(keyword, filter));
             surveys = searchService.searchSurvey(keyword, filter, paging);
-        else
-            surveys = searchService.searchQuestion();
+        }
+        else {
+            paging = new PagingVO(page, searchService.getCntSearchQuestion(keyword, filter));
+            surveys = searchService.searchQuestion(keyword, filter, paging);
+        }
 
         model.addAttribute("surveys", surveys);
         model.addAttribute("paging", paging);
         model.addAttribute("keyword", keyword);
+        model.addAttribute("username", principal.getName());
 
         return "mySurveys.search";
     }

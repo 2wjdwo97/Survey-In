@@ -9,50 +9,108 @@
     </select>
 
     <select id="selectSurvey" resultType="com.survey_in.entity.Survey">
-        SELECT * from SURVEY
+        SELECT *
+        from SURVEY
         WHERE SURVEY_ID = #{survey_id}
     </select>
 
     <insert id="insertSurvey" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO SURVEY (MEMBER_ID, TITLE, CATEGORY, CAPACITY, POINT, QUESTION_CNT, AGE_LIMIT, GENDER_LIMIT)
-        VALUES(#{member_id}, #{title}, #{category}, #{capacity}, #{point}, #{questionCnt}, #{age_limit}, #{gender_limit})
+        VALUES (#{member_id}, #{title}, #{category}, #{capacity}, #{point}, #{questionCnt}, #{ageLimit},
+                #{genderLimit})
     </insert>
 
     <delete id="deleteSurvey">
-        DELETE FROM SURVEY
+        DELETE
+        FROM SURVEY
         WHERE SURVEY_ID = #{survey_id}
     </delete>
 
     <select id="selectMemberSurveys" resultType="com.survey_in.entity.Survey">
-        SELECT * from SURVEY
+        SELECT *
+        from SURVEY
         WHERE MEMBER_ID = #{member_id}
     </select>
 
-<!-- ####### search ####### -->
+    <!-- #################################################################################### -->
+    <!-- SEARCH -->
+    <!-- #################################################################################### -->
     <select id="getCntSearchSurvey" resultType="int">
+        SELECT COUNT(*) FROM survey s
+        WHERE s.title LIKE '%'||#{keyword}||'%'
+        <include refid="setFilter"/>
+    </select>
+
+    <select id="searchSurvey" resultType="com.survey_in.dto.SurveyDto">
+        SELECT *, s.created_at AS createdAt FROM survey s
+        WHERE s.title LIKE '%'||#{keyword}||'%'
+        <include refid="setFilter"/>
+        <include refid="setOrder"/>
+        <include refid="setPaging"/>
+    </select>
+
+    <resultMap type="com.survey_in.dto.SurveyDto" id="searchQuestionDto">
+<!--        <id property="id" column="q_id"/>-->
+        <result column="s_title" property="title"/>
+        <result column="capacity" property="capacity"/>
+        <result column="point" property="point"/>
+        <result column="created_at" property="createdAt"/>
+        <collection property="questions" javaType="java.util.ArrayList" ofType="com.survey_in.dto.QuestionDto">
+            <id column="q_id" property="id" javaType="int"/>
+            <result column="q_title" property="title"/>
+            <collection property="option" javaType="java.util.ArrayList" ofType="com.survey_in.dto.OptionDto">
+                <result column="data" property="data"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="getCntSearchQuestion" resultType="int">
         SELECT COUNT(*)
-        <include refid="searchBySurvey"/>
+        FROM question q
+        INNER JOIN survey s ON s.survey_id = q.survey_id
+        WHERE q.title LIKE '%'||#{keyword}||'%'
+        <include refid="setFilter"/>
     </select>
 
-    <select id="searchSurvey" resultType="com.survey_in.entity.Survey">
-        SELECT *
-        <include refid="searchBySurvey"/>
-        <choose>
-            <when test="filter.ord == 'latest'"> ORDER BY created_at DESC </when>
-            <when test="filter.ord == 'point'">  ORDER BY point DESC      </when>
-        </choose>
-        LIMIT #{paging.page.surveyPerPage}
-        OFFSET #{paging.page.surveyStart}
+    <select id="searchQuestion" resultMap="searchQuestionDto">
+        SELECT s.title AS s_title, s.capacity AS capacity, s.point AS point, s.created_at As created_at,
+        q.question_id As q_id, q.title AS q_title, o.data AS data
+        FROM survey s
+        INNER JOIN question q ON s.survey_id = q.survey_id
+        INNER JOIN question_option qo ON q.question_id = qo.question_id
+        INNER JOIN option o ON qo.option_id = o.option_id
+        WHERE q.question_id IN
+        (SELECT qu.question_id
+        FROM question qu
+        INNER JOIN survey sv ON sv.survey_id = qu.survey_id
+        WHERE qu.title LIKE '%'||#{keyword}||'%'
+        <include refid="setFilter"/>
+        <include refid="setOrder"/>
+        <include refid="setPaging"/>)
+        <include refid="setOrder"/>
     </select>
 
-    <sql id="searchBySurvey">
-        FROM survey
-        WHERE title LIKE '%'||#{keyword}||'%'
-        <if test="filter.cat != 'all'">    AND category = #{filter.cat}      </if>
-        <if test="filter.age != 'all'">    AND age_limit = #{filter.age}     </if>
-        <if test="filter.gen != 'all'">    AND gender_limit = #{filter.gen}  </if>
+    <sql id="setFilter">
+        <if test="filter.cat != 'all'">AND s.category = #{filter.cat}</if>
+        <if test="filter.age != 'all'">AND s.age_limit = #{filter.age}</if>
+        <if test="filter.gen != 'all'">AND s.gender_limit = #{filter.gen}</if>
     </sql>
 
+    <sql id="setOrder">
+        <choose>
+            <when test="filter.ord == 'latest'">ORDER BY created_at DESC</when>
+            <when test="filter.ord == 'point'">ORDER BY point DESC</when>
+        </choose>
+    </sql>
+
+    <sql id="setPaging">
+        LIMIT
+        #{paging.page.surveyPerPage}
+        OFFSET
+        #{paging.page.surveyStart}
+    </sql>
+    <!-- #################################################################################### -->
+    <!-- #################################################################################### -->
 
     <resultMap type="com.survey_in.dto.SurveyDto" id="SurveyDto">
         <result column="s_title" property="title"/>
@@ -72,17 +130,19 @@
     </resultMap>
 
     <select id="testJoin" resultMap="SurveyDto">
-        SELECT s.TITLE AS s_title,
-               q.TITLE AS q_title,
-               o.DATA AS data,
-               m.AGE AS age,
+        SELECT s.TITLE  AS s_title,
+               q.TITLE  AS q_title,
+               o.DATA   AS data,
+               m.AGE    AS age,
                m.GENDER AS gender,
-               m.JOB AS job
-        from SURVEY s
-            INNER JOIN QUESTION q ON s.SURVEY_ID = q.SURVEY_ID
-            INNER JOIN QUESTION_OPTION qo ON q.QUESTION_ID = qo.QUESTION_ID
-            INNER JOIN OPTION o ON qo.OPTION_ID = o.OPTION_ID
-            LEFT JOIN ANSWER a ON a.QUESTION_OPTION_ID = qo.QUESTION_OPTION_ID
-            LEFT JOIN MEMBER m ON a.MEMBER_ID = m.MEMBER_ID WHERE s.SURVEY_ID = #{survey_id} ORDER BY o.OPTION_ID
+               m.JOB    AS job
+        FROM SURVEY s
+                 INNER JOIN QUESTION q ON s.SURVEY_ID = q.SURVEY_ID
+                 INNER JOIN QUESTION_OPTION qo ON q.QUESTION_ID = qo.QUESTION_ID
+                 INNER JOIN OPTION o ON qo.OPTION_ID = o.OPTION_ID
+                 LEFT JOIN ANSWER a ON a.QUESTION_OPTION_ID = qo.QUESTION_OPTION_ID
+                 LEFT JOIN MEMBER m ON a.MEMBER_ID = m.MEMBER_ID
+        WHERE s.SURVEY_ID = #{survey_id}
+        ORDER BY o.OPTION_ID
     </select>
 </mapper>

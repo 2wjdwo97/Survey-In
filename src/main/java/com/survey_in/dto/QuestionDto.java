@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionDto {
+    private int id;
     private String title;
     private List<OptionDto> option = new ArrayList<OptionDto>();
 
