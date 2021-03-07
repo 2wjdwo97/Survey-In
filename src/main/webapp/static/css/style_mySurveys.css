@@ -52,8 +52,7 @@ header{
 
 
 .sign-out-form{
-    padding: 20px;
-    right: 0px;
+    right: 10px;
 }
 
 .sign-out-input{
@@ -121,17 +120,4 @@ aside{
     right:0;
     background: none;
     border: none;
-}
-
-
-body{
-    margin: 0px;
-    position: relative;
-    background: #F6F8FA;
-}
-
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
 }

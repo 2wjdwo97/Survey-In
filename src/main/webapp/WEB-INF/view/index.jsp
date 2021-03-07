@@ -13,6 +13,7 @@ Licence URI: https://www.os-templates.com/template-terms
 <head>
     <title>Survey In</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="/css/framework.css" rel="stylesheet" type="text/css">
     <link href="/css/style_home.css" rel="stylesheet" type="text/css">
 </head>
 <body>

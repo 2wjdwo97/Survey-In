@@ -8,19 +8,28 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div>
-    <form method="post">
-        ${survey.title}<br/>
+<link href="/css/style_answer.css" rel="stylesheet" type="text/css">
+<link href="/css/framework.css" rel="stylesheet" type="text/css">
+
+<div id="content-area" class="display-flex flex-content-center">
+    <form method="post" id="content" class="position-relative">
+        <div id="title-div">
+            ${survey.title}
+        </div>
 
         <c:forEach var="question" items="${survey.questions}" varStatus="st">
-            ${question.title}<br/>
-            <c:forEach var="option" items="${question.option}">
-                <label>
-                    <input class="radio" type="radio" name="answers[${st.index}].questionOptionId" value="${option.questionOptionId}"/>
-                    ${option.data}</label><br/>
-            </c:forEach>
-        </c:forEach>
+            <div class="question-div">
+                <div class="question-title">
+                        ${question.title}
+                </div>
 
-        <button>Submit</button>
+                <c:forEach var="option" items="${question.option}">
+                    <label class="option-label">
+                        <input class="radio" type="radio" name="answers[${st.index}].questionOptionId" value="${option.questionOptionId}"/>
+                        ${option.data}</label><br/>
+                </c:forEach>
+            </div>
+        </c:forEach>
+        <button class="position-absolute">Submit</button>
     </form>
 </div>
