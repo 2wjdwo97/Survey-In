@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<link href="/css/framework.css" rel="stylesheet" type="text/css">
 <link href="/css/style_create.css" rel="stylesheet" type="text/css">
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -20,13 +22,13 @@
         </div>
     </div>
 
-    <div class="floating-area flex-auto">
-        <div class="floating-box-group">
-            <div class="floating-box-1">
-                <div class="floating-box-header">
+    <div class="floating-area flex-auto position-relative">
+        <div class="floating-box-group position-absolute">
+            <div class="floating-box-1 position-relative">
+                <div class="floating-box-header display-flex flex-content-cross-center">
                     <div>Survey Options</div>
                 </div>
-                <div class="floating-option-area">
+                <div class="display-flex flex-direction-column floating-option-area">
                     <div>
                         <label>Points
                             <div>
@@ -55,10 +57,10 @@
                 </div>
             </div>
             <div class="floating-box-1">
-                <div class="floating-box-header">
+                <div class="display-flex flex-content-cross-center floating-box-header">
                     <div>Limitation</div>
                 </div>
-                <div class="floating-option-area">
+                <div class="display-flex flex-direction-column floating-option-area">
                     <div>Gender Limit</div>
                     <div class="display-flex">
                         <label>
@@ -89,11 +91,11 @@
                     </div>
                 </div>
             </div>
-            <div class="floating-box-3 display-flex">
+            <div class="floating-box-3 display-flex position-relative">
                 <div class="floating-box-header-mark">
                 </div>
                 <div>
-                    <button id="create-question" class="create-button" title="Add question" type="button"></button>
+                    <button id="create-question" class="create-button position-absolute" title="Add question" type="button"></button>
                     <input id="submit-survey-button" type="submit" value="Submit"/>
                 </div>
             </div>

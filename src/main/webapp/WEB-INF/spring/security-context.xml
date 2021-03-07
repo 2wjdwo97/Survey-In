@@ -10,9 +10,15 @@
     </bean>
 
     <security:http use-expressions="true" >
+        <security:intercept-url pattern="/css/**" access="permitAll" />
+        <security:intercept-url pattern="/images/**" access="permitAll" />
+        <security:intercept-url pattern="/js/**" access="permitAll" />
+
         <security:intercept-url pattern="/" access="permitAll" />
         <security:intercept-url pattern="/index" access="permitAll" />
+        <security:intercept-url pattern="/login" access="permitAll" />
         <security:intercept-url pattern="/mySurveys/**" access="isAuthenticated()" />
+        <security:intercept-url pattern="/{userId}/**" access="isAuthenticated()" />
         <security:form-login
                 login-page="/login"
                 username-parameter="id"

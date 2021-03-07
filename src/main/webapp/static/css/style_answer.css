@@ -1,0 +1,42 @@
+#content-area{
+    flex: auto;
+    padding: 50px;
+}
+
+#content{
+    width: 700px;
+    background-color: #fff;
+
+    padding: 45px 30px;
+    border-top: 6px solid #487BCB;
+}
+
+#title-div{
+    padding: 0 0 10px;
+    height: 50px;
+
+    font-size: 32px;
+}
+
+.question-div{
+    margin-top: 30px;
+    background-color: #fff;
+}
+
+.question-title{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.option-label{
+    font-size: 14px;
+}
+
+button{
+    border: none;
+    border-radius: 8px;
+    height: 30px;
+    background-color: #487BCB;
+    color: #fff;
+    bottom: 20px;
+}

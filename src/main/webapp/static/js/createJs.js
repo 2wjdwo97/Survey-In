@@ -48,7 +48,7 @@ function createOption(form){
     radioBtn.style.width = "20px";
     radioBtn.style.height = "20px";
     radioBtn.style.marginRight = "8px";
-    radioBtn.className = "align-self-center";
+    radioBtn.className = "flex-self-center";
 
     const option = document.createElement("input");
     option.name = "option";
@@ -59,7 +59,7 @@ function createOption(form){
 
     const deleteButton = document.createElement("button");
     deleteButton.type = "button";
-    deleteButton.className = "delete-button align-self-center";
+    deleteButton.className = "delete-button flex-self-center";
     deleteButton.addEventListener('click', function(){deleteElement(this, form)}, false);
 
     div.appendChild(radioBtn);

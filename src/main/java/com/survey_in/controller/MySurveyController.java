@@ -1,6 +1,8 @@
 package com.survey_in.controller;
 
+import com.survey_in.dto.AnswerSheetDto;
 import com.survey_in.dto.SurveyDto;
+import com.survey_in.service.AnswerService;
 import com.survey_in.service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,10 +18,13 @@ import java.security.Principal;
 @RequestMapping("/{username}")
 public class MySurveyController {
     private SurveyService surveyService;
+    private AnswerService answerService;
 
     @Autowired
-    public MySurveyController(@Qualifier("surveyService") SurveyService surveyService){
+    public MySurveyController(@Qualifier("surveyService") SurveyService surveyService,
+                              @Qualifier("answerServiceBean") AnswerService answerService){
         this.surveyService = surveyService;
+        this.answerService = answerService;
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -49,5 +54,20 @@ public class MySurveyController {
         model.addAttribute("survey", surveyService.getSurveyDetail(surveyId)); //return survey
         model.addAttribute("username", principal.getName());
         return "mySurveys.detail";
+    }
+
+    @RequestMapping(value = "/surveys/{surveyId}/answer", method = RequestMethod.GET)
+    public String getAnswerSheet(Model model, @PathVariable int surveyId, Principal principal){
+        //수정 자기 설문인지 체크, 이미 참여한 설문인지 체크
+        model.addAttribute("survey", surveyService.getSurveyDetail(surveyId));
+        model.addAttribute("username", principal.getName());
+        return "mySurveys.answer";
+    }
+
+    @RequestMapping(value = "/surveys/{surveyId}/answer", method = RequestMethod.POST)
+    public String submitAnswerSheet(AnswerSheetDto answerSheetDto, Model model, @PathVariable int surveyId, Principal principal){
+        answerService.createAnswer(answerSheetDto.getAnswers(), principal.getName());
+        model.addAttribute("username", principal.getName());
+        return "redirect: /explore";
     }
 }

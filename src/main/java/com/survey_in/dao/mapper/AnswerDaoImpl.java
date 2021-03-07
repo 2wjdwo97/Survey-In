@@ -19,4 +19,8 @@ public class AnswerDaoImpl implements AnswerDao{
     public List<Answer> selectAnswers(int option_id) {
         return sqlsession.selectList("AnswerMapper.selectAnswers", option_id);
     }
+
+    public void createAnswer(Answer answer){
+        sqlsession.insert("AnswerMapper.createAnswer", answer);
+    }
 }

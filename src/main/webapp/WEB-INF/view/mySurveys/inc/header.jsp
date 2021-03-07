@@ -9,18 +9,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <header>
-    <div>
+    <div class="display-flex flex-content-cross-center position-relative" style="height: 100%">
         <a href="/mySurveys">
             <img src="/images/logo_dark.png"
                  width="40" height="40">
         </a>
-        <div class="vertical-center search-wrapper display-inline">
-            <form class="display-inline" id="form-search-input" action="/search" method="get">
-                <input class="search-input" id="search-input" type="text" name="q"
-                       <c:if test="${searchPar.keyword != null}">value=${searchPar.keyword}</c:if>/>
+
+        <div class="search-wrapper">
+            <form class="display-inline" action="/search">
+                <input class="search-input" type="text" name="q"
+                <c:if test="${searchPar.keyword != null}">value=${searchPar.keyword}</c:if>/>
             </form>
         </div>
-        <form class="vertical-center display-inline position-absolute sign-out-form" action="/logout" method="post">
+
+        <form class="position-absolute display-flex flex-content-cross-center sign-out-form" action="/logout" method="post">
             <input class="sign-out-input" type="submit" value="Sign Out"/>
         </form>
     </div>

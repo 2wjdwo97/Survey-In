@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<link href="/css/framework.css" rel="stylesheet" type="text/css">
 <link href="/css/style_surveys.css" rel="stylesheet" type="text/css">
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
