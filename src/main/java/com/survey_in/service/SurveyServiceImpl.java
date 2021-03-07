@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service("surveyService")
@@ -75,24 +76,7 @@ public class SurveyServiceImpl implements SurveyService{
     }
 
     public SurveyDto getSurveyDetail(int id) {
-        Survey survey = surveyDao.selectSurvey(id);
-        List<Question> questionEntities = questionDao.selectQuestions(survey.getId());
-        List<QuestionDto> questionDtos = new ArrayList<QuestionDto>();
-
-        for(Question questionEntity: questionEntities){
-            List<Option> optionEntities = optionDao.selectOptions(questionEntity.getId());
-            List<OptionDto> optionDtos = new ArrayList<OptionDto>();
-
-            for(Option optionEntity: optionEntities){
-                List<Answer> answerEntities = answerDao.selectAnswers(optionEntity.getId());
-                OptionDto optionDto = OptionDto.of(optionEntity, AnswerDto.of(answerEntities));
-                optionDtos.add(optionDto);
-            }
-
-            questionDtos.add(QuestionDto.of(questionEntity, optionDtos));
-        }
-
-        SurveyDto surveyDto = SurveyDto.of(survey, questionDtos);
+        SurveyDto surveyDto = surveyDao.testJoin(id);
         return surveyDto;
     }
 }

@@ -11,8 +11,6 @@ public class QuestionDto {
     private String title;
     private List<OptionDto> option = new ArrayList<OptionDto>();
 
-    private List<QuestionDto> list;
-
     public QuestionDto(){
     }
 
@@ -33,16 +31,11 @@ public class QuestionDto {
             this.option.add(new OptionDto(op));
         }
     }
+
     public List<OptionDto> getOption () {
         return this.option;
     }
 
-    public void setList(List<QuestionDto> list) {
-        this.list = list;
-    }
-    public List<QuestionDto> getList() {
-        return this.list;
-    }
 
     public static QuestionDto of(Question question, List<OptionDto> optionDtos){
         return new QuestionDto(question.getTitle(), optionDtos);

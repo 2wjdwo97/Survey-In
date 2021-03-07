@@ -10,6 +10,10 @@ public class AnswerDto {
     private MemberDto member;
     private Time createdAt;
 
+    public AnswerDto(){
+
+    }
+
     public AnswerDto(MemberDto member, Time createdAt) {
         this.member = member;
         this.createdAt = createdAt;
@@ -30,6 +34,7 @@ public class AnswerDto {
     public static AnswerDto of(Answer answer){
         return new AnswerDto(answer.getCreatedAt());
     }
+
     public static List<AnswerDto> of(List<Answer> answers){
         List<AnswerDto> answerDtos = new ArrayList<AnswerDto>();
         for (Answer answer: answers) {

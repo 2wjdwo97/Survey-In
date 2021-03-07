@@ -10,22 +10,22 @@ public class PagingVO {
     private boolean prev;       // 이전 버튼 활성화 여부
     private boolean next;       // 다음 버튼 활성화 여부
 
-    private PageVO pagevo;
+    private PageVO page;
 
 
-    public PagingVO(PageVO pagevo, int total) {
+    public PagingVO(PageVO page, int total) {
         this.total = total;
-        this.pagevo = pagevo;
+        this.page = page;
 
-        endPage = (int) (Math.ceil(pagevo.getPage() / (double) btnPerPage) * btnPerPage);
+        endPage = (int) (Math.ceil(page.getPage() / (double) btnPerPage) * btnPerPage);
         startPage = (endPage - btnPerPage) + 1;
 
-        int tempEndPage = (int) (Math.ceil(total / (double) pagevo.getSurveyPerPage()));
+        int tempEndPage = (int) (Math.ceil(total / (double) page.getSurveyPerPage()));
         if (endPage > tempEndPage)
             endPage = tempEndPage;
 
         prev = (startPage == 1) ? false : true;
-        next = (endPage * pagevo.getSurveyPerPage() >= total) ? false : true;
+        next = (endPage * page.getSurveyPerPage() >= total) ? false : true;
     }
 
     public int getTotal() {
@@ -76,12 +76,12 @@ public class PagingVO {
         this.next = next;
     }
 
-    public PageVO getPagevo() {
-        return pagevo;
+    public PageVO getPage() {
+        return page;
     }
 
-    public void setPagevo(PageVO pagevo) {
-        this.pagevo = pagevo;
+    public void setPage(PageVO page) {
+        this.page = page;
     }
 
     @Override
@@ -93,7 +93,7 @@ public class PagingVO {
                 ", endPage=" + endPage +
                 ", prev=" + prev +
                 ", next=" + next +
-                ", pagevo=" + pagevo +
+                ", page=" + page +
                 '}';
     }
 }

@@ -13,10 +13,13 @@ public class SurveyDto {
 
     private List<QuestionDto> questions = new ArrayList<QuestionDto>();
 
+    public SurveyDto(){
+
+    }
+
     public SurveyDto(String title, List<QuestionDto> questions){
         this.title = title;
         this.questions = questions;
-
     }
 
     public void setTitle(String title) {

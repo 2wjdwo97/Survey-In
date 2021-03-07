@@ -1,44 +1,18 @@
-const filterTarget = document.querySelector('#filter-target');
+const filterTar = document.querySelector('#filter-target');
+const filterOrd = document.querySelector(`#filter-order`);
 const filterCat = document.querySelector('#filter-category');
 const filterAge = document.querySelector('#filter-age');
+const filterGen = document.querySelector('#filter-gender');
 const inputKeyword = document.querySelector('#search-hidden-input');
 
-
-function makeUrl(target, category, age) {
-    const URLSearch = new URLSearchParams(location.search);
-
-    URLSearch.set("q", inputKeyword.value);
-    URLSearch.set("page", 1);       //TODO
-    URLSearch.set("tar", target);
-    URLSearch.set("cat", category);
-    URLSearch.set("age", age);
-
-    return `./search?${URLSearch}`;
-}
-
-function moveUrlByTarget() {
-    let category = filterCat.options[filterCat.selectedIndex].value;
-    let age = filterAge.options[filterAge.selectedIndex].value;
-
-    location.href = makeUrl(this.value, category, age);
-}
-
-function moveUrlByCat() {
-    let target = filterTarget.options[filterTarget.selectedIndex].value;
-    let age = filterAge.options[filterAge.selectedIndex].value;
-
-    location.href = makeUrl(target, this.value, age);
-}
-
-function moveUrlByAge() {
-    let target = filterTarget.options[filterTarget.selectedIndex].value;
-    let category = filterCat.options[filterCat.selectedIndex].value;
-
-    location.href = makeUrl(target, category, this.value);
-}
+const pagingPrev = document.getElementById("paging-prev");
+const pagingNext = document.getElementById("paging-next");
+const pagingCur = document.getElementById("paging-cur");
+const pagingOther = document.getElementsByClassName("paging-other");
 
 
 function init() {
+
     // 검색칸에 검색했던 단어 넣기
     const searchInput = document.querySelector('#search-input');
     searchInput.value = document.querySelector('#search-hidden-input').value;
@@ -48,9 +22,10 @@ function init() {
     const searchForm = document.querySelector('#form-search-input');
     searchForm.addEventListener('submit', function (event) {
 
-        const URLSearch = new URLSearchParams(location.search);
+        let URLSearch = new URLSearchParams(location.search);
 
         URLSearch.delete("q");
+        URLSearch.delete("page");
         URLSearch.forEach(function (value, key) {
             let hiddenField = document.createElement('input');
             hiddenField.setAttribute('type', 'hidden');
@@ -63,9 +38,54 @@ function init() {
 
 
     // 필터 변경 시 url 이동
-    filterTarget.addEventListener('change', moveUrlByTarget);
-    filterCat.addEventListener('change', moveUrlByCat);
-    filterAge.addEventListener('change', moveUrlByAge);
+    filterTar.addEventListener('change', moveUrl);
+    filterOrd.addEventListener('change', moveUrl);
+    filterCat.addEventListener('change', moveUrl);
+    filterAge.addEventListener('change', moveUrl);
+    filterGen.addEventListener('change', moveUrl);
+
+    
+    // 페이징 버튼
+    let curPage = pagingCur.innerText;
+    pagingPrev.href = makePageURL(curPage - 3);
+    for(let pageBtn of pagingOther)
+        pageBtn.href = makePageURL(pageBtn.innerText);
+    pagingNext.href = makePageURL(String(curPage + 3));
+}
+
+
+function moveUrl() {
+    let target = filterTar.options[filterTar.selectedIndex].value;
+    let order = filterOrd.options[filterOrd.selectedIndex].value;
+    let category = filterCat.options[filterCat.selectedIndex].value;
+    let age = filterAge.options[filterAge.selectedIndex].value;
+    let gender = filterGen.options[filterGen.selectedIndex].value;
+
+    location.href = makeUrl(target, order, category, age, gender);
+}
+
+
+function makeUrl(target, order, category, age, gender) {
+    let URLSearch = new URLSearchParams(location.search);
+    URLSearch.set("q", inputKeyword.value);
+    URLSearch.delete("page");
+    URLSearch.set("tar", target);
+    URLSearch.set("ord", order)
+    URLSearch.set("cat", category);
+    URLSearch.set("age", age);
+    URLSearch.set("gen", gender);
+
+    return `./search?${URLSearch}`;
+}
+
+function makePageURL(page) {
+    let pageURL = new URLSearchParams(location.search);
+
+    if (page <= 0)
+        page = 1;
+    pageURL.set("page", page);
+
+    return `./search?${pageURL}`;
 }
 
 init();

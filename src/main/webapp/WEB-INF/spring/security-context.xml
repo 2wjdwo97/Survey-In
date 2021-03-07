@@ -17,13 +17,16 @@
                 login-page="/login"
                 username-parameter="id"
                 password-parameter="pw"
-                default-target-url="/mySurveys/surveys" />
+                authentication-success-handler-ref="myAuthenticationSuccessHandler"/>
         <security:logout
                 logout-url="/logout"
                 logout-success-url="/"
                 delete-cookies=""/>
         <security:csrf disabled="true"/>
     </security:http>
+
+    <bean id="myAuthenticationSuccessHandler"
+                class="com.survey_in.security.MySimpleUrlAuthenticationSuccessHandler" />
 
     <security:authentication-manager >
         <security:authentication-provider>

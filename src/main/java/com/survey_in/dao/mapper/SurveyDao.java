@@ -1,8 +1,11 @@
 package com.survey_in.dao.mapper;
 
+import com.survey_in.dto.SurveyDto;
 import com.survey_in.entity.Survey;
 import com.survey_in.vo.FilterVO;
+import com.survey_in.vo.PagingVO;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface SurveyDao {
@@ -12,6 +15,8 @@ public interface SurveyDao {
     void deleteSurvey(String survey_id);
     List<Survey> selectMemberSurveys(int member_id);
 
-    int getCntSurvey();
-    List<Survey> searchSurvey(String keyword, FilterVO filter);
+    SurveyDto testJoin(int survey_id);
+
+    int getCntSearchSurvey(String keyword, FilterVO filter);
+    List<Survey> searchSurvey(String keyword, FilterVO filter, PagingVO paging);
 }

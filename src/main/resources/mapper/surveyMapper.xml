@@ -14,8 +14,8 @@
     </select>
 
     <insert id="insertSurvey" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO SURVEY (MEMBER_ID, TITLE, CATEGORY, CAPACITY, POINT, QUESTION_CNT)
-        VALUES(#{member_id}, #{title}, #{category}, #{capacity}, #{point}, #{questionCnt})
+        INSERT INTO SURVEY (MEMBER_ID, TITLE, CATEGORY, CAPACITY, POINT, QUESTION_CNT, AGE_LIMIT, GENDER_LIMIT)
+        VALUES(#{member_id}, #{title}, #{category}, #{capacity}, #{point}, #{questionCnt}, #{age_limit}, #{gender_limit})
     </insert>
 
     <delete id="deleteSurvey">
@@ -28,18 +28,61 @@
         WHERE MEMBER_ID = #{member_id}
     </select>
 
-    <select id="getCntSurvey" resultType="int">
-        SELECT COUNT(*) FROM SURVEY
+<!-- ####### search ####### -->
+    <select id="getCntSearchSurvey" resultType="int">
+        SELECT COUNT(*)
+        <include refid="searchBySurvey"/>
     </select>
 
     <select id="searchSurvey" resultType="com.survey_in.entity.Survey">
-        SELECT * FROM survey
-        WHERE title LIKE '%'||#{keyword}||'%'
-
+        SELECT *
+        <include refid="searchBySurvey"/>
         <choose>
-            <when test="category != 'all'">
-                AND category = #{category}
-            </when>
+            <when test="filter.ord == 'latest'"> ORDER BY created_at DESC </when>
+            <when test="filter.ord == 'point'">  ORDER BY point DESC      </when>
         </choose>
+        LIMIT #{paging.page.surveyPerPage}
+        OFFSET #{paging.page.surveyStart}
+    </select>
+
+    <sql id="searchBySurvey">
+        FROM survey
+        WHERE title LIKE '%'||#{keyword}||'%'
+        <if test="filter.cat != 'all'">    AND category = #{filter.cat}      </if>
+        <if test="filter.age != 'all'">    AND age_limit = #{filter.age}     </if>
+        <if test="filter.gen != 'all'">    AND gender_limit = #{filter.gen}  </if>
+    </sql>
+
+
+    <resultMap type="com.survey_in.dto.SurveyDto" id="SurveyDto">
+        <result column="s_title" property="title"/>
+        <collection property="questions" javaType="java.util.ArrayList" ofType="com.survey_in.dto.QuestionDto">
+            <result column="q_title" property="title"/>
+            <collection property="option" javaType="java.util.ArrayList" ofType="com.survey_in.dto.OptionDto">
+                <result column="data" property="data"/>
+                <collection property="answers" javaType="java.util.ArrayList" ofType="com.survey_in.dto.AnswerDto">
+                    <collection property="member" javaType="com.survey_in.dto.MemberDto">
+                        <result column="age" property="age"/>
+                        <result column="gender" property="gender"/>
+                        <result column="job" property="job"/>
+                    </collection>
+                </collection>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="testJoin" resultMap="SurveyDto">
+        SELECT s.TITLE AS s_title,
+               q.TITLE AS q_title,
+               o.DATA AS data,
+               m.AGE AS age,
+               m.GENDER AS gender,
+               m.JOB AS job
+        from SURVEY s
+            INNER JOIN QUESTION q ON s.SURVEY_ID = q.SURVEY_ID
+            INNER JOIN QUESTION_OPTION qo ON q.QUESTION_ID = qo.QUESTION_ID
+            INNER JOIN OPTION o ON qo.OPTION_ID = o.OPTION_ID
+            LEFT JOIN ANSWER a ON a.QUESTION_OPTION_ID = qo.QUESTION_OPTION_ID
+            LEFT JOIN MEMBER m ON a.MEMBER_ID = m.MEMBER_ID WHERE s.SURVEY_ID = #{survey_id} ORDER BY o.OPTION_ID
     </select>
 </mapper>

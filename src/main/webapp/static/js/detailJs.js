@@ -1,11 +1,12 @@
 const btns = document.querySelectorAll('button');
 const boxes = document.querySelectorAll('.main-chart');
-
+const details = document.querySelectorAll(".detail-chart");
 
 for(let index in btns) {
     const box = boxes[parseInt(index)];
     btns[parseInt(index)].addEventListener("click", function(){
         toggle(box);
+        btn_clicked(parseInt(index));
     }, false);
 }
 
@@ -37,5 +38,19 @@ function toggle(box) {
             once: true,
             passive: false
         });
+    }
+}
+
+function btn_clicked(index){
+    for(let detail of details){
+        if(!detail.classList.contains('hidden') && detail !== details[parseInt(index)]){
+            detail.classList.add('hidden');
+        }
+    }
+    if(details[parseInt(index)].classList.contains('hidden')) {
+        details[parseInt(index)].classList.remove('hidden');
+    }
+    else{
+        details[parseInt(index)].classList.add('hidden');
     }
 }
