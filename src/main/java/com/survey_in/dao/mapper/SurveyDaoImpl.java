@@ -74,4 +74,5 @@ public class SurveyDaoImpl implements SurveyDao{
 
         return sqlSession.selectList("SurveyMapper.searchSurvey", param);
     }
+
 }

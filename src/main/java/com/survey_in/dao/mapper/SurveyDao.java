@@ -19,4 +19,5 @@ public interface SurveyDao {
 
     int getCntSearchSurvey(String keyword, FilterVO filter);
     List<Survey> searchSurvey(String keyword, FilterVO filter, PagingVO paging);
+
 }

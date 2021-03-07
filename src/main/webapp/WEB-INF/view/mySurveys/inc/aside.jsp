@@ -26,7 +26,7 @@
         </div>
 
         <div>
-            <a href = '/explore'> Explore</a>
+            <a href = '/explore'> Recommend</a>
         </div>
 
         <div>

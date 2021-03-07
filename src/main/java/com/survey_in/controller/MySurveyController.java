@@ -29,7 +29,6 @@ public class MySurveyController {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-
     public String create(Principal principal, SurveyDto surveyDto, String title, int capacity, String category,
                          int point, String gender_limit, String age_limit){
         surveyService.createSurvey(principal.getName(), title, point, category, capacity, gender_limit, age_limit,

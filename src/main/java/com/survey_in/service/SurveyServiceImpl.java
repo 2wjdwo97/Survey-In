@@ -38,12 +38,6 @@ public class SurveyServiceImpl implements SurveyService{
         this.answerDao = answerDao;
     }
 
-
-    @Override
-    public int getCntSurvey() {
-        return surveyDao.getCntSurvey();
-    }
-
     @Override
     public void createSurvey(String username, String title, int capacity, String category, int point, String gender_limit, String age_limit, List<QuestionDto> questions) {
         int memberId = memberDao.selectMemberId(username);

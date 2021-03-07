@@ -14,38 +14,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <div class="explore_main-container">
     <div class="explore_head-box">
-        <h1> Explore Surveys </h1>
+        <h1> Survey In Hottest! </h1>
         <hr>
     </div>
     <div class="filter-type-container">
-        <div class="filter-box">
-            <div class="point-sort-box">
-                <button class="sort-toggle-button" id="sortToggle" value="none">Point</button>
-            </div>
-        </div>
-        <div class="filter-box">
-            <select class="select-dropdown">
-                <option value="" >Select your option</option>
-                <option value="default">default</option>
-            </select>
-        </div>
-        <div class="filter-box">
-            <select class="select-dropdown">
-                <option value="" >Select your option</option>
-                <option value="default">default</option>
-            </select>
-        </div>
-        <div class="qcnt-button-box">
-            <button class="qcntbutton">~10</button>
-            <button class="qcntbutton">10~30</button>
-            <button class="qcntbutton">30~</button>
-        </div>
-        <div class="filter-box">
-            <select class="select-dropdown">
-                <option value="" >Select your option</option>
-                <option value="default">default</option>
-            </select>
-        </div>
+        <span>
+            <h2>
+                Trending
+            </h2>
+        </span>
     </div>
 
 <%--    -----------   content --%>
@@ -98,6 +75,8 @@
             </c:forEach>
 
     </div>
+
+
     <script type="text/javascript" src="/js/exploreJs.js"></script>
     <script>
         function togglePointSort() {

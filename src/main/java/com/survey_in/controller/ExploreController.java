@@ -1,4 +1,5 @@
 package com.survey_in.controller;
+import java.security.Principal;
 
 
 import com.survey_in.entity.Survey;
@@ -24,10 +25,11 @@ public class ExploreController {
     }
 
     @RequestMapping(value = ("/explore"), method = RequestMethod.GET)
-    public String index(Model model){
+    public String index(Model model, Principal principal){
         try {
             List<Survey> surveys = exploreService.getAllSurveys();
             model.addAttribute("surveys", surveys);
+            model.addAttribute("username", principal.getName());
             surveys.forEach((elem) -> {
                 System.out.println(elem.getTitle());
             });

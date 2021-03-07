@@ -1,33 +1,32 @@
 <%--
   Created by IntelliJ IDEA.
-  User: LeeJeongJae
+  User: LeeJeongJaell
   Date: 2021-01-31
   Time: 오전 11:15
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <aside>
     <div class="aside-inner-div">
         <div>
             <img>
 
-            </img>Username
+            </img>${username}
         </div>
         <div>
             ▨▨▨▨□□□
         </div>
 
         <div style="margin-top: 80px">
-                <a href = '/mySurveys/surveys'> My surveys</a>
+            <a href = '/${username}/surveys'> My surveys</a>
         </div>
 
         <div>
-            <a href = '/mySurveys/new'> New survey</a>
+            <a href = '/${username}/new'> New survey</a>
         </div>
 
         <div>
-            <a href = '/explore'> Explore</a>
+            <a href = '/explore'> Recommend</a>
         </div>
 
         <div>
