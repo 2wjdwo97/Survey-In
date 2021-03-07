@@ -18,5 +18,7 @@ public interface SurveyDao {
     SurveyDto testJoin(int survey_id);
 
     int getCntSearchSurvey(String keyword, FilterVO filter);
-    List<Survey> searchSurvey(String keyword, FilterVO filter, PagingVO paging);
+    int getCntSearchQuestion(String keyword, FilterVO filter);
+    List<SurveyDto> searchSurvey(String keyword, FilterVO filter, PagingVO paging);
+    List<SurveyDto> searchQuestion(String keyword, FilterVO filter, PagingVO paging);
 }

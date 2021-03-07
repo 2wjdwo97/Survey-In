@@ -1,15 +1,17 @@
 package com.survey_in.dto;
 
-import com.survey_in.entity.Option;
-import com.survey_in.entity.Question;
 import com.survey_in.entity.Survey;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SurveyDto {
     private String title;
-    private List<QuestionDto> questions = new ArrayList<QuestionDto>();
+    private int capacity;
+    private int point;
+    Time createdAt;
+    private List<QuestionDto> questions = new ArrayList<>();
 
     public SurveyDto(){
 
@@ -20,18 +22,44 @@ public class SurveyDto {
         this.questions = questions;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
-    public String getTitle() {
-        return this.title;
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public int getPoint() {
+        return point;
+    }
+
+    public void setPoint(int point) {
+        this.point = point;
+    }
+
+    public Time getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Time createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public List<QuestionDto> getQuestions() {
+        return questions;
     }
 
     public void setQuestions(List<QuestionDto> questions) {
         this.questions = questions;
-    }
-    public List<QuestionDto> getQuestions () {
-        return questions;
     }
 
     public static SurveyDto of(Survey survey, List<QuestionDto> questions){

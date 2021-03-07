@@ -18,7 +18,7 @@
 #search-filter li .select-dropdown{width: 100%; padding: 8px; border: none;}
 
 /* Search List */
-#search-list{clear: left; padding: 30px 0; margin: 20px 0;}
+#search-list{clear: left; padding: 0 0 100px 0; margin: 20px 0;}
 #search-list ul{margin:0 0 40px 0; padding:0; list-style:none;}
 #search-list li{width: 80%; margin: 10px 0; padding: 10px 20px; border: solid 1px; border-radius:10px;}
 #search-list li:first-child{margin-top: 0;}
@@ -30,12 +30,14 @@
 #search-list .survey-header .survey-point{padding: 5px 0px; margin: 0;}
 #search-list .survey-header .survey-point h4{margin: 0px; text-align: right}
 
-#search-list .survey-body p{min-height:5%; margin: 20px 0;}
-#search-list .survey-footer time{font-size:smaller;}
+#search-list .survey-body h5{margin: 10px 0;}
+#search-list .survey-body p{min-height:5%; margin: 10px; font-size: smaller;}
+#search-list .survey-footer time{margin: 15px 0; font-size:smaller;}
 
 
 /* Pagination */
 .pagination{display:block; width:100%; text-align:center; clear:both;}
+.pagination ul{margin: 0;}
 .pagination li{display:inline-block; margin:0 2px 0 0;}
 .pagination li:last-child{margin-right:0;}
 .pagination a{display:block; padding:8px 11px; border:1px solid; background-clip:padding-box; font-weight:normal;}
@@ -44,6 +46,7 @@
 
 /* Colors ----------------------------------------------------------------------------------------------------------- */
 /* All */
+.highlight { color: #2ebaae;}
 #search a{color:#487BCB;}
 #search a:active, #search a:focus{background:transparent;}
 

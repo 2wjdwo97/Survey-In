@@ -1,5 +1,5 @@
 const filterTar = document.querySelector('#filter-target');
-const filterOrd = document.querySelector(`#filter-order`);
+const filterOrd = document.querySelector('#filter-order');
 const filterCat = document.querySelector('#filter-category');
 const filterAge = document.querySelector('#filter-age');
 const filterGen = document.querySelector('#filter-gender');
