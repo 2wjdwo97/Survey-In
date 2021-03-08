@@ -73,6 +73,12 @@ public class SurveyDaoImpl implements SurveyDao{
         return sqlSession.selectList("SurveyMapper.searchQuestion", getMapParam(keyword, filter, paging));
     }
 
+    @Override
+    public List<SurveyDto> getSurveyByDate(int searchnum) {
+
+        return null;
+    }
+
     Map<String, Object> getMapParam(String keyword, FilterVO filter){
         Map<String, Object> param = new HashMap<>();
         param.put("keyword", keyword);

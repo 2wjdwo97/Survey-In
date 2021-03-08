@@ -65,8 +65,8 @@
 .survey-view{
     border-radius: 20px 20px 20px 20px;
     margin: 20px;
-    height: 6%;
-    width: 70%;
+    height: 300px;
+    width: 300px;
     background: #ebf3ff;
     float: left;
     cursor: pointer;
@@ -134,7 +134,7 @@
 }
 
 .survey-name{
-    width: 70%;
+    width: 20%;
     float: left;
 }
 .survey-participate{

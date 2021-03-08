@@ -122,7 +122,6 @@ function setInputName(e){
     for(let input of inputs){
         origNames.push(input.name);
     }
-
     //Naming process
     //Return false when there's no question or option
     for(let input of inputs){

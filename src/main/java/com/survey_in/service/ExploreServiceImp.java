@@ -25,6 +25,11 @@ public class ExploreServiceImp implements ExploreService{
         return surveyDao.getAllSurveys();
     }
 
+    public List<Survey> getTrendingSurvey() throws ClassNotFoundException, SQLException{
+//        List<Survey> temp = surveyDao.get
+        return surveyDao.getAllSurveys();
+    }
+
     @Override
     public List<Survey> getSurveyByFilter() throws ClassNotFoundException, SQLException {
         return null;

@@ -36,10 +36,11 @@ public class MySurveyController {
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String create(Principal principal, SurveyDto surveyDto, String title, int capacity, String category,
                          int point, String gender_limit, String age_limit){
+        System.out.println("new survey: " + title + " " + capacity); // 왜 한글이 안되는 것이지?
+
         surveyService.createSurvey(principal.getName(), title, point, category, capacity, gender_limit, age_limit,
                 surveyDto.getQuestions());
         return "redirect:/" + principal.getName() + "/surveys";
-
     }
 
     @RequestMapping("/surveys")

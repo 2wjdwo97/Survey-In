@@ -22,4 +22,6 @@ public interface SurveyDao {
     int getCntSearchQuestion(String keyword, FilterVO filter);
     List<SurveyDto> searchSurvey(String keyword, FilterVO filter, PagingVO paging);
     List<SurveyDto> searchQuestion(String keyword, FilterVO filter, PagingVO paging);
+
+    List<SurveyDto> getSurveyByDate(int searchnum);
 }

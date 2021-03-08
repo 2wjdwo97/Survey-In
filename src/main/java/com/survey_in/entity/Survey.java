@@ -1,6 +1,10 @@
 package com.survey_in.entity;
 
-import java.sql.Time;
+
+
+import java.sql.Date;
+import java.sql.Timestamp;
+
 
 public class Survey {
     private int id;
@@ -10,11 +14,12 @@ public class Survey {
     private int capacity;
     private int point;
     private int questionCnt;
-    private Time createdAt;
+    private Date createdAt;
     private String ageLimit;
     private String genderLimit;
+    private boolean status;
 
-    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt, Time createdAt, String ageLimit, String genderLimit) {
+    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt, String ageLimit, String genderLimit, Timestamp createdAt, boolean status) {
         this.id = id;
         this.member_id = member_id;
         this.title = title;
@@ -22,9 +27,10 @@ public class Survey {
         this.capacity = capacity;
         this.point = point;
         this.questionCnt = questionCnt;
-        this.createdAt = createdAt;
+        this.createdAt = new Date(createdAt.getTime());;
         this.ageLimit = ageLimit;
         this.genderLimit = genderLimit;
+        this.status = status;
     }
 
     public Survey(int member_id, String title, String category, int capacity, int point, int questionCnt, String ageLimit, String genderLimit) {
@@ -95,11 +101,10 @@ public class Survey {
         this.questionCnt = questionCnt;
     }
 
-    public Time getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
-
-    public void setCreatedAt(Time createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -118,6 +123,10 @@ public class Survey {
     public void setGenderLimit(String genderLimit) {
         this.genderLimit = genderLimit;
     }
+
+    public boolean getStatus() {return this.status;}
+
+    public void setStatus(boolean status) {this.status = status; }
 
     @Override
     public String toString() {

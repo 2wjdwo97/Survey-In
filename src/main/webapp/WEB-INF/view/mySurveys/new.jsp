@@ -5,8 +5,10 @@
   Time: 오전 10:58
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
 <link href="/css/framework.css" rel="stylesheet" type="text/css">
 <link href="/css/style_create.css" rel="stylesheet" type="text/css">
 

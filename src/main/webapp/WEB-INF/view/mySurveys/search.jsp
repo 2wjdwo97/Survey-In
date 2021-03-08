@@ -11,6 +11,7 @@
 
 <head>
     <link href="/css/style_search.css" rel="stylesheet" type="text/css">
+    <link href="/css/framework.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
