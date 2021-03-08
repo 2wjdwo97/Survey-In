@@ -28,11 +28,8 @@ public class ExploreController {
     public String index(Model model, Principal principal){
         try {
             List<Survey> surveys = exploreService.getAllSurveys();
-            model.addAttribute("surveys", surveys);
+            model.addAttribute("list", surveys);
             model.addAttribute("username", principal.getName());
-            surveys.forEach((elem) -> {
-                System.out.println(elem.getTitle());
-            });
         }catch(Exception e){
             System.out.println("exception!! " + e.toString());
             if(e instanceof ClassNotFoundException){
@@ -41,8 +38,8 @@ public class ExploreController {
                 //log
             }
         }
-        System.out.println("returning explore.explore");
-        return "explore.explore";
+        System.out.println("returning explore");
+        return "mySurveys.explore";
     }
 
 
