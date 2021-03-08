@@ -36,6 +36,19 @@
             INNER JOIN OPTION o ON qo.OPTION_ID = o.OPTION_ID
             LEFT JOIN ANSWER a ON a.QUESTION_OPTION_ID = qo.QUESTION_OPTION_ID
             LEFT JOIN MEMBER m ON a.MEMBER_ID = m.MEMBER_ID
-        WHERE m.MEMBER_ID = #{memberId}
+        WHERE s.SURVEY_ID = #{survey_id} AND m.MEMBER_ID = #{member_id}
     </select>
+
+    <select id="getPoint" resultType="int">
+        SELECT POINT from MEMBER WHERE USERNAME = #{from}
+    </select>
+
+    <update id="addPoint">
+        UPDATE MEMBER SET POINT = POINT + #{point}
+        WHERE username = #{to}
+    </update>
+    <update id="subPoint">
+        UPDATE MEMBER SET POINT = POINT - #{point}
+        WHERE username = #{from}
+    </update>
 </mapper>

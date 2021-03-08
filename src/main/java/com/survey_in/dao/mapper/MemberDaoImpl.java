@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository("memberDaoBean")
 public class MemberDaoImpl implements MemberDao{
@@ -42,5 +43,9 @@ public class MemberDaoImpl implements MemberDao{
         sqlSession.delete("MemberMapper.deleteMember", username);
     }
 
-    public int countMember(int memberId){ return sqlSession.selectOne("MemberMapper.countMember", memberId);}
+    public int countMember(Map<String, Integer> info){ return sqlSession.selectOne("MemberMapper.countMember", info);}
+
+    public int getPoint(String from){return sqlSession.selectOne("MemberMapper.getPoint", from);}
+    public void addPoint(Map<String, Object> info){ sqlSession.update("MemberMapper.addPoint", info);}
+    public void subPoint(Map<String, Object> info){ sqlSession.update("MemberMapper.subPoint", info);}
 }

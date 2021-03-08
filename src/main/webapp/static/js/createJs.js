@@ -83,6 +83,8 @@ createButton.addEventListener("click", createQuery);
 
 function checkValid(e) {
     e.preventDefault();
+
+
     const list = document.querySelectorAll('input');
     for(let inputForm of list) {
         if (inputForm.name !=="q" && inputForm.value === "") {
@@ -96,11 +98,36 @@ function checkValid(e) {
             return false;
         }
     }
+
+    if(!checkPoint()) {
+        alert("You have not enough points");
+        return false;
+    }
+
     if(setInputName(e)) {
         e.currentTarget.submit();
         return true;
     }
     return false;
+}
+
+function checkPoint(){
+    let bool;
+    $.ajax({
+        url: "/checkPoint",
+        type: "get", //send it through get method
+        async : false,
+        data: {
+            point: document.getElementById('point').value *  document.getElementById('capacity').value,
+        },
+        success: function(response) {
+            bool = response.result_point;
+        },
+        error:function(request,status,error){
+            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        }
+    });
+    return bool;
 }
 
 

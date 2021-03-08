@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service("serviceBean")
 public class MemberServiceImpl implements MemberService {
@@ -36,11 +38,46 @@ public class MemberServiceImpl implements MemberService {
 
     public MemberDto getMember(String username){
         Member memberEntity = memberDao.selectMember(username);
+        if (memberEntity==null)
+            return null;
+
         return MemberDto.of(memberEntity);
     }
 
-    public Boolean checkAttendance(String username){
+    public Boolean checkAttendance(String username, int survey_id){
         int member_id = memberDao.selectMemberId(username);
-        return memberDao.countMember(member_id) == 0;
+        Map<String, Integer> info = new HashMap<String, Integer>();
+        info.put("member_id", member_id);
+        info.put("survey_id", survey_id);
+        return memberDao.countMember(info) == 0;
     }
+
+    public int getPoint(String username){
+        return memberDao.getPoint(username);
+    }
+
+    public void subPoint(String from, int point){
+        Map<String, Object> info = new HashMap<String, Object>();
+        info.put("from", from);
+        info.put("point", point);
+        memberDao.subPoint(info);
+    }
+
+    public void addPoint(String to, int point){
+        Map<String, Object> info = new HashMap<String, Object>();
+        info.put("to", to);
+        info.put("point", point);
+        memberDao.addPoint(info);
+    }
+
+    public void givePoint(String from, String to, int point){
+        Map<String, Object> info = new HashMap<String, Object>();
+        info.put("from", from);
+        info.put("to", to);
+        info.put("point", point);
+
+        memberDao.subPoint(info);
+        memberDao.addPoint(info);
+    }
+
 }

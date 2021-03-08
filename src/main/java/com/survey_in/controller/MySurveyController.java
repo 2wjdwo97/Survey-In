@@ -51,7 +51,7 @@ public class MySurveyController {
                          int point, String gender_limit, String age_limit , HttpServletRequest request){
         surveyService.createSurvey(principal.getName(), title, point, category, capacity, gender_limit, age_limit,
                 surveyDto.getQuestions());
-        System.out.println(request.getHeader("Referer"));
+        memberService.subPoint(principal.getName(), point * capacity);
         return "redirect:/" + principal.getName() + "/surveys";
     }
 
@@ -79,7 +79,7 @@ public class MySurveyController {
             out.println("<script>alert('자신의 설문에 참여할 수 없습니다.'); location.href='" + request.getHeader("Referer") + "';</script>");
             out.flush();
         }
-        else if(!memberService.checkAttendance(principal.getName())){
+        else if(!memberService.checkAttendance(principal.getName(), surveyId)){
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>alert('이미 참여한 설문입니다.'); location.href='" + request.getHeader("Referer") + "';</script>");
@@ -94,6 +94,7 @@ public class MySurveyController {
     public String submitAnswerSheet(AnswerSheetDto answerSheetDto, Model model,
                                     @PathVariable int surveyId, Principal principal,HttpServletRequest request){
         answerService.createAnswer(answerSheetDto.getAnswers(), principal.getName());
+        memberService.addPoint(principal.getName(), surveyService.getSurveyDetail(surveyId).getPoint());
         model.addAttribute("member", memberService.getMember(principal.getName()));
 
         return "redirect: /explore";

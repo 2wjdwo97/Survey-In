@@ -1,4 +1,4 @@
-const btns = document.querySelectorAll('button');
+const btns = document.querySelectorAll('button.question-title');
 const boxes = document.querySelectorAll('.main-chart');
 const details = document.querySelectorAll(".detail-chart");
 

@@ -9,6 +9,10 @@ import java.util.List;
 public interface MemberService {
     void signUp(String id, String pw, String fn, String ln, String email, String bd, String gender, String job)
             throws ClassNotFoundException, SQLException;
-    Boolean checkAttendance(String username);
+    Boolean checkAttendance(String username, int surveyId);
     MemberDto getMember(String username);
+    int getPoint(String username);
+    void givePoint(String from, String to, int point);
+    void subPoint(String from, int point);
+    void addPoint(String to, int point);
 }

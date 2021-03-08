@@ -114,6 +114,7 @@
 
     <resultMap type="com.survey_in.dto.SurveyDto" id="SurveyDto">
         <result column="s_title" property="title"/>
+        <result column="point" property="point"/>
         <collection property="questions" javaType="java.util.ArrayList" ofType="com.survey_in.dto.QuestionDto">
             <id property="id" column="q_id" javaType="int" />
             <result column="q_title" property="title"/>
@@ -133,6 +134,7 @@
 
     <select id="testJoin" resultMap="SurveyDto">
         SELECT s.TITLE AS s_title,
+               s.POINT AS point,
                q.TITLE AS q_title,
                q.QUESTION_ID AS q_id,
                o.DATA AS data,
