@@ -49,7 +49,7 @@ public class MySurveyController {
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String create(Principal principal, SurveyDto surveyDto, String title, int capacity, String category,
                          int point, String gender_limit, String age_limit , HttpServletRequest request){
-        surveyService.createSurvey(principal.getName(), title, point, category, capacity, gender_limit, age_limit,
+        surveyService.createSurvey(principal.getName(), title, capacity, category, point, gender_limit, age_limit,
                 surveyDto.getQuestions());
         memberService.subPoint(principal.getName(), point * capacity);
         return "redirect:/" + principal.getName() + "/surveys";
