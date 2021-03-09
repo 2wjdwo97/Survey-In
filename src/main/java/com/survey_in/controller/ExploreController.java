@@ -21,7 +21,6 @@ public class ExploreController {
     @Autowired
     public ExploreController( @Qualifier("serviceBeanExplore") ExploreService exploreService){
         this.exploreService = exploreService;
-        System.out.println("hihi");
     }
 
     @RequestMapping(value = ("/explore"), method = RequestMethod.GET)

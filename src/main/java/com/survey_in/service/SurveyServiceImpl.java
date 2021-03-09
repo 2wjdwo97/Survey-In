@@ -1,7 +1,6 @@
 package com.survey_in.service;
 
 import com.survey_in.dao.mapper.*;
-import com.survey_in.dto.AnswerDto;
 import com.survey_in.dto.QuestionDto;
 import com.survey_in.dto.OptionDto;
 import com.survey_in.dto.SurveyDto;
@@ -10,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Service("surveyService")
@@ -62,6 +59,11 @@ public class SurveyServiceImpl implements SurveyService{
                 questionOptionDao.insertQuestionOption(newQuestionOption);
             }
         }
+    }
+
+    @Override
+    public void deleteSurvey(int id) {
+        surveyDao.deleteSurvey(id);
     }
 
     public List<Survey> getMemberSurveys(String username) {
