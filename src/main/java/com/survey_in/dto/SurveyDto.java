@@ -13,14 +13,18 @@ public class SurveyDto {
     private int point;
     private Timestamp createdAt;
     private List<QuestionDto> questions = new ArrayList<>();
+    private String genderLimit;
+    private String ageLimit;
 
     public SurveyDto(){
 
     }
 
-    public SurveyDto(String title, List<QuestionDto> questions){
+    public SurveyDto(String title, List<QuestionDto> questions, String genderLimit, String ageLimit){
         this.title = title;
         this.questions = questions;
+        this.genderLimit = genderLimit;
+        this.ageLimit = ageLimit;
     }
 
     public String getTitle() {
@@ -63,7 +67,23 @@ public class SurveyDto {
         this.questions = questions;
     }
 
-    public static SurveyDto of(Survey survey, List<QuestionDto> questions){
-        return new SurveyDto(survey.getTitle(), questions);
+    public static SurveyDto of(Survey survey, List<QuestionDto> questions, String genderLimit, String ageLimit){
+        return new SurveyDto(survey.getTitle(), questions, genderLimit, ageLimit);
+    }
+
+    public String getGenderLimit() {
+        return genderLimit;
+    }
+
+    public void setGenderLimit(String genderLimit) {
+        this.genderLimit = genderLimit;
+    }
+
+    public String getAgeLimit() {
+        return ageLimit;
+    }
+
+    public void setAgeLimit(String ageLimit) {
+        this.ageLimit = ageLimit;
     }
 }

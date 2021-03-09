@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service("surveyService")
 public class SurveyServiceImpl implements SurveyService{
@@ -42,6 +43,11 @@ public class SurveyServiceImpl implements SurveyService{
     public void createSurvey(String username, String title, int capacity, String category, int point, String gender_limit, String age_limit, List<QuestionDto> questions) {
         int memberId = memberDao.selectMemberId(username);
 
+        Map<String, Object> info = new HashMap<String, Object>();
+        info.put("from", username);
+        info.put("point", point * capacity);
+        memberDao.subPoint(info);
+
         Survey newSurvey = new Survey(memberId, title, category, capacity, point,
                 questions.size(), age_limit, gender_limit);
         surveyDao.insertSurvey(newSurvey);
@@ -70,7 +76,11 @@ public class SurveyServiceImpl implements SurveyService{
     }
 
     public SurveyDto getSurveyDetail(int id) {
-        SurveyDto surveyDto = surveyDao.testJoin(id);
-        return surveyDto;
+        return surveyDao.testJoin(id);
+    }
+
+    public boolean checkCapacity(int surveyId) {
+        Survey survey = surveyDao.selectSurvey(surveyId);
+        return survey.getParticipant() < survey.getCapacity();
     }
 }

@@ -56,20 +56,6 @@ public class MemberServiceImpl implements MemberService {
         return memberDao.getPoint(username);
     }
 
-    public void subPoint(String from, int point){
-        Map<String, Object> info = new HashMap<String, Object>();
-        info.put("from", from);
-        info.put("point", point);
-        memberDao.subPoint(info);
-    }
-
-    public void addPoint(String to, int point){
-        Map<String, Object> info = new HashMap<String, Object>();
-        info.put("to", to);
-        info.put("point", point);
-        memberDao.addPoint(info);
-    }
-
     public void givePoint(String from, String to, int point){
         Map<String, Object> info = new HashMap<String, Object>();
         info.put("from", from);

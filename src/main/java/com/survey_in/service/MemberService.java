@@ -13,6 +13,4 @@ public interface MemberService {
     MemberDto getMember(String username);
     int getPoint(String username);
     void givePoint(String from, String to, int point);
-    void subPoint(String from, int point);
-    void addPoint(String to, int point);
 }

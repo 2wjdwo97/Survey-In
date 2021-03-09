@@ -10,8 +10,7 @@ public interface SurveyService {
 
     void createSurvey(String username, String title, int capacity, String category, int point,
                        String gender_limit, String age_limit, List<QuestionDto> questions);
-
     List<Survey> getMemberSurveys(String username);
-
     SurveyDto getSurveyDetail(int id);
+    boolean checkCapacity(int surveyId);
 }

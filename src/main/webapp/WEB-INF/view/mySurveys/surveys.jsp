@@ -35,7 +35,7 @@
                     ${item.point} points
                 </div>
                 <div id="capacityDiv" class="position-absolute">
-                    0/${item.capacity}
+                    ${item.participant}/${item.capacity}
                 </div>
             </div>
         </a>

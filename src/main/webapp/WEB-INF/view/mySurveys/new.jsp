@@ -67,10 +67,10 @@
                             <input class="radio" type="radio" name="gender_limit" checked=true value="all"/>
                             All</label>
                         <label>
-                            <input class="radio" type="radio" name="gender_limit" value="men"/>
+                            <input class="radio" type="radio" name="gender_limit" value="male"/>
                             Men Only</label>
                         <label>
-                            <input class="radio" type="radio" name="gender_limit" value="women"/>
+                            <input class="radio" type="radio" name="gender_limit" value="fem"/>
                             Women Only</label>
                     </div>
 

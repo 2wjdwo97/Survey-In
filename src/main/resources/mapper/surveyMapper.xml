@@ -115,6 +115,8 @@
     <resultMap type="com.survey_in.dto.SurveyDto" id="SurveyDto">
         <result column="s_title" property="title"/>
         <result column="point" property="point"/>
+        <result column="gender" property="genderLimit"/>
+        <result column="s_age" property="ageLimit"/>
         <collection property="questions" javaType="java.util.ArrayList" ofType="com.survey_in.dto.QuestionDto">
             <id property="id" column="q_id" javaType="int" />
             <result column="q_title" property="title"/>
@@ -135,6 +137,8 @@
     <select id="testJoin" resultMap="SurveyDto">
         SELECT s.TITLE AS s_title,
                s.POINT AS point,
+               s.GENDER_LIMIT AS gender,
+               s.AGE_LIMIT AS s_age,
                q.TITLE AS q_title,
                q.QUESTION_ID AS q_id,
                o.DATA AS data,
@@ -151,4 +155,9 @@
         WHERE s.SURVEY_ID = #{survey_id}
         ORDER BY o.OPTION_ID
     </select>
+
+    <update id="addParticipant">
+        UPDATE SURVEY SET PARTICIPANT = PARTICIPANT + 1
+        WHERE SURVEY_ID = #{surveyId}
+    </update>
 </mapper>
