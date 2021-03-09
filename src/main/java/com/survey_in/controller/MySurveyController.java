@@ -4,17 +4,14 @@ package com.survey_in.controller;
 import com.survey_in.dto.*;
 import com.survey_in.service.AnswerService;
 import com.survey_in.service.MemberService;
+import com.survey_in.service.QuestionServiceImpl;
 import com.survey_in.service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -27,14 +24,17 @@ public class MySurveyController {
     private SurveyService surveyService;
     private AnswerService answerService;
     private MemberService memberService;
+    private QuestionServiceImpl questionService;
 
     @Autowired
     public MySurveyController(@Qualifier("surveyService") SurveyService surveyService,
                               @Qualifier("answerServiceBean") AnswerService answerService,
-                              @Qualifier("serviceBean") MemberService memberService){
+                              @Qualifier("serviceBean") MemberService memberService,
+                              @Qualifier("questionServiceBean") QuestionServiceImpl questionService){
         this.surveyService = surveyService;
         this.answerService = answerService;
         this.memberService = memberService;
+        this.questionService = questionService;
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -63,6 +63,12 @@ public class MySurveyController {
         model.addAttribute("survey", surveyService.getSurveyDetail(surveyId)); //return survey
         model.addAttribute("member", memberService.getMember(principal.getName()));
         return "mySurveys.detail";
+    }
+
+    @RequestMapping("/surveys/detail")
+    @ResponseBody
+    public QuestionDto detail(int questionId){
+        return questionService.getQuestionDetail(questionId);
     }
 
     @RequestMapping(value = "/surveys/{surveyId}/answer", method = RequestMethod.GET)

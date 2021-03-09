@@ -115,7 +115,7 @@
     <resultMap type="com.survey_in.dto.SurveyDto" id="SurveyDto">
         <result column="s_title" property="title"/>
         <result column="point" property="point"/>
-        <result column="gender" property="genderLimit"/>
+        <result column="s_gender" property="genderLimit"/>
         <result column="s_age" property="ageLimit"/>
         <collection property="questions" javaType="java.util.ArrayList" ofType="com.survey_in.dto.QuestionDto">
             <id property="id" column="q_id" javaType="int" />
@@ -137,7 +137,7 @@
     <select id="testJoin" resultMap="SurveyDto">
         SELECT s.TITLE AS s_title,
                s.POINT AS point,
-               s.GENDER_LIMIT AS gender,
+               s.GENDER_LIMIT AS s_gender,
                s.AGE_LIMIT AS s_age,
                q.TITLE AS q_title,
                q.QUESTION_ID AS q_id,
