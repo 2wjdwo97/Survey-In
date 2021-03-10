@@ -1,5 +1,6 @@
 package com.survey_in.dao.mapper;
 
+import com.survey_in.dto.QuestionDto;
 import com.survey_in.entity.Question;
 import com.survey_in.entity.QuestionOption;
 import org.apache.ibatis.session.SqlSession;
@@ -22,7 +23,6 @@ public class QuestionDaoImpl implements QuestionDao{
         sqlSession.insert("QuestionMapper.insert", question);
     }
 
-    public List<Question> selectQuestions(int survey_id) {
-        return sqlSession.selectList("QuestionMapper.selectQuestion", survey_id);
-    }
+    public QuestionDto select(int questionId){return sqlSession.selectOne("QuestionMapper.select", questionId);}
+
 }
