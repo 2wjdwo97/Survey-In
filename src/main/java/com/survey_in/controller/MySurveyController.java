@@ -52,17 +52,32 @@ public class MySurveyController {
     }
 
     @RequestMapping("/surveys")
-    public String mySurveys(Model model, @PathVariable String username, Principal principal){
+    public String mySurveys(Model model, @PathVariable String username, Principal principal) {
+        boolean isMySurvey;
+        isMySurvey = !username.equals(principal.getName());
+
+        model.addAttribute("isMySurvey", isMySurvey);
         model.addAttribute("list", surveyService.getMemberSurveys(username));
         model.addAttribute("member", memberService.getMember(principal.getName()));
         return "mySurveys.surveys";
     }
 
     @RequestMapping("/surveys/{surveyId}")
-    public String mySurveyDetail(Model model, @PathVariable int surveyId, Principal principal){
-        model.addAttribute("survey", surveyService.getSurveyDetail(surveyId)); //return survey
-        model.addAttribute("member", memberService.getMember(principal.getName()));
-        return "mySurveys.detail";
+    public String mySurveyDetail(Model model, @RequestParam(defaultValue = "get") String method,
+                                 @PathVariable int surveyId, Principal principal) {
+        // Detail of my surveys
+        if (method.equals("get")) {
+            model.addAttribute("survey", surveyService.getSurveyDetail(surveyId)); //return survey
+            model.addAttribute("member", memberService.getMember(principal.getName()));
+            return "mySurveys.detail";
+        }
+        // Delete a survey
+        else if (method.equals("delete")) {
+            surveyService.deleteSurvey(surveyId);
+            return "redirect:/" + principal.getName() + "/surveys";
+        }
+
+        return null; // error
     }
 
     @RequestMapping("/surveys/detail")
@@ -115,7 +130,6 @@ public class MySurveyController {
                                     @PathVariable int surveyId, Principal principal,HttpServletRequest request){
         answerService.createAnswer(answerSheetDto.getAnswers(), principal.getName(), surveyId);
         model.addAttribute("member", memberService.getMember(principal.getName()));
-
         return "redirect: /explore";
     }
 }

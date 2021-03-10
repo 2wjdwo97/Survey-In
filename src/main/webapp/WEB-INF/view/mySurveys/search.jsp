@@ -9,13 +9,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<head>
-    <link href="/css/style_search.css" rel="stylesheet" type="text/css">
-    <link href="/css/framework.css" rel="stylesheet" type="text/css">
+<link href="/css/style_search.css" rel="stylesheet" type="text/css">
+<link href="/css/framework.css" rel="stylesheet" type="text/css">
 
-</head>
 
-<body>
 <div id="search" class="content-box">
     <!-- ################################################################################################ -->
     <div id="search-title">
@@ -104,7 +101,7 @@
                                 <div class="survey-header">
                                     <div class="survey-title">
                                         <h3><a href="#">${s.title}</a></h3>
-                                        <h4>(temp)/${s.capacity}</h4>
+                                        <h4>${s.participant}/${s.capacity}</h4>
                                     </div>
                                     <div class="survey-point">
                                         <h4>${s.point} POINT</h4>
@@ -180,4 +177,3 @@
     <!-- ################################################################################################ -->
 </div>
 <script type="text/javascript" src="/js/searchJs.js"></script>
-</body>

@@ -1,8 +1,6 @@
 package com.survey_in.dto;
 
 import com.survey_in.entity.Survey;
-
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +10,7 @@ public class SurveyDto {
     private int capacity;
     private int point;
     private Timestamp createdAt;
+    private int participant;
     private List<QuestionDto> questions = new ArrayList<>();
     private String genderLimit;
     private String ageLimit;
@@ -57,6 +56,14 @@ public class SurveyDto {
 
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public int getParticipant() {
+        return participant;
+    }
+
+    public void setParticipant(int participant) {
+        this.participant = participant;
     }
 
     public List<QuestionDto> getQuestions() {

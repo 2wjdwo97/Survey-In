@@ -50,11 +50,11 @@
     </select>
 
     <resultMap type="com.survey_in.dto.SurveyDto" id="searchQuestionDto">
-<!--        <id property="id" column="q_id"/>-->
         <result column="s_title" property="title"/>
         <result column="capacity" property="capacity"/>
         <result column="point" property="point"/>
         <result column="created_at" property="createdAt"/>
+        <result column="participant" property="participant"/>
         <collection property="questions" javaType="java.util.ArrayList" ofType="com.survey_in.dto.QuestionDto">
             <id column="q_id" property="id" javaType="int"/>
             <result column="q_title" property="title"/>
@@ -73,7 +73,7 @@
     </select>
 
     <select id="searchQuestion" resultMap="searchQuestionDto">
-        SELECT s.title AS s_title, s.capacity AS capacity, s.point AS point, s.created_at As created_at,
+        SELECT s.title AS s_title, s.capacity AS capacity, s.point AS point, s.created_at As created_at, s.participant As participant
         q.question_id As q_id, q.title AS q_title, o.data AS data
         FROM survey s
         INNER JOIN question q ON s.survey_id = q.survey_id

@@ -18,7 +18,7 @@
 
 <div class="display-flex flex-wrapper content-box-list">
     <c:forEach var="item" items="${list}">
-        <a href="surveys/${item.id}" class="survey-box position-relative ">
+        <a href="surveys/${item.id}" class="survey-box position-relative">
             <div class="header position-relative">
                 <div id="timeDiv"  class="position-absolute">
                     ${item.createdAt}
@@ -39,5 +39,12 @@
                 </div>
             </div>
         </a>
+        <form action="surveys/${item.id}" method="post" onsubmit="deleteSurvey(event)">
+            <div>
+                <input type="hidden" name="method" value="delete" />
+                <button id="deleteBtn" class="<c:if test="${isMySurvey}">hidden</c:if>"><img src="/images/deleteBtn2.png"></button>
+            </div>
+        </form>
     </c:forEach>
 </div>
+<script type="text/javascript" src="/js/surveyJs.js"></script>

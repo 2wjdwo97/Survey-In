@@ -25,9 +25,9 @@ public class Survey {
         this.capacity = capacity;
         this.point = point;
         this.questionCnt = questionCnt;
-        this.createdAt = createdAt;
         this.ageLimit = ageLimit;
         this.genderLimit = genderLimit;
+        this.createdAt = createdAt;
         this.status = status;
         this.participant = participant;
     }
@@ -42,6 +42,7 @@ public class Survey {
         this.questionCnt = questionCnt;
         this.ageLimit = ageLimit;
         this.genderLimit = genderLimit;
+        this.status = status;
     }
 
     public int getId() {
@@ -124,22 +125,6 @@ public class Survey {
         this.genderLimit = genderLimit;
     }
 
-    @Override
-    public String toString() {
-        return "Survey{" +
-                "id=" + id +
-                ", member_id=" + member_id +
-                ", title='" + title + '\'' +
-                ", category='" + category + '\'' +
-                ", capacity=" + capacity +
-                ", point=" + point +
-                ", questionCnt=" + questionCnt +
-                ", createdAt=" + createdAt +
-                ", ageLimit='" + ageLimit + '\'' +
-                ", genderLimit='" + genderLimit + '\'' +
-                '}';
-    }
-
     public Boolean getStatus() {
         return status;
     }
@@ -154,5 +139,21 @@ public class Survey {
 
     public void setParticipant(int participant) {
         this.participant = participant;
+    }
+
+    @Override
+    public String toString() {
+        return "Survey{" +
+                "id=" + id +
+                ", member_id=" + member_id +
+                ", title='" + title + '\'' +
+                ", category='" + category + '\'' +
+                ", capacity=" + capacity +
+                ", point=" + point +
+                ", questionCnt=" + questionCnt +
+                ", createdAt=" + createdAt +
+                ", ageLimit='" + ageLimit + '\'' +
+                ", genderLimit='" + genderLimit + '\'' +
+                '}';
     }
 }

@@ -21,7 +21,6 @@ public class ExploreController {
     @Autowired
     public ExploreController( @Qualifier("serviceBeanExplore") ExploreService exploreService){
         this.exploreService = exploreService;
-        System.out.println("hihi");
     }
 
     @RequestMapping(value = ("/explore"), method = RequestMethod.GET)
@@ -30,9 +29,6 @@ public class ExploreController {
             List<Survey> surveys = exploreService.getAllSurveys();
             model.addAttribute("surveys", surveys);
             model.addAttribute("username", principal.getName());
-            surveys.forEach((elem) -> {
-                System.out.println(elem.getTitle());
-            });
         }catch(Exception e){
             System.out.println("exception!! " + e.toString());
             if(e instanceof ClassNotFoundException){
@@ -41,7 +37,6 @@ public class ExploreController {
                 //log
             }
         }
-        System.out.println("returning explore.explore");
         return "explore.explore";
     }
 
