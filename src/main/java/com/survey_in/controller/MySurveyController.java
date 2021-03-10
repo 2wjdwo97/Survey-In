@@ -77,7 +77,7 @@ public class MySurveyController {
                                  HttpServletResponse response, HttpServletRequest request) throws IOException  {
         MemberDto member =  memberService.getMember(principal.getName());
         SurveyDto survey = surveyService.getSurveyDetail(surveyId);
-        int ageDiff = member.getAge() - Integer.parseInt(survey.getAgeLimit());
+
         if(username.equals(principal.getName())) {
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter out = response.getWriter();
@@ -97,7 +97,7 @@ public class MySurveyController {
             out.flush();
         }
         else if(!(survey.getGenderLimit().equals("all") || survey.getGenderLimit().equals(member.getGender())
-        ) || !(survey.getAgeLimit().equals("all") || (ageDiff < 10 && ageDiff >= 0))){
+        ) || !(survey.getAgeLimit().equals("all") || (member.getAge() - Integer.parseInt(survey.getAgeLimit()) < 10 && member.getAge() - Integer.parseInt(survey.getAgeLimit()) >= 0))){
             response.setContentType("text/html; charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>alert('참여할 수 없는 설문입니다.'); location.href='" + request.getHeader("Referer") + "';</script>");

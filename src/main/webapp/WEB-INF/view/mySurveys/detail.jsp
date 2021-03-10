@@ -22,27 +22,32 @@
         <span style="height:fit-content; align-self: flex-end">${survey.title}</span>
     </div>
     <div class="display-flex flex-auto">
-        <div class="survey-list">
+        <div class="survey-list padding-20">
+            <div class="btmspace-30" style="font-size: 24px; font-weight: bold;">
+                Questions
+            </div>
             <c:forEach var="question" items="${survey.questions}" varStatus="st">
                 <div>
-                    <button class="question-title" onclick="btn_clicked(${question.id}, ${st.index})">${st.index + 1}. ${question.title}</button>
-
-                    <div>
-                        <canvas id="chart${st.index}" class="main-chart hidden"></canvas>
-                    </div>
-                    <br/>
+                    <button class="btmspace-10 question-title" onclick="btn_clicked(${question.id}, ${st.index})">${st.index + 1}. ${question.title}</button>
+                    <canvas id="chart${st.index}" style="margin-top: 20px" class="main-chart hidden btmspace-30"></canvas>
                 </div>
             </c:forEach>
         </div>
         <div class="survey-analysis">
-            <div class="display-flex flex-direction-column detail-chart">
-                <div class="gender-area display-flex">
+            <div class="display-flex flex-direction-column detail-chart padding-20">
+                <div class="btmspace-30" style="font-size: 24px; font-weight: bold;">
+                    Analysis
+                </div>
+                <div class="gender-area display-flex btmspace-80">
                     <div style="width:50%; height: 100%">
-                        <canvas id="chart-men" height="250"></canvas>
+                        <canvas id="chart-men"></canvas>
                     </div>
                     <div style="width:50%; height: 100%">
-                        <canvas id="chart-women" height="250"></canvas>
+                        <canvas id="chart-women"></canvas>
                     </div>
+                </div>
+                <div>
+                    <canvas id="chart-age"></canvas>
                 </div>
                 <div></div>
             </div>
