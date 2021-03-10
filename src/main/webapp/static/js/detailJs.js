@@ -1,4 +1,4 @@
-const boxes = document.querySelectorAll('.main-chart');
+const boxes = document.querySelectorAll('.chart-div');
 
 
 const chartMan = document.querySelector("#chart-men").getContext('2d');

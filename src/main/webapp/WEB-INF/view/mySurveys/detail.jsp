@@ -29,7 +29,9 @@
             <c:forEach var="question" items="${survey.questions}" varStatus="st">
                 <div>
                     <button class="btmspace-10 question-title" onclick="btn_clicked(${question.id}, ${st.index})">${st.index + 1}. ${question.title}</button>
-                    <canvas id="chart${st.index}" style="margin-top: 20px" class="main-chart hidden btmspace-30"></canvas>
+                    <div class="chart-div hidden" >
+                        <canvas id="chart${st.index}" class="btmspace-30"></canvas>
+                    </div>
                 </div>
             </c:forEach>
         </div>
