@@ -34,7 +34,7 @@
             </c:forEach>
         </div>
         <div class="survey-analysis">
-            <div class="display-flex flex-direction-column detail-chart padding-20">
+            <div class="display-flex flex-direction-column detail-chart padding-20 position-relative">
                 <div class="btmspace-30" style="font-size: 24px; font-weight: bold;">
                     Analysis
                 </div>
@@ -49,7 +49,10 @@
                 <div>
                     <canvas id="chart-age"></canvas>
                 </div>
-                <div></div>
+                <div id="no-result" class="hidden position-absolute display-flex flex-direction-column flex-content-center flex-content-cross-center">
+                    <img class="btmspace-15" src="/images/no_result.png">
+                    <span>No data</span>
+                </div>
             </div>
         </div>
     </div>
@@ -57,6 +60,7 @@
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script type="text/javascript" src="/js/detailJs.js"></script>
 <script>
     let charts=[];
     let label;
@@ -76,6 +80,7 @@
             data.push("${fn:length(op.answers)}");
         </c:forEach>
 
+
         massPopChart = new Chart(charts["${st.index}"], {
             type: 'pie',
             data: {
@@ -83,14 +88,7 @@
                 datasets: [{
                     label: "# of Votes",
                     data: data,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.7)',
-                        'rgba(54, 162, 235, 0.7)',
-                        'rgba(255, 206, 86, 0.7)',
-                        'rgba(75, 192, 192, 0.7)',
-                        'rgba(153, 102, 255, 0.7)',
-                        'rgba(255, 159, 64, 0.7)'
-                    ]
+                    backgroundColor: bgc
                 }]
             },
             options: {
@@ -99,7 +97,11 @@
                 }
             }
         });
+        if(sum(data) === 0){
+            charts["${st.index}"].font = "18px Arial";
+            charts["${st.index}"].clearRect(0, 0, 100, 100);
+            charts["${st.index}"].fillText("No data", 10, 50);
+        }
     </c:forEach>
 
 </script>
-<script type="text/javascript" src="/js/detailJs.js"></script>
