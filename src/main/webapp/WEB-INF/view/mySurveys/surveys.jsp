@@ -39,10 +39,10 @@
                 </div>
             </div>
         </a>
-        <form action="surveys/${item.id}" method="post" onsubmit="deleteSurvey(event)">
+        <form action="surveys/${item.id}" method="post" onsubmit="deleteSurvey(event)" class="<c:if test="${isMySurvey}">hidden</c:if>">
             <div>
                 <input type="hidden" name="method" value="delete" />
-                <button id="deleteBtn" class="<c:if test="${isMySurvey}">hidden</c:if>"><img src="/images/deleteBtn2.png"></button>
+                <button id="deleteBtn"><img src="/images/deleteBtn2.png"></button>
             </div>
         </form>
     </c:forEach>

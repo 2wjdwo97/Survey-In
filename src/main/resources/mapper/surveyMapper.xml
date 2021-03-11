@@ -73,7 +73,7 @@
     </select>
 
     <select id="searchQuestion" resultMap="searchQuestionDto">
-        SELECT s.title AS s_title, s.capacity AS capacity, s.point AS point, s.created_at As created_at, s.participant As participant
+        SELECT s.title AS s_title, s.capacity AS capacity, s.point AS point, s.created_at As created_at, s.participant As participant,
         q.question_id As q_id, q.title AS q_title, o.data AS data
         FROM survey s
         INNER JOIN question q ON s.survey_id = q.survey_id

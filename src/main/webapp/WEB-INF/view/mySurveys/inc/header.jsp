@@ -16,7 +16,7 @@
         </a>
 
         <div class="search-wrapper">
-            <form class="display-inline" action="/search">
+            <form class="form-search-input display-inline" action="/search">
                 <input class="search-input" type="text" name="q"
                 <c:if test="${searchPar.keyword != null}">value=${searchPar.keyword}</c:if>/>
             </form>

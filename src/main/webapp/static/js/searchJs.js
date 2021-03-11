@@ -14,12 +14,12 @@ const pagingOther = document.getElementsByClassName("paging-other");
 function init() {
 
     // 검색칸에 검색했던 단어 넣기
-    const searchInput = document.querySelector('#search-input');
-    searchInput.value = document.querySelector('#search-hidden-input').value;
+    const searchInput = document.querySelector('.search-input');
+    searchInput.value = inputKeyword.value;
 
 
     // 검색 필터 유지
-    const searchForm = document.querySelector('#form-search-input');
+    const searchForm = document.querySelector('.form-search-input');
     searchForm.addEventListener('submit', function (event) {
 
         let URLSearch = new URLSearchParams(location.search);
@@ -46,11 +46,13 @@ function init() {
 
     
     // 페이징 버튼
-    let curPage = pagingCur.innerText;
-    pagingPrev.href = makePageURL(curPage - 3);
-    for(let pageBtn of pagingOther)
-        pageBtn.href = makePageURL(pageBtn.innerText);
-    pagingNext.href = makePageURL(String(curPage + 3));
+    if (pagingCur != null) {
+        let curPage = pagingCur.innerText;
+        pagingPrev.href = makePageURL(curPage - 3);
+        for (let pageBtn of pagingOther)
+            pageBtn.href = makePageURL(pageBtn.innerText);
+        pagingNext.href = makePageURL(String(curPage + 3));
+    }
 }
 
 
