@@ -116,7 +116,7 @@
                                 </div>
                                 <div class="survey-footer">
                                     <time>${s.createdAt}</time>
-                                    <a class="btn" href="/search/${s.id}">view results &raquo;</a>
+                                    <a class="btn" href="javascript:void(0);" onclick="viewDetail(${s.id})">view results &raquo;</a>
                                 </div>
                             </article>
                         </li>
@@ -178,3 +178,5 @@
     <!-- ################################################################################################ -->
 </div>
 <script type="text/javascript" src="/js/searchJs.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>

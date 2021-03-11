@@ -30,7 +30,7 @@ public class MySurveyController {
     public MySurveyController(@Qualifier("surveyService") SurveyService surveyService,
                               @Qualifier("answerServiceBean") AnswerService answerService,
                               @Qualifier("memberServiceBean") MemberService memberService,
-                              @Qualifier("questionServiceBean") QuestionServiceImpl questionService){
+                              @Qualifier("questionServiceBean") QuestionServiceImpl questionService) {
         this.surveyService = surveyService;
         this.answerService = answerService;
         this.memberService = memberService;
@@ -45,7 +45,7 @@ public class MySurveyController {
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String create(Principal principal, SurveyDto surveyDto, String title, int capacity, String category,
-                         int point, String gender_limit, String age_limit , HttpServletRequest request){
+                         int point, String gender_limit, String age_limit, HttpServletRequest request) {
         surveyService.createSurvey(principal.getName(), title, capacity, category, point, gender_limit, age_limit,
                 surveyDto.getQuestions());
         return "redirect:/" + principal.getName() + "/surveys";
@@ -63,13 +63,27 @@ public class MySurveyController {
     }
 
     @RequestMapping("/surveys/{surveyId}")
-    public String mySurveyDetail(Model model, @RequestParam(defaultValue = "get") String method,
-                                 @PathVariable int surveyId, Principal principal) {
-        // Detail of my surveys
+    public String manageSurvey(Model model, HttpServletResponse response, HttpServletRequest request,
+                               @RequestParam(defaultValue = "get") String method,
+                               @PathVariable int surveyId, Principal principal) throws IOException {
+        // View detail of surveys
         if (method.equals("get")) {
-            model.addAttribute("survey", surveyService.getSurveyDetail(surveyId)); //return survey
-            model.addAttribute("member", memberService.getMember(principal.getName()));
-            return "mySurveys.detail";
+
+            MemberDto registerMember = memberService.getMemberBySurvey(surveyId);   // 설문을 등록한 사용자
+            String registrantName = registerMember.getUsername();
+
+            // 설문을 등록한 사용자거나 이미 참여한 설문인 경우
+            if (registrantName.equals(principal.getName()) ||
+                    !memberService.checkAttendance(principal.getName(), surveyId)) {
+
+                model.addAttribute("survey", surveyService.getSurveyDetail(surveyId));
+                model.addAttribute("member", memberService.getMember(principal.getName()));
+                return "mySurveys.detail";
+            }
+            // 설문을 참여 안한 경우
+            else {
+                alert(response, "You must participate in the survey to see the results.", surveyId + "/answer");
+            }
         }
         // Delete a survey
         else if (method.equals("delete")) {
@@ -82,43 +96,27 @@ public class MySurveyController {
 
     @RequestMapping("/surveys/detail")
     @ResponseBody
-    public QuestionDto detail(int questionId){
+    public QuestionDto detail(int questionId) {
         return questionService.getQuestionDetail(questionId);
     }
 
     @RequestMapping(value = "/surveys/{surveyId}/answer", method = RequestMethod.GET)
     public String getAnswerSheet(Model model, @PathVariable String username,
                                  @PathVariable int surveyId, Principal principal,
-                                 HttpServletResponse response, HttpServletRequest request) throws IOException  {
-        MemberDto member =  memberService.getMember(principal.getName());
+                                 HttpServletResponse response, HttpServletRequest request) throws IOException {
+        MemberDto member = memberService.getMember(principal.getName());
         SurveyDto survey = surveyService.getSurveyDetail(surveyId);
 
-        if(username.equals(principal.getName())) {
-            response.setContentType("text/html; charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert('자신의 설문에 참여할 수 없습니다.'); location.href='" + request.getHeader("Referer") + "';</script>");
-            out.flush();
+        if (username.equals(principal.getName())) {
+            alert(response, "자신의 설문에 참여할 수 없습니다.", request.getHeader("Referer"));
+        } else if (!memberService.checkAttendance(principal.getName(), surveyId)) {
+            alert(response, "이미 참여한 설문입니다.", request.getHeader("Referer"));
+        } else if (!surveyService.checkCapacity(surveyId)) {
+            alert(response, "종료된 설문입니다.", request.getHeader("Referer"));
+        } else if (!(survey.getGenderLimit().equals("all") || survey.getGenderLimit().equals(member.getGender())
+        ) || !(survey.getAgeLimit().equals("all") || (member.getAge() - Integer.parseInt(survey.getAgeLimit()) < 10 && member.getAge() - Integer.parseInt(survey.getAgeLimit()) >= 0))) {
+            alert(response, "참여할 수 없는 설문입니다.", request.getHeader("Referer"));
         }
-        else if(!memberService.checkAttendance(principal.getName(), surveyId)){
-            response.setContentType("text/html; charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert('이미 참여한 설문입니다.'); location.href='" + request.getHeader("Referer") + "';</script>");
-            out.flush();
-        }
-        else if(!surveyService.checkCapacity(surveyId)){
-            response.setContentType("text/html; charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert('종료된 설문입니다.'); location.href='" + request.getHeader("Referer") + "';</script>");
-            out.flush();
-        }
-        else if(!(survey.getGenderLimit().equals("all") || survey.getGenderLimit().equals(member.getGender())
-        ) || !(survey.getAgeLimit().equals("all") || (member.getAge() - Integer.parseInt(survey.getAgeLimit()) < 10 && member.getAge() - Integer.parseInt(survey.getAgeLimit()) >= 0))){
-            response.setContentType("text/html; charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert('참여할 수 없는 설문입니다.'); location.href='" + request.getHeader("Referer") + "';</script>");
-            out.flush();
-        }
-
 
         model.addAttribute("survey", survey);
         model.addAttribute("member", member);
@@ -127,9 +125,19 @@ public class MySurveyController {
 
     @RequestMapping(value = "/surveys/{surveyId}/answer", method = RequestMethod.POST)
     public String submitAnswerSheet(AnswerSheetDto answerSheetDto, Model model,
-                                    @PathVariable int surveyId, Principal principal,HttpServletRequest request){
+                                    @PathVariable int surveyId, Principal principal, HttpServletRequest request) {
         answerService.createAnswer(answerSheetDto.getAnswers(), principal.getName(), surveyId);
         model.addAttribute("member", memberService.getMember(principal.getName()));
         return "redirect: /explore";
+    }
+
+    void alert(HttpServletResponse response, String msg, String href) throws IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>" +
+                "alert('" + msg + "');" +
+                "location.href='" + href + "';" +
+                "</script>");
+        out.flush();
     }
 }

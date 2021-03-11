@@ -107,4 +107,22 @@ function makePageURL(page) {
     return `./search?${pageURL}`;
 }
 
+function viewDetail(surveyId) {
+    let registrantName;
+    $.ajax({
+        url: `/search/${surveyId}`,
+        type: "get",
+        data: {
+            surveyId: surveyId,
+        },
+        success: function (response) {
+            registrantName = response;
+            location.href= `../${registrantName}/surveys/${surveyId}`;
+        },
+        error: function (request, status, error) {
+            alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+        }
+    });
+}
+
 init();
