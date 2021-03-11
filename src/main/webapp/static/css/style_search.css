@@ -7,6 +7,7 @@
 
 /* Title */
 #search-title h2{display:inline-block; position:relative; padding:0 0 10px 0;}
+#search-title h2 strong{text-transform: none;}
 #search-title h2::after{display:block; position:absolute; bottom:0; width:100%; height:3px; border-radius:3px; content:"";}
 
 
@@ -28,11 +29,13 @@
 #search-list .survey-header .survey-title h3{width: 75%; margin: 0px;}
 #search-list .survey-header .survey-title h4{width: 25%; margin: 0px; text-align: right}
 #search-list .survey-header .survey-point{padding: 5px 0px; margin: 0;}
-#search-list .survey-header .survey-point h4{margin: 0px; text-align: right}
+#search-list .survey-header .survey-point h4{margin: 0px; text-align: right; font-size: medium;}
 
-#search-list .survey-body h5{margin: 10px 0;}
+#search-list .survey-body h5{margin: 10px 0; font-size: medium;}
 #search-list .survey-body p{min-height:5%; margin: 10px; font-size: smaller;}
-#search-list .survey-footer time{margin: 15px 0; font-size:smaller;}
+#search-list .survey-footer {display: flex; justify-content: space-between;}
+#search-list .survey-footer time{margin: 15px 0 0 0; font-size:smaller;}
+#search-list .survey-footer a{margin: 0px 0 0 0; font-size:smaller; border: none;}
 
 
 /* Pagination */
@@ -56,8 +59,7 @@
 
 
 /* Search List */
-#search-list a{color: #1A1914}
-#search-list article:hover a{color: #487BCB}
+#search-list article:hover a{background-color: #487BCB; color: #FFFFFF;}
 #search-list li{color: inherit; background-color:#FFFFFF;}
 #search-list li, #search-list .survey-header .survey-title{border-color: #C1C2C4;}
 #search-list .survey-header .survey-point h4{color: #0085FF;}

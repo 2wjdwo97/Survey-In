@@ -11,6 +11,7 @@ public interface MemberService {
             throws ClassNotFoundException, SQLException;
     Boolean checkAttendance(String username, int surveyId);
     MemberDto getMember(String username);
+    MemberDto getMemberBySurvey(int id);
     int getPoint(String username);
     void givePoint(String from, String to, int point);
 }

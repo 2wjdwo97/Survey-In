@@ -44,7 +44,7 @@ function init() {
     filterAge.addEventListener('change', moveUrl);
     filterGen.addEventListener('change', moveUrl);
 
-    
+
     // 페이징 버튼
     if (pagingCur != null) {
         let curPage = pagingCur.innerText;
@@ -52,6 +52,23 @@ function init() {
         for (let pageBtn of pagingOther)
             pageBtn.href = makePageURL(pageBtn.innerText);
         pagingNext.href = makePageURL(String(curPage + 3));
+    } else {
+        const searchScreen = document.querySelector('#search-list');
+        searchScreen.innerHTML = `<ul><li><article>
+                                    <div class="survey-header">
+                                        <div class="survey-title">
+                                            <h3>No results</h3>
+                                        </div>
+                                    </div>
+                                    <div class="survey-body">
+                                        <p>
+                                            - Check if the word is spelled correctly.</br>
+                                            - Try reducing the number of words in your search term or re-searching with more common search terms.</br>
+                                            - If it's more than one word, check the spacing.</br>
+                                            - Please change the search options and search again.</br>
+                                        </p>
+                                    </div>
+                                </article></li></ul>`;
     }
 }
 

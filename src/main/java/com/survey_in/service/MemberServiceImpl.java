@@ -8,13 +8,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-@Service("serviceBean")
+@Service("memberServiceBean")
 public class MemberServiceImpl implements MemberService {
 
     private MemberDao memberDao;
@@ -22,7 +20,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired
     public MemberServiceImpl(@Qualifier("memberDaoBean") MemberDao memberDao,
-                             @Qualifier("encoder") BCryptPasswordEncoder bcryptPasswordEncoder){
+                             @Qualifier("encoder") BCryptPasswordEncoder bcryptPasswordEncoder) {
         this.memberDao = memberDao;
         this.bcryptPasswordEncoder = bcryptPasswordEncoder;
     }
@@ -36,28 +34,37 @@ public class MemberServiceImpl implements MemberService {
         memberDao.insertMember(member);
     }
 
-    public MemberDto getMember(String username){
+    public MemberDto getMember(String username) {
         Member memberEntity = memberDao.selectMember(username);
-        if (memberEntity==null)
+        if (memberEntity == null)
             return null;
 
         return MemberDto.of(memberEntity);
     }
 
-    public Boolean checkAttendance(String username, int survey_id){
+    @Override
+    public MemberDto getMemberBySurvey(int id) {
+        Member memberEntity = memberDao.selectMemberBySurvey(id);
+        if (memberEntity == null)
+            return null;
+
+        return MemberDto.of(memberEntity);
+    }
+
+    public Boolean checkAttendance(String username, int survey_id) {
         int member_id = memberDao.selectMemberId(username);
-        Map<String, Integer> info = new HashMap<String, Integer>();
+        Map<String, Integer> info = new HashMap<>();
         info.put("member_id", member_id);
         info.put("survey_id", survey_id);
         return memberDao.countMember(info) == 0;
     }
 
-    public int getPoint(String username){
+    public int getPoint(String username) {
         return memberDao.getPoint(username);
     }
 
-    public void givePoint(String from, String to, int point){
-        Map<String, Object> info = new HashMap<String, Object>();
+    public void givePoint(String from, String to, int point) {
+        Map<String, Object> info = new HashMap<>();
         info.put("from", from);
         info.put("to", to);
         info.put("point", point);

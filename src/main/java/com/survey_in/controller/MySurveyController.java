@@ -29,7 +29,7 @@ public class MySurveyController {
     @Autowired
     public MySurveyController(@Qualifier("surveyService") SurveyService surveyService,
                               @Qualifier("answerServiceBean") AnswerService answerService,
-                              @Qualifier("serviceBean") MemberService memberService,
+                              @Qualifier("memberServiceBean") MemberService memberService,
                               @Qualifier("questionServiceBean") QuestionServiceImpl questionService){
         this.surveyService = surveyService;
         this.answerService = answerService;

@@ -20,7 +20,7 @@ public class MemberController {
     private MemberService memberService;
 
     @Autowired
-    public MemberController(@Qualifier("serviceBean") MemberService memberService){
+    public MemberController(@Qualifier("memberServiceBean") MemberService memberService){
         this.memberService = memberService;
     }
 

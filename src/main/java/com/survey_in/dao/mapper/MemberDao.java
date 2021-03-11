@@ -9,8 +9,10 @@ public interface MemberDao {
     List<Member> getMembers();
     void insertMember(Member member);
     Member selectMember(String username);
+    Member selectMemberBySurvey(int id);
     int selectMemberId(String username);
     void deleteMember(String username);
+
     int countMember(Map<String, Integer> info);
     int getPoint(String from);
     void addPoint(Map<String, Object> info);

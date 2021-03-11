@@ -1,7 +1,10 @@
 package com.survey_in.controller;
 
+import com.survey_in.dto.MemberDto;
 import com.survey_in.dto.SurveyDto;
+import com.survey_in.service.MemberService;
 import com.survey_in.service.SearchService;
+import com.survey_in.service.SurveyService;
 import com.survey_in.vo.FilterVO;
 import com.survey_in.vo.PageVO;
 import com.survey_in.vo.PagingVO;
@@ -11,6 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.List;
 
@@ -18,11 +25,17 @@ import java.util.List;
 @Controller
 public class SearchController {
 
-    private SearchService searchService;
+    private final SearchService searchService;
+    private final SurveyService surveyService;
+    private final MemberService memberService;
 
     @Autowired
-    public SearchController(@Qualifier("searchService") SearchService searchService) {
+    public SearchController(@Qualifier("searchService") SearchService searchService,
+                            @Qualifier("surveyService") SurveyService surveyService,
+                            @Qualifier("memberServiceBean") MemberService memberService) {
         this.searchService = searchService;
+        this.surveyService = surveyService;
+        this.memberService = memberService;
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
@@ -40,8 +53,7 @@ public class SearchController {
         if (filter.getTar().equals("survey")) {
             paging = new PagingVO(page, searchService.getCntSearchSurvey(keyword, filter));
             surveys = searchService.searchSurvey(keyword, filter, paging);
-        }
-        else {
+        } else {
             paging = new PagingVO(page, searchService.getCntSearchQuestion(keyword, filter));
             surveys = searchService.searchQuestion(keyword, filter, paging);
         }
@@ -52,5 +64,29 @@ public class SearchController {
         model.addAttribute("username", principal.getName());
 
         return "mySurveys.search";
+    }
+
+
+    // "설문 결과 보기" 버튼 클릭
+    @RequestMapping(value = "/search/{surveyId}", method = RequestMethod.GET)
+    public String getAnswerSheet(@PathVariable int surveyId, Principal principal,
+                                 HttpServletResponse response, HttpServletRequest request) throws IOException {
+
+        MemberDto registerMember = memberService.getMemberBySurvey(surveyId);   // 설문을 등록한 사용자
+        String registrantName = registerMember.getUsername();
+
+        System.out.println(registrantName);
+
+        if (registrantName.equals(principal.getName()) ||
+                !memberService.checkAttendance(principal.getName(), surveyId)) {
+            return "redirect:/" + registrantName + "/surveys/" + surveyId;
+        } else {
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('You must participate in the survey to see the results.'); location.href= '/" + registrantName + "/surveys/" + surveyId + "/answer" + "';</script>");
+            out.flush();
+
+            return "redirect:/" + registrantName + "/surveys/" + surveyId + "/answer";
+        }
     }
 }

@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -100,7 +100,7 @@
                             <article>
                                 <div class="survey-header">
                                     <div class="survey-title">
-                                        <h3><a href="#">${s.title}</a></h3>
+                                        <h3>${s.title}</h3>
                                         <h4>${s.participant}/${s.capacity}</h4>
                                     </div>
                                     <div class="survey-point">
@@ -108,13 +108,15 @@
                                     </div>
                                 </div>
                                 <div class="survey-body">
-                                    <a href="#">
-                                        <h5>header</h5>
-                                        <p>content</p>
-                                    </a>
+<%--                                    <h5>header</h5>--%>
+                                    <p>
+                                        age limit : ${s.ageLimit}<br>
+                                        gender limit : ${s.genderLimit}
+                                    </p>
                                 </div>
                                 <div class="survey-footer">
                                     <time>${s.createdAt}</time>
+                                    <a class="btn" href="/search/${s.id}">view results &raquo;</a>
                                 </div>
                             </article>
                         </li>
@@ -127,25 +129,24 @@
                                 <article>
                                     <div class="survey-header">
                                         <div class="survey-title">
-                                            <h3><a href="javascript:void(0);">${s.title}</a></h3>
-                                            <h4>(temp)/${s.capacity}</h4>
+                                            <h3>${s.title}</h3>
+                                            <h4>${s.participant}/${s.capacity}</h4>
                                         </div>
                                         <div class="survey-point">
                                             <h4>${s.point} POINT</h4>
                                         </div>
                                     </div>
                                     <div class="survey-body">
-                                        <a href="#">
-                                            <h5>Q. ${q.title}</h5>
-                                            <p>
-                                                <c:forEach var="op" items="${q.option}" varStatus="st">
-                                                    ${st.index+1}. ${op.data}<br/>
-                                                </c:forEach>
-                                            </p>
-                                        </a>
+                                        <h5>Q. ${q.title}</h5>
+                                        <p>
+                                            <c:forEach var="op" items="${q.option}" varStatus="st">
+                                                ${st.index+1}. ${op.data}<br/>
+                                            </c:forEach>
+                                        </p>
                                     </div>
                                     <div class="survey-footer">
                                         <time>${s.createdAt}</time>
+                                        <a class="btn" href="/join">view results &raquo;</a>
                                     </div>
                                 </article>
                             </li>
