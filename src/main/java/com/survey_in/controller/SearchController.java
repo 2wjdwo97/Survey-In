@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -62,10 +64,25 @@ public class SearchController {
         return "mySurveys.search";
     }
 
-    @RequestMapping("/search/{surveyId}")
+    @RequestMapping(value = "/search/{surveyId}", method = RequestMethod.POST)
     @ResponseBody
-    public String getRegistrantName(int surveyId) {
+    public Map<String, Object> getRegistrantName(@RequestBody Map<String, Object> param) {
+        String username = (String) param.get("username");
+        int surveyId = (int) param.get("surveyId");
+
         MemberDto registrant = memberService.getMemberBySurvey(surveyId);   // 설문을 등록한 사용자
-        return registrant.getUsername();
+        String registrantName = registrant.getUsername();
+
+        boolean canView = false;
+        if (registrantName.equals(username) || !memberService.checkAttendance(username, surveyId))
+            canView = true;    // 설문을 등록한 사용자거나 이미 참여한 설문인 경우
+
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("registrant", registrantName);
+        map.put("canView", canView);
+//        alert(response, "You must participate in the survey to see the results.", surveyId + "/answer");
+
+        return map;
     }
 }

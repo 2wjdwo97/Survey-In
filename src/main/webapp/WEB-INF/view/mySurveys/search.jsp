@@ -116,7 +116,7 @@
                                 </div>
                                 <div class="survey-footer">
                                     <time>${s.createdAt}</time>
-                                    <a class="btn" href="javascript:void(0);" onclick="viewDetail(${s.id})">view results &raquo;</a>
+                                    <a class="btn" href="javascript:void(0);" onclick="viewDetail(${s.id}, '${username}')">view results &raquo;</a>
                                 </div>
                             </article>
                         </li>

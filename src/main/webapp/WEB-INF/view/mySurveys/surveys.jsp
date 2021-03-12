@@ -18,7 +18,7 @@
 
 <div class="display-flex flex-wrapper content-box-list">
     <c:forEach var="item" items="${list}">
-        <a href="surveys/${item.id}" class="survey-box position-relative">
+        <a href="${item.id}" class="survey-box position-relative">
             <div class="header position-relative">
                 <div id="timeDiv"  class="position-absolute">
                     ${item.createdAt}

@@ -19,7 +19,7 @@
 #search-filter li .select-dropdown{width: 100%; padding: 8px; border: none;}
 
 /* Search List */
-#search-list{clear: left; padding: 0 0 100px 0; margin: 20px 0;}
+#search-list{clear: left; padding: 0 0 20px 0; margin: 20px 0;}
 #search-list ul{margin:0 0 40px 0; padding:0; list-style:none;}
 #search-list li{width: 80%; margin: 10px 0; padding: 10px 20px; border: solid 1px; border-radius:10px;}
 #search-list li:first-child{margin-top: 0;}

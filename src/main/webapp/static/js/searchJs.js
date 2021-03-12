@@ -107,17 +107,26 @@ function makePageURL(page) {
     return `./search?${pageURL}`;
 }
 
-function viewDetail(surveyId) {
+function viewDetail(surveyId, username) {
     let registrantName;
+    let data = {};
+    data["surveyId"] = surveyId;
+    data["username"] = username;
+
     $.ajax({
         url: `/search/${surveyId}`,
-        type: "get",
-        data: {
-            surveyId: surveyId,
-        },
+        type: "post",
+        data: JSON.stringify(data),
+        dataType: "json",
+        contentType: "application/json;charset=UTF-8",
         success: function (response) {
-            registrantName = response;
-            location.href= `../${registrantName}/surveys/${surveyId}`;
+            if (response.canView)
+                location.href= `../${response.registrant}/surveys/${surveyId}`;
+            else {
+                let isClick = confirm("You must participate in the survey to see the results.");
+                if (isClick)
+                    location.href= `../${response.registrant}/surveys/${surveyId}/answer`;
+            }
         },
         error: function (request, status, error) {
             alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
