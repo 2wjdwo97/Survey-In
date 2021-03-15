@@ -2,6 +2,7 @@ package com.survey_in.controller;
 import java.security.Principal;
 
 
+import com.survey_in.dto.SurveyDto;
 import com.survey_in.entity.Survey;
 import com.survey_in.service.ExploreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +20,27 @@ public class ExploreController {
     private ExploreService exploreService;
 
     @Autowired
-    public ExploreController( @Qualifier("serviceBeanExplore") ExploreService exploreService){
+    public ExploreController( @Qualifier("exploreServiceBean") ExploreService exploreService){
         this.exploreService = exploreService;
         System.out.println("hihi");
     }
 
     @RequestMapping(value = ("/explore"), method = RequestMethod.GET)
     public String index(Model model, Principal principal){
+        // 1. get newest by date
+        // 2. get most valuable by points
+        // 3. get shortest by question cnt
+
+        List<SurveyDto> recents = null;
+//        List<SurveyDto> trending = null;
+        List<SurveyDto> points = null;
+
         try {
-            List<Survey> surveys = exploreService.getAllSurveys();
-            model.addAttribute("list", surveys);
+            recents = exploreService.getRecentSurveys(5);
+            points = exploreService.getValuableSurvey(5);
+
+            model.addAttribute("recents", recents);
+            model.addAttribute("points", points);
             model.addAttribute("username", principal.getName());
         }catch(Exception e){
             System.out.println("exception!! " + e.toString());
@@ -39,6 +51,8 @@ public class ExploreController {
             }
         }
         System.out.println("returning explore");
+        System.out.println(recents);
+        System.out.println(points);
         return "mySurveys.explore";
     }
 

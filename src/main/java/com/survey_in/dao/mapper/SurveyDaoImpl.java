@@ -3,6 +3,7 @@ package com.survey_in.dao.mapper;
 import com.survey_in.dto.SurveyDto;
 import com.survey_in.entity.Survey;
 import com.survey_in.vo.FilterVO;
+import com.survey_in.vo.PageVO;
 import com.survey_in.vo.PagingVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,8 +76,18 @@ public class SurveyDaoImpl implements SurveyDao{
 
     @Override
     public List<SurveyDto> getSurveyByDate(int searchnum) {
+        FilterVO f = new FilterVO();
+        PagingVO p = new PagingVO(new PageVO(), 2);
+        f.setOrd("latest");
+        return sqlSession.selectList("SurveyMapper.getLatest", getMapParam(f, p));
+    }
 
-        return null;
+    @Override
+    public List<SurveyDto> getSurveyByPoints(int searchnum) {
+        FilterVO f = new FilterVO();
+        PagingVO p = new PagingVO(new PageVO(), 2);
+        f.setOrd("point");
+        return sqlSession.selectList("SurveyMapper.getByPoints", getMapParam(f, p));
     }
 
     Map<String, Object> getMapParam(String keyword, FilterVO filter){
@@ -85,7 +96,12 @@ public class SurveyDaoImpl implements SurveyDao{
         param.put("filter", filter);
         return param;
     }
-
+    Map<String, Object> getMapParam(FilterVO filter, PagingVO paging){
+        Map<String, Object> param = new HashMap<>();
+        param.put("filter", filter);
+        param.put("paging", paging);
+        return param;
+    }
     Map<String, Object> getMapParam(String keyword, FilterVO filter, PagingVO paging){
         Map<String, Object> param = new HashMap<>();
         param.put("keyword", keyword);

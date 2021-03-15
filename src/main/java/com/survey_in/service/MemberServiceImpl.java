@@ -25,24 +25,6 @@ public class MemberServiceImpl implements MemberService {
     }
 
     public List<Member> signIn() throws ClassNotFoundException, SQLException {
-        /* Class.forName("oracle.jdbc.driver.OracleDriver");
-        Connection con = DriverManager.getConnection(SecretInfo.url(), SecretInfo.id(), SecretInfo.password());
-        String sql = "SELECT USER_NO FROM MEMBER WHERE ID='" + id + "' AND PWD='" + pw + "'";
-        Statement st = con.createStatement();
-        ResultSet rs = st.executeQuery(sql);
-
-        int user_no;
-
-        if (rs.next())
-            user_no = rs.getInt("USER_NO");
-        else
-            user_no = -1;
-
-        rs.close();
-        st.close();
-        con.close();*/
-
-//        return user_no;
         return memberDao.getMembers();
     }
     public void signUp(String id, String pw, String fname, String lname, String email, String birthday, String gender, String job) {

@@ -149,4 +149,19 @@
         WHERE s.SURVEY_ID = #{survey_id}
         ORDER BY o.OPTION_ID
     </select>
+
+
+    <select id="getLatest" resultType="com.survey_in.entity.Survey">
+        SELECT * FROM survey s
+        <include refid="setOrder"/>
+        <include refid="setPaging"/>
+    </select>
+
+    <select id="getByPoints" resultType="com.survey_in.entity.Survey">
+        SELECT * FROM survey s
+        <include refid="setOrder"/>
+        <include refid="setPaging"/>
+    </select>
+
+
 </mapper>
