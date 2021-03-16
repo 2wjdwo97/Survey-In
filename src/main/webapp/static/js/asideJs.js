@@ -60,3 +60,9 @@ function init(){
 }
 
 init();
+
+const giveButton = document.getElementById('give-button');
+giveButton.addEventListener('click', function(){
+    window.open("/givePoint",null,
+        "height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");
+});

@@ -14,12 +14,12 @@ const pagingOther = document.getElementsByClassName("paging-other");
 function init() {
 
     // 검색칸에 검색했던 단어 넣기
-    const searchInput = document.querySelector('#search-input');
-    searchInput.value = document.querySelector('#search-hidden-input').value;
+    const searchInput = document.querySelector('.search-input');
+    searchInput.value = inputKeyword.value;
 
 
     // 검색 필터 유지
-    const searchForm = document.querySelector('#form-search-input');
+    const searchForm = document.querySelector('.form-search-input');
     searchForm.addEventListener('submit', function (event) {
 
         let URLSearch = new URLSearchParams(location.search);
@@ -44,13 +44,32 @@ function init() {
     filterAge.addEventListener('change', moveUrl);
     filterGen.addEventListener('change', moveUrl);
 
-    
+
     // 페이징 버튼
-    let curPage = pagingCur.innerText;
-    pagingPrev.href = makePageURL(curPage - 3);
-    for(let pageBtn of pagingOther)
-        pageBtn.href = makePageURL(pageBtn.innerText);
-    pagingNext.href = makePageURL(String(curPage + 3));
+    if (pagingCur != null) {
+        let curPage = pagingCur.innerText;
+        pagingPrev.href = makePageURL(curPage - 3);
+        for (let pageBtn of pagingOther)
+            pageBtn.href = makePageURL(pageBtn.innerText);
+        pagingNext.href = makePageURL(String(curPage + 3));
+    } else {
+        const searchScreen = document.querySelector('#search-list');
+        searchScreen.innerHTML = `<ul><li><article>
+                                    <div class="survey-header">
+                                        <div class="survey-title">
+                                            <h3>No results</h3>
+                                        </div>
+                                    </div>
+                                    <div class="survey-body">
+                                        <p>
+                                            - Check if the word is spelled correctly.</br>
+                                            - Try reducing the number of words in your search term or re-searching with more common search terms.</br>
+                                            - If it's more than one word, check the spacing.</br>
+                                            - Please change the search options and search again.</br>
+                                        </p>
+                                    </div>
+                                </article></li></ul>`;
+    }
 }
 
 
@@ -86,6 +105,33 @@ function makePageURL(page) {
     pageURL.set("page", page);
 
     return `./search?${pageURL}`;
+}
+
+function viewDetail(surveyId, username) {
+    let registrantName;
+    let data = {};
+    data["surveyId"] = surveyId;
+    data["username"] = username;
+
+    $.ajax({
+        url: `/search/${surveyId}`,
+        type: "post",
+        data: JSON.stringify(data),
+        dataType: "json",
+        contentType: "application/json;charset=UTF-8",
+        success: function (response) {
+            if (response.canView)
+                location.href= `../${response.registrant}/surveys/${surveyId}`;
+            else {
+                let isClick = confirm("You must participate in the survey to see the results.");
+                if (isClick)
+                    location.href= `../${response.registrant}/surveys/${surveyId}/answer`;
+            }
+        },
+        error: function (request, status, error) {
+            alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+        }
+    });
 }
 
 init();

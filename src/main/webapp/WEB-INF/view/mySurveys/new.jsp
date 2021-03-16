@@ -34,14 +34,14 @@
                     <div>
                         <label>Points
                             <div>
-                                <input class="option-input" type="text" name="point"/>
+                                <input id="point" class="option-input" type="text" name="point"/>
                             </div>
                         </label>
                     </div>
                     <div>
                         <label>Capacity
                             <div>
-                                <input class="option-input" type="text" name="capacity"/>
+                                <input id="capacity" class="option-input" type="text" name="capacity"/>
                             </div>
                         </label>
                     </div>
@@ -69,10 +69,10 @@
                             <input class="radio" type="radio" name="gender_limit" checked=true value="all"/>
                             All</label>
                         <label>
-                            <input class="radio" type="radio" name="gender_limit" value="men"/>
+                            <input class="radio" type="radio" name="gender_limit" value="male"/>
                             Men Only</label>
                         <label>
-                            <input class="radio" type="radio" name="gender_limit" value="women"/>
+                            <input class="radio" type="radio" name="gender_limit" value="fem"/>
                             Women Only</label>
                     </div>
 
@@ -105,4 +105,5 @@
     </div>
 </form>
 
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="/js/createJs.js"></script>

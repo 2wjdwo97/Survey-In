@@ -22,78 +22,66 @@
         <span style="height:fit-content; align-self: flex-end">${survey.title}</span>
     </div>
     <div class="display-flex flex-auto">
-        <div class="survey-list">
+        <div class="survey-list padding-20">
+            <div class="btmspace-30" style="font-size: 24px; font-weight: bold;">
+                Questions
+            </div>
             <c:forEach var="question" items="${survey.questions}" varStatus="st">
                 <div>
-                    <button class="question-title">${st.index + 1}. ${question.title}</button>
-
-                    <div>
-                        <canvas id="chart${st.index}" class="main-chart hidden"></canvas>
+                    <button class="btmspace-10 question-title" onclick="btn_clicked(${question.id}, ${st.index})">${st.index + 1}. ${question.title}</button>
+                    <div class="chart-div hidden" >
+                        <canvas id="chart${st.index}" class="btmspace-30"></canvas>
                     </div>
-                    <br/>
                 </div>
             </c:forEach>
         </div>
         <div class="survey-analysis">
-            <c:forEach var="question" items="${survey.questions}" varStatus="st">
-                <div class="display-flex flex-direction-column detail-chart hidden">
-                    <div class="gender-area display-flex">
-                        <div style="width:50%; height: 100%">
-                            <canvas id="chart${st.index}-men" height="250"></canvas>
-                        </div>
-                        <div style="width:50%; height: 100%">
-                            <canvas id="chart${st.index}-women" height="250"></canvas>
-                        </div>
-                    </div>
-                    <div></div>
+            <div class="display-flex flex-direction-column detail-chart padding-20 position-relative">
+                <div class="btmspace-30" style="font-size: 24px; font-weight: bold;">
+                    Analysis
                 </div>
-            </c:forEach>
+                <div class="gender-area display-flex btmspace-80">
+                    <div style="width:50%; height: 100%">
+                        <canvas id="chart-men"></canvas>
+                    </div>
+                    <div style="width:50%; height: 100%">
+                        <canvas id="chart-women"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <canvas id="chart-age"></canvas>
+                </div>
+                <div id="no-result" class="hidden position-absolute display-flex flex-direction-column flex-content-center flex-content-cross-center">
+                    <img class="btmspace-15" src="/images/no_result.png">
+                    <span>No data</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script type="text/javascript" src="/js/detailJs.js"></script>
 <script>
-    let ageCharts=[];
-
     let charts=[];
-    let charts_man = [];
-    let charts_woman = [];
-
     let label;
-    let data, manData, womanData;
-    let massPopChart, manChart, womanChart;
-
-    let w_cnt, m_cnt;
+    let data;
+    let massPopChart;
 
     for(let index = 0; index < "${fn:length(survey.questions)}"; index++) {
         const id = "chart"+index;
-        const idMen = "chart" + index + "-men";
-        const idWomen = "chart" + index + "-women";
         charts.push(document.getElementById(id).getContext('2d'));
-        charts_man.push(document.getElementById(idMen).getContext('2d'));
-        charts_woman.push(document.getElementById(idWomen).getContext('2d'));
     }
 
     <c:forEach items="${survey.questions}" var="q" varStatus="st">
         label = [];
         data = [];
-        manData = [];
-        womanData = [];
         <c:forEach var="op" items="${q.option}">
             label.push("${op.data}");
             data.push("${fn:length(op.answers)}");
-            w_cnt = 0;
-            m_cnt = 0;
-            <c:forEach var="answer" items="${op.answers}">
-                if("${answer.member.gender}" === "male")
-                    m_cnt++;
-                else
-                    w_cnt++;
-            </c:forEach>
-            manData.push(m_cnt);
-            womanData.push(w_cnt);
         </c:forEach>
+
 
         massPopChart = new Chart(charts["${st.index}"], {
             type: 'pie',
@@ -102,14 +90,7 @@
                 datasets: [{
                     label: "# of Votes",
                     data: data,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.7)',
-                        'rgba(54, 162, 235, 0.7)',
-                        'rgba(255, 206, 86, 0.7)',
-                        'rgba(75, 192, 192, 0.7)',
-                        'rgba(153, 102, 255, 0.7)',
-                        'rgba(255, 159, 64, 0.7)'
-                    ]
+                    backgroundColor: bgc
                 }]
             },
             options: {
@@ -118,54 +99,11 @@
                 }
             }
         });
-
-        manChart = new Chart(charts_man["${st.index}"], {
-            type: 'pie',
-            data: {
-                labels: label,
-                datasets: [{
-                    label: "Men",
-                    data: manData,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.7)',
-                        'rgba(54, 162, 235, 0.7)',
-                        'rgba(255, 206, 86, 0.7)',
-                        'rgba(75, 192, 192, 0.7)',
-                        'rgba(153, 102, 255, 0.7)',
-                        'rgba(255, 159, 64, 0.7)'
-                    ]
-                }]
-            },
-            options: {
-                legend: {
-                    position: 'bottom'
-                }
-            }
-        });
-        womanChart = new Chart(charts_woman["${st.index}"], {
-            type: 'pie',
-            data: {
-                labels: label,
-                datasets: [{
-                    label: "Women",
-                    data: womanData,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.7)',
-                        'rgba(54, 162, 235, 0.7)',
-                        'rgba(255, 206, 86, 0.7)',
-                        'rgba(75, 192, 192, 0.7)',
-                        'rgba(153, 102, 255, 0.7)',
-                        'rgba(255, 159, 64, 0.7)'
-                    ]
-                }]
-            },
-            options: {
-                legend: {
-                    position: 'bottom'
-                }
-            }
-        });
+        if(sum(data) === 0){
+            charts["${st.index}"].font = "18px Arial";
+            charts["${st.index}"].clearRect(0, 0, 100, 100);
+            charts["${st.index}"].fillText("No data", 10, 50);
+        }
     </c:forEach>
 
 </script>
-<script type="text/javascript" src="/js/detailJs.js"></script>

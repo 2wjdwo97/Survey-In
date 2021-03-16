@@ -18,7 +18,7 @@
 
 <div class="display-flex flex-wrapper content-box-list">
     <c:forEach var="item" items="${list}">
-        <a href="surveys/${item.id}" class="survey-box position-relative ">
+        <a href="${item.id}" class="survey-box position-relative">
             <div class="header position-relative">
                 <div id="timeDiv"  class="position-absolute">
                     ${item.createdAt}
@@ -35,9 +35,16 @@
                     ${item.point} points
                 </div>
                 <div id="capacityDiv" class="position-absolute">
-                    0/${item.capacity}
+                    ${item.participant}/${item.capacity}
                 </div>
             </div>
         </a>
+        <form action="surveys/${item.id}" method="post" onsubmit="deleteSurvey(event)" class="<c:if test="${isMySurvey}">hidden</c:if>">
+            <div>
+                <input type="hidden" name="method" value="delete" />
+                <button id="deleteBtn"><img src="/images/deleteBtn2.png"></button>
+            </div>
+        </form>
     </c:forEach>
 </div>
+<script type="text/javascript" src="/js/surveyJs.js"></script>

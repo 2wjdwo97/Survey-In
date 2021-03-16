@@ -40,8 +40,8 @@ public class SurveyDaoImpl implements SurveyDao{
     }
 
     @Override
-    public void deleteSurvey(String survey_id) {
-        sqlSession.delete("MemberMapper.deleteMember", survey_id);
+    public void deleteSurvey(int survey_id) {
+        sqlSession.delete("SurveyMapper.deleteSurvey", survey_id);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class SurveyDaoImpl implements SurveyDao{
         return sqlSession.selectOne("SurveyMapper.testJoin", survey_id);
     }
 
-    // search
+    // search //
     @Override
     public int getCntSearchSurvey(String keyword, FilterVO filter) {
         return sqlSession.selectOne("SurveyMapper.getCntSearchSurvey", getMapParam(keyword, filter));
@@ -88,6 +88,8 @@ public class SurveyDaoImpl implements SurveyDao{
         PagingVO p = new PagingVO(new PageVO(), 2);
         f.setOrd("point");
         return sqlSession.selectList("SurveyMapper.getByPoints", getMapParam(f, p));
+    public void addParticipant(int surveyId){
+        sqlSession.update("SurveyMapper.addParticipant", surveyId);
     }
 
     Map<String, Object> getMapParam(String keyword, FilterVO filter){

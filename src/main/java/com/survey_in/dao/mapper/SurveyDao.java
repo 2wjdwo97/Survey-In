@@ -12,7 +12,8 @@ public interface SurveyDao {
     List<Survey> getAllSurveys();
     void insertSurvey(Survey survey);
     Survey selectSurvey(int survey_id);
-    void deleteSurvey(String survey_id);
+    void deleteSurvey(int survey_id);
+
     List<Survey> selectMemberSurveys(int member_id);
 
     SurveyDto testJoin(int survey_id);
@@ -26,5 +27,5 @@ public interface SurveyDao {
     List<SurveyDto> getSurveyByDate(int searchnum);
     List<SurveyDto> getSurveyByPoints(int searchnum);
 
-
+    void addParticipant(int surveyId);
 }

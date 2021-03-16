@@ -5,7 +5,8 @@
 
 <mapper namespace="SurveyMapper">
     <select id="getSurveys" resultType="com.survey_in.entity.Survey">
-        SELECT * FROM SURVEY
+        SELECT *
+        FROM SURVEY
     </select>
 
     <select id="selectSurvey" resultType="com.survey_in.entity.Survey">
@@ -42,7 +43,9 @@
     </select>
 
     <select id="searchSurvey" resultType="com.survey_in.dto.SurveyDto">
-        SELECT *, s.created_at AS createdAt FROM survey s
+        SELECT *, s.survey_id AS id, s.created_at AS createdAt,
+        s.age_limit AS ageLimit, s.gender_limit AS genderLimit
+        FROM survey s
         WHERE s.title LIKE '%'||#{keyword}||'%'
         <include refid="setFilter"/>
         <include refid="setOrder"/>
@@ -50,11 +53,12 @@
     </select>
 
     <resultMap type="com.survey_in.dto.SurveyDto" id="searchQuestionDto">
-<!--        <id property="id" column="q_id"/>-->
+        <id column="s_id" property="id" javaType="int"/>
         <result column="s_title" property="title"/>
         <result column="capacity" property="capacity"/>
         <result column="point" property="point"/>
         <result column="created_at" property="createdAt"/>
+        <result column="participant" property="participant"/>
         <collection property="questions" javaType="java.util.ArrayList" ofType="com.survey_in.dto.QuestionDto">
             <id column="q_id" property="id" javaType="int"/>
             <result column="q_title" property="title"/>
@@ -73,7 +77,8 @@
     </select>
 
     <select id="searchQuestion" resultMap="searchQuestionDto">
-        SELECT s.title AS s_title, s.capacity AS capacity, s.point AS point, s.created_at As created_at,
+        SELECT s.survey_id AS s_id, s.title AS s_title, s.capacity AS capacity, s.point AS point, s.created_at As
+        created_at, s.participant As participant,
         q.question_id As q_id, q.title AS q_title, o.data AS data
         FROM survey s
         INNER JOIN question q ON s.survey_id = q.survey_id
@@ -114,8 +119,11 @@
 
     <resultMap type="com.survey_in.dto.SurveyDto" id="SurveyDto">
         <result column="s_title" property="title"/>
+        <result column="point" property="point"/>
+        <result column="s_gender" property="genderLimit"/>
+        <result column="s_age" property="ageLimit"/>
         <collection property="questions" javaType="java.util.ArrayList" ofType="com.survey_in.dto.QuestionDto">
-            <id property="id" column="q_id" javaType="int" />
+            <id property="id" column="q_id" javaType="int"/>
             <result column="q_title" property="title"/>
             <collection property="option" javaType="java.util.ArrayList" ofType="com.survey_in.dto.OptionDto">
                 <result column="data" property="data"/>
@@ -132,14 +140,17 @@
     </resultMap>
 
     <select id="testJoin" resultMap="SurveyDto">
-        SELECT s.TITLE AS s_title,
-               q.TITLE AS q_title,
-               q.QUESTION_ID AS q_id,
-               o.DATA AS data,
+        SELECT s.TITLE               AS s_title,
+               s.POINT               AS point,
+               s.GENDER_LIMIT        AS s_gender,
+               s.AGE_LIMIT           AS s_age,
+               q.TITLE               AS q_title,
+               q.QUESTION_ID         AS q_id,
+               o.DATA                AS data,
                qo.QUESTION_OPTION_ID AS question_option_id,
-               m.AGE AS age,
-               m.GENDER AS gender,
-               m.JOB    AS job
+               m.AGE                 AS age,
+               m.GENDER              AS gender,
+               m.JOB                 AS job
         FROM SURVEY s
                  INNER JOIN QUESTION q ON s.SURVEY_ID = q.SURVEY_ID
                  INNER JOIN QUESTION_OPTION qo ON q.QUESTION_ID = qo.QUESTION_ID
@@ -164,4 +175,9 @@
     </select>
 
 
+    <update id="addParticipant">
+        UPDATE SURVEY
+        SET PARTICIPANT = PARTICIPANT + 1
+        WHERE SURVEY_ID = #{surveyId}
+    </update>
 </mapper>

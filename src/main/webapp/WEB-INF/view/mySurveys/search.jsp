@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -9,12 +9,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<head>
-    <link href="/css/style_search.css" rel="stylesheet" type="text/css">
-    <link href="/css/framework.css" rel="stylesheet" type="text/css">
-</head>
+<link href="/css/style_search.css" rel="stylesheet" type="text/css">
+<link href="/css/framework.css" rel="stylesheet" type="text/css">
 
-<body>
+
 <div id="search" class="content-box">
     <!-- ################################################################################################ -->
     <div id="search-title">
@@ -102,21 +100,24 @@
                             <article>
                                 <div class="survey-header">
                                     <div class="survey-title">
-                                        <h3><a href="#">${s.title}</a></h3>
-                                        <h4>(temp)/${s.capacity}</h4>
+                                        <h3>${s.title}</h3>
+                                        <h4>${s.participant}/${s.capacity}</h4>
                                     </div>
                                     <div class="survey-point">
                                         <h4>${s.point} POINT</h4>
                                     </div>
                                 </div>
                                 <div class="survey-body">
-                                    <a href="#">
-                                        <h5>header</h5>
-                                        <p>content</p>
-                                    </a>
+                                    <%--                                    <h5>header</h5>--%>
+                                    <p>
+                                        age limit : ${s.ageLimit}<br>
+                                        gender limit : ${s.genderLimit}
+                                    </p>
                                 </div>
                                 <div class="survey-footer">
                                     <time>${s.createdAt}</time>
+                                    <a class="btn" href="javascript:void(0);"
+                                        onclick="viewDetail(${s.id}, '${username}')">view results &raquo;</a>
                                 </div>
                             </article>
                         </li>
@@ -129,25 +130,24 @@
                                 <article>
                                     <div class="survey-header">
                                         <div class="survey-title">
-                                            <h3><a href="javascript:void(0);">${s.title}</a></h3>
-                                            <h4>(temp)/${s.capacity}</h4>
+                                            <h3>${s.title}</h3>
+                                            <h4>${s.participant}/${s.capacity}</h4>
                                         </div>
                                         <div class="survey-point">
                                             <h4>${s.point} POINT</h4>
                                         </div>
                                     </div>
                                     <div class="survey-body">
-                                        <a href="#">
-                                            <h5>Q. ${q.title}</h5>
-                                            <p>
-                                                <c:forEach var="op" items="${q.option}" varStatus="st">
-                                                    ${st.index+1}. ${op.data}<br/>
-                                                </c:forEach>
-                                            </p>
-                                        </a>
+                                        <h5>Q. ${q.title}</h5>
+                                        <p>
+                                            <c:forEach var="op" items="${q.option}" varStatus="st">
+                                                ${st.index+1}. ${op.data}<br />
+                                            </c:forEach>
+                                        </p>
                                     </div>
                                     <div class="survey-footer">
                                         <time>${s.createdAt}</time>
+                                        <a class="btn" href="/join">view results &raquo;</a>
                                     </div>
                                 </article>
                             </li>
@@ -179,4 +179,5 @@
     <!-- ################################################################################################ -->
 </div>
 <script type="text/javascript" src="/js/searchJs.js"></script>
-</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>

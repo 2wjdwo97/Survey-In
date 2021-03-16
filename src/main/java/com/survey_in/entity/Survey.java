@@ -2,6 +2,7 @@ package com.survey_in.entity;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+import java.sql.Timestamp;
 
 public class Survey {
     private int id;
@@ -11,13 +12,14 @@ public class Survey {
     private int capacity;
     private int point;
     private int questionCnt;
-    private int participant;
-    private Date createdAt;
+    private Timestamp createdAt;
     private String ageLimit;
     private String genderLimit;
-    private boolean status;
+    private Boolean status;
+    private int participant;
 
-    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt, String ageLimit, String genderLimit, Timestamp createdAt, boolean status, int participant) {
+    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt,
+                  String ageLimit, String genderLimit, Timestamp createdAt, Boolean status, int participant) {
         this.id = id;
         this.member_id = member_id;
         this.title = title;
@@ -25,11 +27,11 @@ public class Survey {
         this.capacity = capacity;
         this.point = point;
         this.questionCnt = questionCnt;
-        this.createdAt = new Date(createdAt.getTime());;
         this.ageLimit = ageLimit;
         this.genderLimit = genderLimit;
-        this.participant = participant;
+        this.createdAt = createdAt;
         this.status = status;
+        this.participant = participant;
     }
 
     public Survey(int member_id, String title, String category, int capacity, int point, int questionCnt, String ageLimit, String genderLimit) {
@@ -42,6 +44,7 @@ public class Survey {
         this.questionCnt = questionCnt;
         this.ageLimit = ageLimit;
         this.genderLimit = genderLimit;
+        this.status = status;
     }
 
     public int getId() {
@@ -100,10 +103,11 @@ public class Survey {
         this.questionCnt = questionCnt;
     }
 
-    public Date getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
-    public void setCreatedAt(Date createdAt) {
+
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -123,9 +127,13 @@ public class Survey {
         this.genderLimit = genderLimit;
     }
 
-    public boolean getStatus() {return this.status;}
+    public Boolean getStatus() {
+        return status;
+    }
 
-    public void setStatus(boolean status) {this.status = status; }
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 
     public int getParticipant() {
         return participant;
@@ -134,6 +142,7 @@ public class Survey {
     public void setParticipant(int participant) {
         this.participant = participant;
     }
+
     @Override
     public String toString() {
         return "Survey{" +
