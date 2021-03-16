@@ -88,6 +88,7 @@ public class SurveyDaoImpl implements SurveyDao{
         PagingVO p = new PagingVO(new PageVO(), 2);
         f.setOrd("point");
         return sqlSession.selectList("SurveyMapper.getByPoints", getMapParam(f, p));
+    }
     public void addParticipant(int surveyId){
         sqlSession.update("SurveyMapper.addParticipant", surveyId);
     }
