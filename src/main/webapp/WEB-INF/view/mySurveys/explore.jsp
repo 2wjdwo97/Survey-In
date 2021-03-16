@@ -21,7 +21,6 @@
 <div class="explore_main-container">
     <div class="explore_head-box">
         <h1 class="font-x3"> Survey In Hottest! </h1>
-        <hr>
     </div>
     <div class="filter-type-container">
         <span>
@@ -64,11 +63,10 @@
                         <p>
                             카테고리 : ${r.category} <br>
                             문제수 : ${r.questionCnt} <br>
-                            나이제한 : ${r.ageLimit}
+                            나이제한 : ${r.ageLimit} <br>
+                            참여인원 : ${r.participant}
                         </p>
                     </span>
-                </div>
-                <div class="info-tip">
                 </div>
             </div>
         </c:forEach>

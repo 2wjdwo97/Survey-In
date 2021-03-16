@@ -67,7 +67,7 @@
     margin: 20px;
     height: 300px;
     width: 300px;
-    background: #ebf3ff;
+    background: #7AA3FC;
     float: left;
     cursor: pointer;
 }
@@ -127,6 +127,7 @@
     height: auto;
     overflow: auto;
     position: relative;
+    visibility: hidden;
 }
 .survey-point-block{
     float: right;
@@ -312,4 +313,13 @@ body{
 
 .qcnt-button-box button:active {
     transform: translateY(3px);
+}
+
+
+
+.survey-view:hover {
+    transform: skew(-1deg);
+}
+.survey-view:hover .survey-description-block{
+    visibility: visible;
 }
