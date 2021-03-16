@@ -11,12 +11,13 @@ public class Survey {
     private int capacity;
     private int point;
     private int questionCnt;
+    private int participant;
     private Date createdAt;
     private String ageLimit;
     private String genderLimit;
     private boolean status;
 
-    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt, String ageLimit, String genderLimit, Timestamp createdAt, boolean status) {
+    public Survey(int id, int member_id, String title, String category, int capacity, int point, int questionCnt, String ageLimit, String genderLimit, Timestamp createdAt, boolean status, int participant) {
         this.id = id;
         this.member_id = member_id;
         this.title = title;
@@ -27,6 +28,7 @@ public class Survey {
         this.createdAt = new Date(createdAt.getTime());;
         this.ageLimit = ageLimit;
         this.genderLimit = genderLimit;
+        this.participant = participant;
         this.status = status;
     }
 
@@ -125,6 +127,13 @@ public class Survey {
 
     public void setStatus(boolean status) {this.status = status; }
 
+    public int getParticipant() {
+        return participant;
+    }
+
+    public void setParticipant(int participant) {
+        this.participant = participant;
+    }
     @Override
     public String toString() {
         return "Survey{" +
