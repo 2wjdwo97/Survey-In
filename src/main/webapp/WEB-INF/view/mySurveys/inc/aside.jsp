@@ -31,7 +31,7 @@
         </div>
 
         <div>
-            Edit Account
+            <a href = '/${member.username}/myPage'> My Page </a>
         </div>
     </div>
 </aside>

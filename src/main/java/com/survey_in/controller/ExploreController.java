@@ -57,9 +57,6 @@ public class ExploreController {
                 //log
             }
         }
-//        System.out.println("returning explore");
-//        System.out.println(recents);
-//        System.out.println(points);
         return "mySurveys.explore";
     }
 
