@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AnswerMapper">
+    <select id="selectAnswers" resultType="com.survey_in.entity.Answer">
+        SELECT * from ANSWER
+        WHERE QUESTION_OPTION_ID =
+              (SELECT QUESTION_OPTION_ID from QUESTION_OPTION
+                  WHERE OPTION_ID = #{option_id})
+    </select>
+
+    <insert id="createAnswer">
+        INSERT INTO ANSWER (MEMBER_ID, QUESTION_OPTION_ID)
+        VALUES(#{member_id}, #{question_option_id})
+    </insert>
+
+<!--
+    <insert id="insertMember">
+        INSERT INTO MEMBER (USERNAME, PWD, NAME, GENDER, AGE, BIRTHDAY, EMAIL, JOB)
+        VALUES(#{username}, #{pwd}, #{name}, #{gender}, #{age}, #{birthday}, #{email}, #{job})
+    </insert>
+
+    <delete id="deleteMember">
+        DELETE FROM MEMBER
+        WHERE USERNAME = #{username}
+    </delete>-->
+</mapper>

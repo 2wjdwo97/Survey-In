@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="QuestionMapper">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO QUESTION (SURVEY_ID, TITLE)
+        VALUES(#{survey_id}, #{title})
+    </insert>
+
+    <select id="selectQuestion" resultType="com.survey_in.entity.Question">
+        SELECT * from QUESTION
+        WHERE SURVEY_ID = #{survey_id}
+    </select>
+
+    <resultMap type="com.survey_in.dto.QuestionDto" id="QuestionDto">
+        <id property="id" column="q_id" javaType="int" />
+        <result column="q_title" property="title"/>
+        <collection property="option" javaType="java.util.ArrayList" ofType="com.survey_in.dto.OptionDto">
+            <result column="data" property="data"/>
+            <result column="question_option_id" property="questionOptionId"/>
+            <collection property="answers" javaType="java.util.ArrayList" ofType="com.survey_in.dto.AnswerDto">
+                <collection property="member" javaType="com.survey_in.dto.MemberDto">
+                    <result column="age" property="age"/>
+                    <result column="gender" property="gender"/>
+                    <result column="job" property="job"/>
+                </collection>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="select" resultMap="QuestionDto">
+        SELECT q.TITLE AS q_title,
+               q.QUESTION_ID AS q_id,
+               o.DATA AS data,
+               qo.QUESTION_OPTION_ID AS question_option_id,
+               m.AGE AS age,
+               m.GENDER AS gender,
+               m.JOB    AS job
+        FROM QUESTION q
+                 INNER JOIN QUESTION_OPTION qo ON q.QUESTION_ID = qo.QUESTION_ID
+                 INNER JOIN OPTION o ON qo.OPTION_ID = o.OPTION_ID
+                 LEFT JOIN ANSWER a ON a.QUESTION_OPTION_ID = qo.QUESTION_OPTION_ID
+                 LEFT JOIN MEMBER m ON a.MEMBER_ID = m.MEMBER_ID
+        WHERE q.QUESTION_ID = #{questionId}
+        ORDER BY o.OPTION_ID
+    </select>
+</mapper>

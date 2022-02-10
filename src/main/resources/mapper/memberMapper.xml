@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MemberMapper">
+    <select id="getMembers" resultType="java.util.HashMap">
+        SELECT *
+        FROM MEMBER
+    </select>
+
+    <select id="selectMember" resultType="com.survey_in.entity.Member">
+        SELECT *
+        FROM MEMBER
+        WHERE USERNAME = #{username}
+    </select>
+
+    <select id="selectMemberId" resultType="int">
+        SELECT MEMBER_ID
+        FROM MEMBER
+        WHERE USERNAME = #{username}
+    </select>
+
+    <select id="selectMemberBySurvey" resultType="com.survey_in.entity.Member">
+        SELECT *
+        FROM member m
+        WHERE m.member_id = (
+            SELECT s.member_id
+            FROM survey s
+            WHERE s.survey_id = ${id}
+        )
+    </select>
+
+    <insert id="insertMember">
+        INSERT INTO MEMBER (USERNAME, PWD, NAME, GENDER, AGE, BIRTHDAY, EMAIL, JOB)
+        VALUES (#{username}, #{pwd}, #{name}, #{gender}, #{age}, #{birthday}, #{email}, #{job})
+    </insert>
+
+    <delete id="deleteMember">
+        DELETE
+        FROM MEMBER
+        WHERE USERNAME = #{username}
+    </delete>
+
+    <select id="countMember" resultType="int">
+        SELECT count(*)
+        FROM SURVEY s
+                 INNER JOIN QUESTION q ON s.SURVEY_ID = q.SURVEY_ID
+                 INNER JOIN QUESTION_OPTION qo ON q.QUESTION_ID = qo.QUESTION_ID
+                 INNER JOIN OPTION o ON qo.OPTION_ID = o.OPTION_ID
+                 LEFT JOIN ANSWER a ON a.QUESTION_OPTION_ID = qo.QUESTION_OPTION_ID
+                 LEFT JOIN MEMBER m ON a.MEMBER_ID = m.MEMBER_ID
+        WHERE s.SURVEY_ID = #{survey_id}
+          AND m.MEMBER_ID = #{member_id}
+    </select>
+
+    <select id="getPoint" resultType="int">
+        SELECT POINT
+        FROM MEMBER
+        WHERE USERNAME = #{from}
+    </select>
+
+    <update id="addPoint">
+        UPDATE MEMBER
+        SET POINT = POINT + #{point}
+        WHERE username = #{to}
+    </update>
+    <update id="subPoint">
+        UPDATE MEMBER
+        SET POINT = POINT - #{point}
+        WHERE username = #{from}
+    </update>
+</mapper>
